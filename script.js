@@ -42,7 +42,7 @@ if ("IntersectionObserver" in window) {
 
 // Google Sheets waitlist endpoint
 const SHEETS_URL =
-  "https://script.google.com/macros/s/AKfycbw5iLjF27loC9sL0NniTaB5PZ8wnuGX4o-_db0wBL9V5AR3A2d8x-C_VSc4mC6AOMZAEg/exec";
+  "https://script.google.com/macros/s/AKfycbzH9ouOb1YKzRet3U7idf125FtEWZqWbssHtjKajNv2VwyIkCi_8BlnQPDacZvAum5qqA/exec";
 
 function submitToSheet(data, noteEl, successMsg, form) {
   const btn = form.querySelector('button[type="submit"]');
@@ -50,11 +50,13 @@ function submitToSheet(data, noteEl, successMsg, form) {
   btn.textContent = "Submitting...";
   btn.disabled = true;
 
+  const formData = new FormData();
+  Object.entries(data).forEach(([key, value]) => formData.append(key, value));
+
   fetch(SHEETS_URL, {
     method: "POST",
     mode: "no-cors",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data),
+    body: formData,
   })
     .then(() => {
       noteEl.textContent = successMsg;
