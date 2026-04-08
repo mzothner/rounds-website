@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Debt Payoff | Rounds &mdash; Smart student loan tools for physicians</title>
+    <meta
+      name="description"
+      content="Smart tools to attack student loans. Auto-route extra payments, protect PSLF eligibility, and accelerate your payoff timeline. Built for physicians."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/png" href="./Rounds_blue_icon.png" />
+    <meta property="og:title" content="Debt Payoff | Rounds — Smart student loan tools for physicians" />
+    <meta property="og:description" content="Smart tools to attack student loans. Auto-route extra payments, protect PSLF eligibility, and accelerate your payoff timeline." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://roundsfi.com/Rounds_blue_icon.png" />
+    <meta name="twitter:card" content="summary" />
+    <link rel="stylesheet" href="./styles.css" />
+    <meta name="posthog-key" content="phc_yRimWi8Q8XwRRLWvNxTEkvP4UYXdmTAt4PNAjL3VciVA" />
+    <meta name="posthog-host" content="https://us.i.posthog.com" />
+    <script src="./posthog-init.js"></script>
+    <script>
+      document.documentElement.classList.add("js");
+    </script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="/" aria-label="Rounds home">Rounds</a>
+
+        <button
+          class="nav-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="site-nav"
+          aria-label="Toggle navigation"
+        >
+          <span></span>
+          <span></span>
+        </button>
+
+        <nav class="site-nav" id="site-nav">
+          <a href="./partner.html">Partner</a>
+          <a href="./debt-payoff.html" class="is-active">Debt Payoff</a>
+          <a href="./side-gigs.html">Side Gigs</a>
+          <a href="https://apple.co/4iaAPHO" target="_blank" rel="noopener">RVU Tracker</a>
+          <a
+            class="nav-cta"
+            href="https://the-md.beehiiv.com"
+            target="_blank"
+            rel="noopener"
+            >Newsletter</a
+          >
+        </nav>
+      </div>
+    </header>
+
+    <div class="page-shell">
+      <main>
+        <!-- HERO -->
+        <section class="hero">
+          <div class="hero-bg" aria-hidden="true">
+            <div class="gradient-orb gradient-orb-1" style="background: radial-gradient(circle, rgba(14, 186, 116, 0.3) 0%, transparent 70%)"></div>
+            <div class="gradient-orb gradient-orb-2" style="background: radial-gradient(circle, rgba(67, 116, 249, 0.2) 0%, transparent 70%)"></div>
+            <div class="grid-texture"></div>
+          </div>
+
+          <div class="hero-split" data-reveal>
+            <div class="hero-content">
+              <p class="eyebrow">Rounds Debt Payoff</p>
+              <h1>Pay off med school debt faster.</h1>
+              <p class="hero-text">
+                The average physician graduates with $200K+ in student loans.
+                Rounds gives you the tools to pay them off faster, smarter,
+                and without accidentally disqualifying yourself from forgiveness.
+              </p>
+              <div class="hero-actions">
+                <a class="button button-primary button-arrow" href="#waitlist"
+                  >Join the waitlist</a
+                >
+                <a class="button button-secondary" href="#features"
+                  >See features</a
+                >
+              </div>
+            </div>
+            <div class="hero-visual">
+              <img
+                src="./debt_payoff_tool.png"
+                alt="Rounds Debt Payoff app showing debt insights, payoff timeline, and round-up savings"
+                class="hero-phone"
+              />
+            </div>
+          </div>
+        </section>
+
+        <!-- STATS -->
+        <section class="stats-strip" aria-label="Key metrics" data-reveal>
+          <article>
+            <strong>$200K+</strong>
+            <span>Average physician student debt</span>
+          </article>
+          <article>
+            <strong>7&ndash;25 years</strong>
+            <span>Typical payoff timeline</span>
+          </article>
+          <article>
+            <strong>$50K+</strong>
+            <span>Potential savings with smart routing</span>
+          </article>
+        </section>
+
+        <!-- FEATURES -->
+        <section class="section" id="features">
+          <div class="section-heading" data-reveal>
+            <p class="eyebrow">Features</p>
+            <h2>Every tool you need to crush your loans.</h2>
+            <p>
+              We built the debt payoff system we wished existed during
+              residency. Smart, automated, and aware of the nuances that
+              matter for physicians.
+            </p>
+          </div>
+
+          <div class="bento-grid">
+            <article class="bento-card bento-wide" data-reveal>
+              <h3>Smart debt routing</h3>
+              <p>
+                Automatically apply extra payments to your highest-interest
+                loans first. Set rules for how moonlighting income, bonuses,
+                and side gig earnings get distributed across your loan portfolio.
+              </p>
+            </article>
+
+            <article class="bento-card" data-reveal>
+              <h3>PSLF protection</h3>
+              <p>
+                Track qualifying payments, verify employer eligibility, and
+                get alerts before you accidentally disqualify yourself from
+                Public Service Loan Forgiveness.
+              </p>
+            </article>
+
+            <article class="bento-card" data-reveal>
+              <h3>Round-up payments</h3>
+              <p>
+                Round up everyday purchases and funnel the change toward
+                your student loans. Small amounts compound into real
+                progress.
+              </p>
+            </article>
+
+            <article class="bento-card" data-reveal>
+              <h3>Payoff projections</h3>
+              <p>
+                See exactly when you'll be debt-free under different
+                scenarios. Model the impact of extra payments, refinancing,
+                or income changes.
+              </p>
+            </article>
+
+            <article class="bento-card bento-wide" data-reveal>
+              <h3>IDR plan optimizer</h3>
+              <p>
+                Compare SAVE, PAYE, IBR, and other income-driven repayment
+                plans side by side. Factor in projected attending income,
+                filing status, and forgiveness timelines to find the plan
+                that costs you the least over your career.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <!-- HOW IT WORKS -->
+        <section class="section">
+          <div class="section-heading" data-reveal>
+            <p class="eyebrow">How it works</p>
+            <h2>Set it up once. Let it work for you.</h2>
+          </div>
+
+          <div class="steps-grid">
+            <article class="step-card" data-reveal>
+              <span class="step-number">01</span>
+              <h3>Connect your loans</h3>
+              <p>
+                Link your federal and private loan accounts. We'll pull in
+                balances, interest rates, and repayment plan details
+                automatically.
+              </p>
+            </article>
+            <article class="step-card" data-reveal>
+              <span class="step-number">02</span>
+              <h3>Set your strategy</h3>
+              <p>
+                Choose avalanche (highest interest first), snowball (smallest
+                balance first), or let us optimize based on your full
+                financial picture including PSLF eligibility.
+              </p>
+            </article>
+            <article class="step-card" data-reveal>
+              <span class="step-number">03</span>
+              <h3>Watch your debt shrink</h3>
+              <p>
+                Track progress in real time. See your payoff date move
+                closer with every extra payment. Get milestone celebrations
+                along the way.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <!-- TESTIMONIALS -->
+        <section class="section testimonial-section">
+          <article class="testimonial-card" data-reveal>
+            <p class="quote">
+              "I was paying minimums on everything and had no strategy.
+              Now I have a plan and I can see my debt-free date for the
+              first time."
+            </p>
+            <p class="quote-meta">Emergency Medicine Resident &bull; PGY-3</p>
+          </article>
+          <article class="testimonial-card testimonial-card-accent" data-reveal>
+            <p class="quote">
+              "The PSLF tracker alone saved me from refinancing loans that
+              were 2 years from forgiveness. That would have been a $180K
+              mistake."
+            </p>
+            <p class="quote-meta">Academic Hospitalist &bull; Attending</p>
+          </article>
+        </section>
+
+        <!-- WAITLIST -->
+        <section class="section waitlist-section" id="waitlist">
+          <div class="waitlist-inner" data-reveal>
+            <h2>Get early access to Debt Payoff.</h2>
+            <p>
+              We're building this for physicians like you. Join the waitlist
+              and help us shape the product.
+            </p>
+
+            <form class="waitlist-form" id="waitlist-form" data-source="debt-payoff">
+              <div class="waitlist-fields">
+                <label>
+                  <span>Email address</span>
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="you@hospital.org"
+                    required
+                  />
+                </label>
+                <label>
+                  <span>Career stage</span>
+                  <select name="stage">
+                    <option value="">Select stage</option>
+                    <option>Medical student</option>
+                    <option>Resident</option>
+                    <option>Fellow</option>
+                    <option>Attending</option>
+                  </select>
+                </label>
+                <label>
+                  <span>Approximate student loan balance</span>
+                  <select name="loan_balance">
+                    <option value="">Select range</option>
+                    <option>Under $100K</option>
+                    <option>$100K &ndash; $200K</option>
+                    <option>$200K &ndash; $300K</option>
+                    <option>$300K &ndash; $400K</option>
+                    <option>$400K+</option>
+                    <option>Prefer not to say</option>
+                  </select>
+                </label>
+                <label>
+                  <span>Are you pursuing PSLF?</span>
+                  <select name="pslf">
+                    <option value="">Select</option>
+                    <option>Yes, actively pursuing</option>
+                    <option>Considering it</option>
+                    <option>No</option>
+                    <option>Not sure what PSLF is</option>
+                  </select>
+                </label>
+              </div>
+              <button class="button button-primary button-wide" type="submit">
+                Join the waitlist
+              </button>
+              <p class="form-note" id="form-note">
+                No spam. We'll notify you when Debt Payoff launches.
+              </p>
+            </form>
+          </div>
+        </section>
+
+        <!-- FAQ -->
+        <section class="section" id="faq">
+          <div class="section-heading" data-reveal>
+            <p class="eyebrow">FAQ</p>
+            <h2>Questions about Debt Payoff.</h2>
+          </div>
+
+          <div class="faq-list">
+            <details data-reveal>
+              <summary>Is Rounds Debt Payoff free?</summary>
+              <p>
+                We'll announce pricing closer to launch. Early waitlist
+                members will get the best possible rate. The goal is to
+                make the tool pay for itself many times over through
+                interest savings.
+              </p>
+            </details>
+            <details data-reveal>
+              <summary>Does this replace my loan servicer?</summary>
+              <p>
+                No. Rounds Debt Payoff works alongside your existing loan
+                servicer. We help you optimize your strategy and automate
+                extra payments &mdash; your servicer still handles the
+                actual loan management.
+              </p>
+            </details>
+            <details data-reveal>
+              <summary>Can it handle both federal and private loans?</summary>
+              <p>
+                Yes. You can connect both federal and private loan accounts.
+                Our routing engine considers interest rates, forgiveness
+                eligibility, and your overall strategy when distributing
+                extra payments.
+              </p>
+            </details>
+            <details data-reveal>
+              <summary>What if I'm not sure about my repayment strategy?</summary>
+              <p>
+                That's exactly what we're here for. The IDR optimizer will
+                model different scenarios and show you the total cost of
+                each path. If you want personalized guidance, check out our
+                <a href="./partner.html" style="color: var(--accent); font-weight: 600;">Partner</a> page.
+              </p>
+            </details>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-left">
+          <div class="footer-brand">Rounds</div>
+          <p class="footer-tagline">Financial tools for physicians.</p>
+          <p class="footer-attribution">
+            Made by the creators of
+            <a
+              href="https://the-md.beehiiv.com"
+              target="_blank"
+              rel="noopener"
+              >The M.D.</a
+            >
+          </p>
+        </div>
+
+        <div class="footer-links">
+          <div class="footer-col">
+            <span class="footer-col-title">Products</span>
+            <a href="./partner.html">Partner</a>
+            <a href="./debt-payoff.html">Debt Payoff</a>
+            <a href="./side-gigs.html">Side Gigs</a>
+            <a
+              href="https://apple.co/4iaAPHO"
+              target="_blank"
+              rel="noopener"
+              >RVU Tracker</a
+            >
+          </div>
+          <div class="footer-col">
+            <span class="footer-col-title">Resources</span>
+            <a
+              href="https://the-md.beehiiv.com"
+              target="_blank"
+              rel="noopener"
+              >The M.D. Newsletter</a
+            >
+            <a
+              href="https://apple.co/4iaAPHO"
+              target="_blank"
+              rel="noopener"
+              >RVU Tracker</a
+            >
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="./script.js"></script>
+  </body>
+</html>

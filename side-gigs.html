@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Side Gigs | Rounds &mdash; Clinical expertise marketplace for physicians</title>
+    <meta
+      name="description"
+      content="Get matched with AI companies, health tech startups, and research labs paying $100/hr+ for your clinical expertise. NPI-verified, specialty-matched."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/png" href="./Rounds_blue_icon.png" />
+    <meta property="og:title" content="Side Gigs | Rounds — Clinical expertise marketplace for physicians" />
+    <meta property="og:description" content="Get matched with AI companies, health tech startups, and research labs paying $100/hr+ for your clinical expertise." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://roundsfi.com/Rounds_blue_icon.png" />
+    <meta name="twitter:card" content="summary" />
+    <link rel="stylesheet" href="./styles.css" />
+    <meta name="posthog-key" content="phc_yRimWi8Q8XwRRLWvNxTEkvP4UYXdmTAt4PNAjL3VciVA" />
+    <meta name="posthog-host" content="https://us.i.posthog.com" />
+    <script src="./posthog-init.js"></script>
+    <script>
+      document.documentElement.classList.add("js");
+    </script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="/" aria-label="Rounds home">Rounds</a>
+
+        <button
+          class="nav-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="site-nav"
+          aria-label="Toggle navigation"
+        >
+          <span></span>
+          <span></span>
+        </button>
+
+        <nav class="site-nav" id="site-nav">
+          <a href="./partner.html">Partner</a>
+          <a href="./debt-payoff.html">Debt Payoff</a>
+          <a href="./side-gigs.html" class="is-active">Side Gigs</a>
+          <a href="https://apple.co/4iaAPHO" target="_blank" rel="noopener">RVU Tracker</a>
+          <a
+            class="nav-cta"
+            href="https://the-md.beehiiv.com"
+            target="_blank"
+            rel="noopener"
+            >Newsletter</a
+          >
+        </nav>
+      </div>
+    </header>
+
+    <div class="page-shell">
+      <main>
+        <!-- HERO -->
+        <section class="hero">
+          <div class="hero-bg" aria-hidden="true">
+            <div class="gradient-orb gradient-orb-1" style="background: radial-gradient(circle, rgba(0, 164, 239, 0.3) 0%, transparent 70%)"></div>
+            <div class="gradient-orb gradient-orb-2" style="background: radial-gradient(circle, rgba(67, 116, 249, 0.25) 0%, transparent 70%)"></div>
+            <div class="gradient-orb gradient-orb-3"></div>
+            <div class="grid-texture"></div>
+          </div>
+
+          <div class="hero-content" data-reveal>
+            <p class="eyebrow">Rounds Side Gigs</p>
+            <h1>Your clinical expertise &gt; your shift pay.</h1>
+            <p class="hero-text">
+              Get matched with AI companies, health tech startups, and research
+              labs paying $100/hr+ for physician expertise. Verify once,
+              get paid, and manage side income from home.
+            </p>
+
+            <form class="hero-waitlist" id="hero-form">
+              <input
+                type="email"
+                name="email"
+                placeholder="you@hospital.org"
+                required
+                aria-label="Email address"
+              />
+              <button class="button button-primary" type="submit">
+                Join the waitlist
+              </button>
+            </form>
+            <p class="hero-note" id="hero-note">
+              Free to join. We'll notify you when we launch.
+            </p>
+          </div>
+        </section>
+
+        <!-- STATS -->
+        <section class="stats-strip" aria-label="Key metrics">
+          <article data-reveal>
+            <strong>$100/hr+</strong>
+            <span>Starting rate for clinical expertise</span>
+          </article>
+          <article data-reveal>
+            <strong>Physician-only</strong>
+            <span>NPI-verified, specialty-matched</span>
+          </article>
+          <article data-reveal>
+            <strong>One platform</strong>
+            <span>Earn, track debt, build net worth</span>
+          </article>
+        </section>
+
+        <!-- HOW IT WORKS -->
+        <section class="section" id="how-it-works">
+          <div class="section-heading" data-reveal>
+            <p class="eyebrow">How it works</p>
+            <h2>Verified credentials. Matched opportunities. Instant pay.</h2>
+            <p>
+              Rounds handles the compliance, matching, and payments so you can
+              focus on the work that matters.
+            </p>
+          </div>
+
+          <div class="steps-grid">
+            <article class="step-card" data-reveal>
+              <span class="step-number">01</span>
+              <h3>Verify your credentials</h3>
+              <p>
+                NPI number, board certification, specialty, and practice
+                setting. One-time verification unlocks the full marketplace.
+              </p>
+            </article>
+            <article class="step-card" data-reveal>
+              <span class="step-number">02</span>
+              <h3>Get matched to opportunities</h3>
+              <p>
+                AI labs and companies post projects. We match you based on
+                specialty, availability, and rate. No cold outreach required.
+              </p>
+            </article>
+            <article class="step-card" data-reveal>
+              <span class="step-number">03</span>
+              <h3>Complete work and get paid</h3>
+              <p>
+                Get paid directly after project completion. Fast payouts,
+                no chasing invoices.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <!-- OPPORTUNITIES -->
+        <section class="section" id="opportunities">
+          <div class="section-heading" data-reveal>
+            <p class="eyebrow">Opportunity types</p>
+            <h2>Companies need your clinical judgment.</h2>
+            <p>
+              AI labs, pharma, health tech startups, and expert networks are
+              paying physicians for work you can do from your couch.
+            </p>
+          </div>
+
+          <div class="bento-grid">
+            <article class="bento-card bento-wide" data-reveal>
+              <h3>LLM output evaluation</h3>
+              <p>
+                Review AI-generated clinical content for accuracy. Rate
+                differential diagnoses, treatment plans, and clinical reasoning
+                produced by large language models.
+              </p>
+            </article>
+
+            <article class="bento-card" data-reveal>
+              <h3>RLHF annotation</h3>
+              <p>
+                Provide preference labels and safety ratings to train clinical
+                AI models through reinforcement learning.
+              </p>
+            </article>
+
+            <article class="bento-card" data-reveal>
+              <h3>Chart review &amp; data labeling</h3>
+              <p>
+                Annotate clinical data for AI training sets. Your chart review
+                skills are exactly what ML teams need.
+              </p>
+            </article>
+
+            <article class="bento-card" data-reveal>
+              <h3>Startup advising</h3>
+              <p>
+                Advisory board seats, clinical validation for health tech
+                products, and regulatory strategy consulting for early-stage
+                companies.
+              </p>
+            </article>
+
+            <article class="bento-card" data-reveal>
+              <h3>Medical writing</h3>
+              <p>
+                Peer-reviewed content, clinical documentation, educational
+                materials, and medical communications for pharma and health
+                tech.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <!-- TESTIMONIALS -->
+        <section class="section testimonial-section">
+          <article class="testimonial-card" data-reveal>
+            <p class="quote">
+              "I spent an hour evaluating an AI model's cardiology output and
+              made more than my moonlighting shift pays."
+            </p>
+            <p class="quote-meta">Cardiology Fellow &bull; PGY-5</p>
+          </article>
+          <article class="testimonial-card testimonial-card-accent" data-reveal>
+            <p class="quote">
+              "I wanted a side income that used my clinical training, not just
+              my ability to pick up extra shifts."
+            </p>
+            <p class="quote-meta">Academic Hospitalist &bull; 3 years post-residency</p>
+          </article>
+        </section>
+
+        <!-- FAQ -->
+        <section class="section" id="faq">
+          <div class="section-heading" data-reveal>
+            <p class="eyebrow">FAQ</p>
+            <h2>Questions about Side Gigs.</h2>
+          </div>
+
+          <div class="faq-list">
+            <details data-reveal>
+              <summary>Am I training my replacement?</summary>
+              <p>
+                No. Physicians juggle a world of complexity: clinical
+                workflows, patient interactions, bedside manner, procedural
+                judgment, interdisciplinary consults, and real-time
+                decision-making under uncertainty. While AI tools can increase
+                productivity and support clinical work, they don't replace the
+                physician. Your expertise is what makes these models safer and
+                more useful, and the demand for that expertise is growing, not
+                shrinking.
+              </p>
+            </details>
+            <details data-reveal>
+              <summary>Who is this for?</summary>
+              <p>
+                Any physician (resident, fellow, or attending) who
+                wants to monetize their clinical expertise outside of clinical
+                shifts. Medical students with relevant research experience may
+                also qualify for select opportunities.
+              </p>
+            </details>
+            <details data-reveal>
+              <summary>What kind of work is available?</summary>
+              <p>
+                AI model evaluation, RLHF annotation, expert consultations with
+                AI companies and startups, medical writing, chart review for
+                training data, advisory board roles, and clinical validation
+                projects.
+              </p>
+            </details>
+            <details data-reveal>
+              <summary>How does verification work?</summary>
+              <p>
+                You'll provide your NPI number, specialty, and board
+                certification status. We verify credentials once, and you're
+                matched to relevant opportunities automatically.
+              </p>
+            </details>
+            <details data-reveal>
+              <summary>How do I get paid?</summary>
+              <p>
+                Earnings go into your Rounds wallet after project completion.
+                From there, you can cash out to your bank, route payments toward
+                student loan debt, or leave funds in the wallet.
+              </p>
+            </details>
+            <details data-reveal>
+              <summary>Is this compliant with my employer?</summary>
+              <p>
+                Most consulting and evaluation work falls outside clinical
+                practice and doesn't conflict with employment agreements. We
+                provide guidance on common compliance scenarios, but recommend
+                checking your specific contract.
+              </p>
+            </details>
+          </div>
+        </section>
+
+        <!-- WAITLIST -->
+        <section class="section waitlist-section" id="waitlist">
+          <div class="waitlist-inner" data-reveal>
+            <h2>Join the first physician-only expertise marketplace.</h2>
+            <p>
+              Verify your credentials. Get matched. Get paid.
+            </p>
+
+            <form class="waitlist-form" id="waitlist-form" data-source="side-gigs">
+              <div class="waitlist-fields">
+                <label>
+                  <span>Email address</span>
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="you@hospital.org"
+                    required
+                  />
+                </label>
+                <label>
+                  <span>Specialty</span>
+                  <select name="specialty">
+                    <option value="">Select specialty</option>
+                    <option>Allergy &amp; Immunology</option>
+                    <option>Anesthesiology</option>
+                    <option>Cardiology</option>
+                    <option>Cardiothoracic Surgery</option>
+                    <option>Critical Care Medicine</option>
+                    <option>Dermatology</option>
+                    <option>Emergency Medicine</option>
+                    <option>Endocrinology</option>
+                    <option>Family Medicine</option>
+                    <option>Gastroenterology</option>
+                    <option>General Surgery</option>
+                    <option>Geriatric Medicine</option>
+                    <option>Hematology</option>
+                    <option>Hospice &amp; Palliative Medicine</option>
+                    <option>Infectious Disease</option>
+                    <option>Internal Medicine</option>
+                    <option>Interventional Radiology</option>
+                    <option>Neonatology</option>
+                    <option>Nephrology</option>
+                    <option>Neurology</option>
+                    <option>Neurosurgery</option>
+                    <option>OB/GYN</option>
+                    <option>Oncology</option>
+                    <option>Ophthalmology</option>
+                    <option>Oral &amp; Maxillofacial Surgery</option>
+                    <option>Orthopedic Surgery</option>
+                    <option>Otolaryngology (ENT)</option>
+                    <option>Pain Medicine</option>
+                    <option>Pathology</option>
+                    <option>Pediatrics</option>
+                    <option>Physical Medicine &amp; Rehabilitation</option>
+                    <option>Plastic Surgery</option>
+                    <option>Preventive Medicine</option>
+                    <option>Psychiatry</option>
+                    <option>Pulmonology</option>
+                    <option>Radiation Oncology</option>
+                    <option>Radiology</option>
+                    <option>Rheumatology</option>
+                    <option>Sports Medicine</option>
+                    <option>Transplant Surgery</option>
+                    <option>Trauma Surgery</option>
+                    <option>Urology</option>
+                    <option>Vascular Surgery</option>
+                    <option>Other</option>
+                  </select>
+                </label>
+                <label>
+                  <span>Career stage</span>
+                  <select name="stage">
+                    <option value="">Select stage</option>
+                    <option>Medical student</option>
+                    <option>Resident</option>
+                    <option>Fellow</option>
+                    <option>Attending</option>
+                  </select>
+                </label>
+              </div>
+              <button class="button button-primary button-wide" type="submit">
+                Join the waitlist
+              </button>
+              <p class="form-note" id="form-note">
+                No spam. Just early access and launch updates.
+              </p>
+            </form>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-left">
+          <div class="footer-brand">Rounds</div>
+          <p class="footer-tagline">Financial tools for physicians.</p>
+          <p class="footer-attribution">
+            Made by the creators of
+            <a
+              href="https://the-md.beehiiv.com"
+              target="_blank"
+              rel="noopener"
+              >The M.D.</a
+            >
+          </p>
+        </div>
+
+        <div class="footer-links">
+          <div class="footer-col">
+            <span class="footer-col-title">Products</span>
+            <a href="./partner.html">Partner</a>
+            <a href="./debt-payoff.html">Debt Payoff</a>
+            <a href="./side-gigs.html">Side Gigs</a>
+            <a
+              href="https://apple.co/4iaAPHO"
+              target="_blank"
+              rel="noopener"
+              >RVU Tracker</a
+            >
+          </div>
+          <div class="footer-col">
+            <span class="footer-col-title">Resources</span>
+            <a
+              href="https://the-md.beehiiv.com"
+              target="_blank"
+              rel="noopener"
+              >The M.D. Newsletter</a
+            >
+            <a
+              href="https://apple.co/4iaAPHO"
+              target="_blank"
+              rel="noopener"
+              >RVU Tracker</a
+            >
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="./script.js"></script>
+  </body>
+</html>

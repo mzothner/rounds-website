@@ -42,7 +42,7 @@ if ("IntersectionObserver" in window) {
 
 // Google Sheets waitlist endpoint
 const SHEETS_URL =
-  "https://script.google.com/macros/s/AKfycbzH9ouOb1YKzRet3U7idf125FtEWZqWbssHtjKajNv2VwyIkCi_8BlnQPDacZvAum5qqA/exec";
+  "https://script.google.com/macros/s/AKfycbxSxodJjI9Bxq8fYFjrU6LSaKC66I7C8CsRXmCfuGiRFdsF1R0cUajldbs8gz5dmTAAMg/exec";
 
 function submitToSheet(data, noteEl, successMsg, form) {
   const btn = form.querySelector('button[type="submit"]');
@@ -63,9 +63,12 @@ function submitToSheet(data, noteEl, successMsg, form) {
       noteEl.classList.add("is-success");
       form.reset();
     })
-    .catch(() => {
+    .catch((err) => {
       noteEl.textContent = "Something went wrong. Please try again.";
       noteEl.classList.remove("is-success");
+      if (window.posthog && typeof posthog.captureException === "function") {
+        posthog.captureException(err);
+      }
     })
     .finally(() => {
       btn.textContent = originalText;
@@ -73,7 +76,7 @@ function submitToSheet(data, noteEl, successMsg, form) {
     });
 }
 
-// Hero waitlist form
+// Hero waitlist form (side-gigs page)
 const heroForm = document.getElementById("hero-form");
 const heroNote = document.getElementById("hero-note");
 
@@ -82,42 +85,89 @@ heroForm?.addEventListener("submit", (event) => {
   const emailInput = heroForm.querySelector('input[name="email"]');
   if (!emailInput || !heroNote) return;
 
+  const email = emailInput.value;
+
+  if (window.posthog) {
+    posthog.identify(email, { email });
+    posthog.capture("waitlist_signup", {
+      source: "side-gigs-hero",
+      email,
+    });
+  }
+
   submitToSheet(
-    { email: emailInput.value, source: "hero" },
+    { email, source: "side-gigs-hero" },
     heroNote,
-    `You're on the list. We'll reach out to ${emailInput.value} soon.`,
+    `You're on the list. We'll reach out to ${email} soon.`,
     heroForm
   );
 });
 
-// Bottom waitlist form
+// Bottom waitlist form (any page with #waitlist-form)
 const waitlistForm = document.getElementById("waitlist-form");
 const formNote = document.getElementById("form-note");
 
 waitlistForm?.addEventListener("submit", (event) => {
   event.preventDefault();
   const emailInput = waitlistForm.querySelector('input[name="email"]');
-  const specialtyInput = waitlistForm.querySelector('select[name="specialty"]');
-  const stageInput = waitlistForm.querySelector('select[name="stage"]');
-
   if (!emailInput || !formNote) return;
 
+  // Collect all form fields dynamically
+  const data = { email: emailInput.value };
+  const source = waitlistForm.dataset.source || "waitlist";
+  data.source = source;
+
+  // Gather all select and input fields
+  waitlistForm.querySelectorAll("select, input:not([type=email])").forEach((field) => {
+    if (field.name && field.value) {
+      data[field.name] = field.value;
+    }
+  });
+
+  if (window.posthog) {
+    posthog.identify(data.email, { email: data.email });
+    posthog.capture("waitlist_signup", {
+      source,
+      email: data.email,
+      ...(data.specialty && { specialty: data.specialty }),
+      ...(data.stage && { career_stage: data.stage }),
+      ...(data.loan_balance && { loan_balance: data.loan_balance }),
+      ...(data.pslf && { pslf_pursuing: data.pslf }),
+    });
+  }
+
   submitToSheet(
-    {
-      email: emailInput.value,
-      specialty: specialtyInput?.value || "",
-      stage: stageInput?.value || "",
-      source: "waitlist",
-    },
+    data,
     formNote,
-    `You're in. We'll send early access details to ${emailInput.value}.`,
+    `You're in. We'll send early access details to ${data.email}.`,
     waitlistForm
   );
 });
 
+// FAQ item tracking
+document.querySelectorAll(".faq-list details").forEach((details) => {
+  details.addEventListener("toggle", () => {
+    if (details.open && window.posthog) {
+      const question = details.querySelector("summary")?.textContent?.trim();
+      posthog.capture("faq_item_opened", { question });
+    }
+  });
+});
+
+// Consultation CTA tracking (services page)
+document.querySelectorAll('a[href="#book"]').forEach((cta) => {
+  cta.addEventListener("click", () => {
+    if (window.posthog) {
+      posthog.capture("consultation_cta_clicked", {
+        page: window.location.pathname,
+      });
+    }
+  });
+});
+
 // Staggered reveal for grid items
 const staggerContainers = document.querySelectorAll(
-  ".steps-grid, .bento-grid, .stats-strip"
+  ".steps-grid, .bento-grid, .stats-strip, .products-grid"
 );
 
 staggerContainers.forEach((container) => {
