@@ -42,7 +42,7 @@ if ("IntersectionObserver" in window) {
 
 // Google Sheets waitlist endpoint
 const SHEETS_URL =
-  "https://script.google.com/macros/s/AKfycbxSxodJjI9Bxq8fYFjrU6LSaKC66I7C8CsRXmCfuGiRFdsF1R0cUajldbs8gz5dmTAAMg/exec";
+  "https://script.google.com/macros/s/AKfycbzF8Wfg987svrI5XcPbVfdxulDdHC8jpbIG084cQklbESLEFYsyR50dzo9vX7EeGEjm/exec";
 
 function submitToSheet(data, noteEl, successMsg, form) {
   const btn = form.querySelector('button[type="submit"]');
