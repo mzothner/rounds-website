@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Audience Insights | The M.D. Newsletter</title>
+    <meta
+      name="description"
+      content="Audience demographics, engagement metrics, and specialty breakdown for The M.D. physician newsletter."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/png" href="./Rounds_icon_circle.png" />
+    <meta property="og:title" content="Audience Insights | The M.D. Newsletter" />
+    <meta property="og:description" content="A premium physician audience for premium partners. 59% open rate, 56% attending physicians." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://roundsfi.com/Rounds_blue_icon.png" />
+    <meta name="twitter:card" content="summary" />
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <meta name="posthog-key" content="phc_yRimWi8Q8XwRRLWvNxTEkvP4UYXdmTAt4PNAjL3VciVA" />
+    <meta name="posthog-host" content="https://us.i.posthog.com" />
+    <script src="./posthog-init.js"></script>
+    <script>
+      document.documentElement.classList.add("js");
+    </script>
+    <style>
+      /* ===== AUDIENCE DASHBOARD STYLES ===== */
+      .ad-logo {
+        display: block;
+        height: 56px;
+        width: auto;
+        border-radius: 10px;
+      }
+
+      .ad-metrics {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1px;
+        background: var(--line-strong);
+        border: 1px solid var(--line-strong);
+        border-radius: var(--radius-md);
+        overflow: hidden;
+        margin-bottom: 80px;
+      }
+
+      .ad-metric {
+        background: var(--white);
+        padding: 28px 24px;
+      }
+
+      .ad-metric-value {
+        font-family: "Aeonik", "Inter", -apple-system, sans-serif;
+        font-size: 1.75rem;
+        font-weight: 700;
+        letter-spacing: -0.03em;
+        line-height: 1.2;
+        color: var(--text);
+      }
+
+      .ad-metric-label {
+        font-size: 0.8125rem;
+        color: var(--text-secondary);
+        margin-top: 4px;
+      }
+
+      /* ===== SECTIONS ===== */
+      .ad-section {
+        margin-bottom: 80px;
+      }
+
+      .ad-section h2 {
+        font-size: clamp(1.5rem, 2.5vw, 1.85rem);
+        font-weight: 700;
+        letter-spacing: -0.03em;
+        margin-bottom: 6px;
+      }
+
+      .ad-section .ad-desc {
+        font-size: 0.9375rem;
+        color: var(--text-secondary);
+        margin-bottom: 32px;
+        max-width: 540px;
+        line-height: 1.65;
+      }
+
+      /* ===== TWO COLUMNS ===== */
+      .ad-cols {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 48px;
+      }
+
+      .ad-col-label {
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: var(--text-secondary);
+        margin-bottom: 20px;
+      }
+
+      /* ===== TAGS ===== */
+      .ad-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .ad-tag {
+        padding: 6px 14px;
+        border-radius: 6px;
+        font-size: 0.8125rem;
+        font-weight: 500;
+        background: var(--surface);
+        color: var(--text);
+        border: 1px solid var(--line);
+      }
+
+      .ad-tag--highlight {
+        background: var(--accent-soft);
+        color: var(--accent);
+        border-color: rgba(67, 116, 249, 0.2);
+      }
+
+      /* ===== PRACTICE LIST ===== */
+      .ad-practice-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      .ad-practice-list li {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 11px 0;
+        border-bottom: 1px solid var(--line);
+        font-size: 0.875rem;
+      }
+
+      .ad-practice-list li:last-child {
+        border-bottom: none;
+      }
+
+      .ad-bar-wrap {
+        width: 120px;
+        height: 4px;
+        background: var(--surface);
+        border-radius: 2px;
+        overflow: hidden;
+      }
+
+      .ad-bar-fill {
+        height: 100%;
+        background: var(--accent);
+        border-radius: 2px;
+      }
+
+      /* ===== DONUT ===== */
+      .ad-donut-wrap {
+        position: relative;
+        width: 200px;
+        height: 200px;
+        margin: 0 auto 16px;
+      }
+
+      .ad-donut-center {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+      }
+
+      .ad-donut-center .ad-num {
+        font-family: "Aeonik", "Inter", -apple-system, sans-serif;
+        font-size: 1.5rem;
+        font-weight: 700;
+        letter-spacing: -0.03em;
+        line-height: 1.2;
+      }
+
+      .ad-donut-center .ad-sub {
+        font-size: 0.75rem;
+        color: var(--text-secondary);
+      }
+
+      .ad-legend {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin-top: 16px;
+      }
+
+      .ad-legend-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 0.8125rem;
+      }
+
+      .ad-legend-left {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .ad-legend-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        flex-shrink: 0;
+      }
+
+      .ad-legend-pct {
+        font-weight: 600;
+        min-width: 32px;
+        text-align: right;
+      }
+
+      /* ===== HORIZONTAL BARS ===== */
+      .ad-h-bars {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+
+      .ad-h-bar-row {
+        display: grid;
+        grid-template-columns: 140px 1fr 36px;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .ad-h-bar-name {
+        font-size: 0.8125rem;
+        text-align: right;
+        color: var(--text-secondary);
+      }
+
+      .ad-h-bar-track {
+        height: 20px;
+        background: var(--surface);
+        border-radius: 4px;
+        overflow: hidden;
+      }
+
+      .ad-h-bar-fill {
+        height: 100%;
+        background: var(--accent);
+        border-radius: 4px;
+        transition: width 0.8s ease;
+      }
+
+      .ad-h-bar-val {
+        font-size: 0.8125rem;
+        font-weight: 600;
+      }
+
+      /* ===== NOTE ===== */
+      .ad-note {
+        margin-top: 24px;
+        font-size: 0.8125rem;
+        color: var(--text-secondary);
+        line-height: 1.6;
+        max-width: 560px;
+      }
+
+      /* ===== DIVIDER ===== */
+      .ad-divider {
+        border: none;
+        border-top: 1px solid var(--line);
+        margin: 0 0 80px;
+      }
+
+      /* ===== CTA ===== */
+      .ad-cta {
+        text-align: center;
+        padding: 48px 0;
+      }
+
+      .ad-cta h2 {
+        font-size: clamp(1.5rem, 2.5vw, 2rem);
+        margin-bottom: 8px;
+      }
+
+      .ad-cta p {
+        font-size: 0.9375rem;
+        color: var(--text-secondary);
+        margin-bottom: 32px;
+        max-width: 480px;
+        margin-left: auto;
+        margin-right: auto;
+        line-height: 1.65;
+      }
+
+      /* ===== RESPONSIVE ===== */
+      @media (max-width: 768px) {
+        .ad-metrics {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .ad-cols {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+        .ad-h-bar-row {
+          grid-template-columns: 100px 1fr 36px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .ad-metrics {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="/" aria-label="Rounds home"><img class="brand-icon" src="./Rounds_icon_circle.png" alt="" />Rounds</a>
+
+        <button
+          class="nav-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="site-nav"
+          aria-label="Toggle navigation"
+        >
+          <span></span>
+          <span></span>
+        </button>
+
+        <nav class="site-nav" id="site-nav">
+          <a href="./partner.html">Partner</a>
+          <a href="./debt-payoff.html">Debt Payoff</a>
+          <a href="./side-gigs.html">Side Gigs</a>
+          <a href="https://apple.co/4iaAPHO" target="_blank" rel="noopener">RVU Tracker</a>
+          <a
+            class="nav-cta"
+            href="https://the-md.beehiiv.com"
+            target="_blank"
+            rel="noopener"
+            >Newsletter</a
+          >
+        </nav>
+      </div>
+    </header>
+
+    <div class="page-shell">
+      <main>
+        <!-- HERO -->
+        <section class="hero">
+          <div class="hero-bg" aria-hidden="true">
+            <div class="gradient-orb gradient-orb-1"></div>
+            <div class="gradient-orb gradient-orb-2"></div>
+            <div class="grid-texture"></div>
+          </div>
+
+          <div class="hero-content" data-reveal>
+            <a href="https://the-md.beehiiv.com" target="_blank" rel="noopener"><img src="./MDicon.png" alt="The M.D." class="ad-logo" /></a>
+            <p class="eyebrow" style="margin-top: 24px;">Audience Insights</p>
+            <h1>A premium physician audience for premium partners</h1>
+            <p class="hero-text">
+              <a href="https://the-md.beehiiv.com" target="_blank" rel="noopener" style="color: var(--accent); font-weight: 600;">The M.D.</a> is a personal finance newsletter read by thousands of verified physicians. 56% are attending physicians earning $300K+. Get stats and book a call below.
+            </p>
+          </div>
+        </section>
+
+        <!-- METRICS -->
+        <section class="section" style="padding-top: 0;">
+          <div class="ad-metrics" data-reveal>
+            <div class="ad-metric">
+              <div class="ad-metric-value">59.2%</div>
+              <div class="ad-metric-label">Open rate</div>
+            </div>
+            <div class="ad-metric">
+              <div class="ad-metric-value">2.95%</div>
+              <div class="ad-metric-label">Click-through rate</div>
+            </div>
+            <div class="ad-metric">
+              <div class="ad-metric-value">56%</div>
+              <div class="ad-metric-label">Attending physicians</div>
+            </div>
+            <div class="ad-metric">
+              <div class="ad-metric-value">81%</div>
+              <div class="ad-metric-label">Interested in investing</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SPECIALTIES & PRACTICE SETTINGS -->
+        <div class="ad-section" data-reveal>
+          <h2>Specialties & practice settings</h2>
+          <p class="ad-desc">Our readers span the full breadth of medicine, from primary care to subspecialties, across every practice environment.</p>
+
+          <div class="ad-cols">
+            <div>
+              <div class="ad-col-label">Specialties represented</div>
+              <div class="ad-tags">
+                <span class="ad-tag ad-tag--highlight">Family Medicine</span>
+                <span class="ad-tag ad-tag--highlight">Internal Medicine</span>
+                <span class="ad-tag ad-tag--highlight">Hospital Medicine</span>
+                <span class="ad-tag ad-tag--highlight">Emergency Medicine</span>
+                <span class="ad-tag">Cardiology</span>
+                <span class="ad-tag">Anesthesiology</span>
+                <span class="ad-tag">OB/GYN</span>
+                <span class="ad-tag">Infectious Disease</span>
+                <span class="ad-tag">Surgery</span>
+                <span class="ad-tag">Psychiatry</span>
+                <span class="ad-tag">Radiology</span>
+                <span class="ad-tag">Pediatrics</span>
+                <span class="ad-tag">Dermatology</span>
+                <span class="ad-tag">Neurology</span>
+                <span class="ad-tag">Orthopedics</span>
+                <span class="ad-tag">Oncology</span>
+                <span class="ad-tag">Ophthalmology</span>
+                <span class="ad-tag">PM&amp;R</span>
+                <span class="ad-tag">Urology</span>
+                <span class="ad-tag">Pathology</span>
+              </div>
+              <p class="ad-note">Strong concentration in primary care, hospital medicine, and emergency medicine, the specialties leading adoption of AI tools in CDS, prior auth and more.</p>
+            </div>
+
+            <div>
+              <div class="ad-col-label">Where they practice</div>
+              <ul class="ad-practice-list">
+                <li>
+                  Academic / Teaching Hospital
+                  <div class="ad-bar-wrap"><div class="ad-bar-fill" style="width:85%"></div></div>
+                </li>
+                <li>
+                  Community Hospital
+                  <div class="ad-bar-wrap"><div class="ad-bar-fill" style="width:68%"></div></div>
+                </li>
+                <li>
+                  Solo Practice / Private Office
+                  <div class="ad-bar-wrap"><div class="ad-bar-fill" style="width:55%"></div></div>
+                </li>
+                <li>
+                  Ambulatory / Outpatient
+                  <div class="ad-bar-wrap"><div class="ad-bar-fill" style="width:45%"></div></div>
+                </li>
+                <li>
+                  Group Practice
+                  <div class="ad-bar-wrap"><div class="ad-bar-fill" style="width:40%"></div></div>
+                </li>
+                <li>
+                  Health System / Employed
+                  <div class="ad-bar-wrap"><div class="ad-bar-fill" style="width:35%"></div></div>
+                </li>
+                <li>
+                  Telehealth / Remote
+                  <div class="ad-bar-wrap"><div class="ad-bar-fill" style="width:20%"></div></div>
+                </li>
+              </ul>
+              <p class="ad-note">From independent physicians with direct purchasing authority to employed doctors who influence institutional procurement decisions.</p>
+            </div>
+          </div>
+        </div>
+
+        <hr class="ad-divider">
+
+        <!-- CAREER STAGE -->
+        <div class="ad-section" data-reveal>
+          <h2>Career stage</h2>
+          <p class="ad-desc">More than half of our physician audience are attendings -- the highest-earning professionals in medicine.</p>
+
+          <div class="ad-cols">
+            <div style="display:flex;flex-direction:column;align-items:center;">
+              <div class="ad-donut-wrap">
+                <canvas id="careerChart"></canvas>
+                <div class="ad-donut-center">
+                  <div class="ad-num">56%</div>
+                  <div class="ad-sub">Attendings</div>
+                </div>
+              </div>
+              <div class="ad-legend" style="width:100%;max-width:260px;">
+                <div class="ad-legend-item">
+                  <span class="ad-legend-left"><span class="ad-legend-dot" style="background:#4374F9"></span> Attending</span>
+                  <span class="ad-legend-pct">56%</span>
+                </div>
+                <div class="ad-legend-item">
+                  <span class="ad-legend-left"><span class="ad-legend-dot" style="background:#7B93F7"></span> Resident</span>
+                  <span class="ad-legend-pct">23%</span>
+                </div>
+                <div class="ad-legend-item">
+                  <span class="ad-legend-left"><span class="ad-legend-dot" style="background:#B4C2FB"></span> Med Student</span>
+                  <span class="ad-legend-pct">14%</span>
+                </div>
+                <div class="ad-legend-item">
+                  <span class="ad-legend-left"><span class="ad-legend-dot" style="background:#D4DCFB"></span> Fellow</span>
+                  <span class="ad-legend-pct">7%</span>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <div class="ad-col-label">Financial interests</div>
+              <div class="ad-h-bars" id="interestBars"></div>
+              <p class="ad-note">Self-reported from our welcome survey. An audience actively evaluating financial products, insurance, and investment platforms.</p>
+            </div>
+          </div>
+        </div>
+
+        <hr class="ad-divider">
+
+        <!-- PACKAGES -->
+        <div class="ad-section" data-reveal>
+          <h2>Ways to partner</h2>
+          <p class="ad-desc">Multiple touchpoints to reach physicians where they already spend time.</p>
+
+          <div class="ad-cols" style="grid-template-columns: repeat(2, 1fr); gap: 16px;">
+            <div style="padding: 24px; border: 1px solid var(--line); border-radius: var(--radius-md); background: var(--white);">
+              <h3 style="font-size: 1.05rem; margin-bottom: 8px;">Newsletter Sponsorship</h3>
+              <p style="font-size: 0.875rem; color: var(--text-secondary); margin: 0; line-height: 1.6;">Dedicated ad placement in <a href="https://the-md.beehiiv.com" target="_blank" rel="noopener" style="color: var(--accent); font-weight: 600;">The M.D.</a> newsletter, reaching thousands of physicians monthly.</p>
+            </div>
+            <div style="padding: 24px; border: 1px solid var(--line); border-radius: var(--radius-md); background: var(--white);">
+              <h3 style="font-size: 1.05rem; margin-bottom: 8px;">Company Deep Dives</h3>
+              <p style="font-size: 0.875rem; color: var(--text-secondary); margin: 0; line-height: 1.6;">An in-depth feature on your company, product, or mission distributed to our full audience.</p>
+            </div>
+            <div style="padding: 24px; border: 1px solid var(--line); border-radius: var(--radius-md); background: var(--white);">
+              <h3 style="font-size: 1.05rem; margin-bottom: 8px;">Organic Social Videos</h3>
+              <p style="font-size: 0.875rem; color: var(--text-secondary); margin: 0; line-height: 1.6;">Authentic, talking head-style content across our social channels that resonates with the medical community. 1M+ views generated in the past 90 days.</p>
+            </div>
+            
+          </div>
+        </div>
+
+        <hr class="ad-divider">
+
+        <!-- CTA -->
+        <div class="ad-cta" data-reveal>
+          <h2>Partner with us</h2>
+          <p>Sponsored placements, native content, and dedicated sends to a verified physician audience with a 59% open rate - 3x the industry standard.</p>
+          <a class="button button-primary button-arrow" href="./partner.html#book">Book a 15-minute call</a>
+        </div>
+
+      </main>
+    </div>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-left">
+          <div class="footer-brand">Rounds</div>
+          <p class="footer-tagline">Financial tools for physicians.</p>
+          <p class="footer-attribution">
+            Made by the creators of
+            <a
+              href="https://the-md.beehiiv.com"
+              target="_blank"
+              rel="noopener"
+              >The M.D.</a
+            >
+          </p>
+        </div>
+
+        <div class="footer-links">
+          <div class="footer-col">
+            <span class="footer-col-title">Products</span>
+            <a href="./debt-payoff.html">Debt Payoff</a>
+            <a href="./side-gigs.html">Side Gigs</a>
+            <a
+              href="https://apple.co/4iaAPHO"
+              target="_blank"
+              rel="noopener"
+              >RVU Tracker</a
+            >
+          </div>
+          <div class="footer-col">
+            <span class="footer-col-title">Resources</span>
+            <a href="./partner.html">Partner</a>
+            <a
+              href="https://the-md.beehiiv.com"
+              target="_blank"
+              rel="noopener"
+              >The M.D. Newsletter</a
+            >
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="./script.js"></script>
+    <script>
+      // Career donut chart
+      new Chart(document.getElementById('careerChart'), {
+        type: 'doughnut',
+        data: {
+          labels: ['Attending', 'Resident', 'Med Student', 'Fellow'],
+          datasets: [{
+            data: [56, 23, 14, 7],
+            backgroundColor: ['#4374F9', '#7B93F7', '#B4C2FB', '#D4DCFB'],
+            borderWidth: 0,
+            spacing: 2,
+            borderRadius: 3,
+          }]
+        },
+        options: {
+          cutout: '72%',
+          responsive: true,
+          maintainAspectRatio: true,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              backgroundColor: '#0A2540',
+              titleFont: { family: 'Inter', size: 12, weight: '600' },
+              bodyFont: { family: 'Inter', size: 12 },
+              padding: 10,
+              cornerRadius: 6,
+              displayColors: false,
+              callbacks: { label: (ctx) => `${ctx.label}: ${ctx.parsed}%` }
+            }
+          }
+        }
+      });
+
+      // Interest bars
+      const interests = [
+        { label: 'Investing', pct: 81 },
+        { label: 'Retirement', pct: 76 },
+        { label: 'Budgeting', pct: 57 },
+        { label: 'Insurance', pct: 50 },
+        { label: 'Student Loans', pct: 39 },
+        { label: 'Credit', pct: 38 },
+      ];
+
+      const container = document.getElementById('interestBars');
+      interests.forEach(item => {
+        const row = document.createElement('div');
+        row.className = 'ad-h-bar-row';
+        row.innerHTML = `
+          <span class="ad-h-bar-name">${item.label}</span>
+          <div class="ad-h-bar-track">
+            <div class="ad-h-bar-fill" style="width:0%" data-w="${item.pct}%"></div>
+          </div>
+          <span class="ad-h-bar-val">${item.pct}%</span>
+        `;
+        container.appendChild(row);
+      });
+
+      const obs = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.querySelectorAll('.ad-h-bar-fill').forEach(b => { b.style.width = b.dataset.w; });
+            obs.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.2 });
+      obs.observe(container);
+    </script>
+  </body>
+</html>
