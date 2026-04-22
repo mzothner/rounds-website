@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Understanding your RVU statement: what physicians actually get paid for | Rounds</title>
+    <meta
+      name="description"
+      content="A plain-English guide to the numbers that drive your paycheck: wRVUs, conversion factors, modifiers, and where physician compensation actually leaks out of the system."
+    />
+    <link rel="canonical" href="https://roundsfi.com/resources/rvu-statement-guide" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/png" href="../Rounds_icon_circle.png" />
+    <meta property="og:title" content="Understanding your RVU statement: what physicians actually get paid for" />
+    <meta
+      property="og:description"
+      content="A plain-English guide to the numbers that drive your paycheck &mdash; and where money quietly leaks out of physician compensation."
+    />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://roundsfi.com/resources/rvu-statement-guide" />
+    <meta property="og:image" content="https://roundsfi.com/Rounds_blue_icon.png" />
+    <meta property="article:published_time" content="2026-04-17" />
+    <meta property="article:author" content="Rounds Team" />
+    <meta property="article:section" content="RVU & Compensation" />
+    <meta property="article:tag" content="RVU" />
+    <meta property="article:tag" content="Physician Compensation" />
+    <meta property="article:tag" content="Contract Negotiation" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="stylesheet" href="../styles.css" />
+    <meta name="posthog-key" content="phc_yRimWi8Q8XwRRLWvNxTEkvP4UYXdmTAt4PNAjL3VciVA" />
+    <meta name="posthog-host" content="https://us.i.posthog.com" />
+    <script src="../posthog-init.js"></script>
+    <script>
+      document.documentElement.classList.add("js");
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Understanding your RVU statement: what physicians actually get paid for",
+        "description": "A plain-English guide to wRVUs, conversion factors, and the mechanics of physician compensation.",
+        "author": { "@type": "Organization", "name": "Rounds Team", "url": "https://roundsfi.com" },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Rounds",
+          "url": "https://roundsfi.com",
+          "logo": { "@type": "ImageObject", "url": "https://roundsfi.com/Rounds_blue_icon.png" }
+        },
+        "datePublished": "2026-04-17",
+        "dateModified": "2026-04-17",
+        "mainEntityOfPage": { "@type": "WebPage", "@id": "https://roundsfi.com/resources/rvu-statement-guide" },
+        "keywords": "RVU, wRVU, physician compensation, conversion factor, contract negotiation, billing",
+        "articleSection": "RVU & Compensation"
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://roundsfi.com/" },
+          { "@type": "ListItem", "position": 2, "name": "Resources", "item": "https://roundsfi.com/resources" },
+          { "@type": "ListItem", "position": 3, "name": "Understanding your RVU statement", "item": "https://roundsfi.com/resources/rvu-statement-guide" }
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="/" aria-label="Rounds home"><img class="brand-icon" src="../Rounds_icon_circle.png" alt="" />Rounds</a>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle navigation">
+          <span></span><span></span>
+        </button>
+        <nav class="site-nav" id="site-nav">
+          <a href="../partner.html">Partner</a>
+          <a href="../debt-payoff.html">Debt Payoff</a>
+          <a href="../side-gigs.html">Side Gigs</a>
+          <a href="https://apple.co/4iaAPHO" target="_blank" rel="noopener">RVU Tracker</a>
+          <a class="nav-cta" href="https://the-md.beehiiv.com" target="_blank" rel="noopener">Newsletter</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <article class="article-shell">
+        <header class="article-header" data-reveal>
+          <p class="eyebrow">RVU &amp; Compensation &middot; Playbook</p>
+          <h1>Understanding your RVU statement: what physicians actually get paid for</h1>
+          <p class="article-lede">
+            Most physicians can't tell you &mdash; within 10% &mdash; what
+            they actually make per patient encounter. The RVU statement is
+            the reason. Here's how the math works, where money quietly
+            leaks out, and what to look at before your next contract
+            conversation.
+          </p>
+          <div class="article-meta">
+            <span>Rounds Team</span>
+            <span class="article-meta-dot" aria-hidden="true"></span>
+            <span>Apr 17, 2026</span>
+            <span class="article-meta-dot" aria-hidden="true"></span>
+            <span>6 min read</span>
+          </div>
+        </header>
+
+        <div class="article-body" data-reveal>
+          <h2>The three numbers that run your paycheck</h2>
+          <p>
+            Every procedure, visit, and consult you bill has a CPT code.
+            Every CPT code maps to a Work RVU (wRVU) value. Your paycheck,
+            in almost every employed model, is some version of this:
+          </p>
+          <blockquote>
+            wRVUs produced &times; conversion factor ($/wRVU) = comp
+          </blockquote>
+          <p>
+            The three levers are (1) how many wRVUs a given code is worth,
+            (2) your conversion factor, and (3) any modifiers, quality
+            bonuses, or threshold tiers layered on top. Every piece of
+            physician comp confusion &mdash; quarterly reconciliation
+            disputes, "why did my bonus drop" calls, missed billing
+            &mdash; is a fight about one of those three.
+          </p>
+
+          <h2>wRVUs are assigned by CMS, not your employer</h2>
+          <p>
+            CMS publishes the Physician Fee Schedule every year. That
+            document assigns a wRVU to every CPT code. A 99213 (level 3
+            established patient visit) is currently 1.3 wRVUs. A 99215 is
+            2.1. A colonoscopy with biopsy (45380) is around 4.57. These
+            numbers move &mdash; sometimes by 10%+ year over year &mdash;
+            and they're the reason your comp can shift even if your
+            volume didn't.
+          </p>
+          <p>
+            Two practical implications: first, it's worth checking the
+            annual update for your most-billed codes every January.
+            Second, when a code's wRVU drops, your employer doesn't
+            automatically adjust your conversion factor up &mdash; unless
+            your contract says so.
+          </p>
+
+          <h2>The conversion factor is where contracts actually live</h2>
+          <p>
+            MGMA publishes median conversion factors by specialty every
+            year. Family medicine lands near $50/wRVU. Cardiology sits
+            north of $65/wRVU. Neurosurgery often clears $100/wRVU.
+            <strong>Your employer's offer is almost always framed in
+            salary terms, not $/wRVU terms &mdash; but the $/wRVU is what
+            determines your upside.</strong>
+          </p>
+          <p>
+            A $280K salary with a $45/wRVU rate above threshold is a
+            fundamentally different deal than a $260K salary with a
+            $55/wRVU rate above threshold. At typical attending volume,
+            the second one pays more and keeps paying more.
+          </p>
+
+          <h2>Why two docs doing the same work get different credit</h2>
+          <p>
+            A few things you may not have been told explicitly:
+          </p>
+          <ul>
+            <li>
+              <strong>Modifiers change credit.</strong> Modifier 25 (a
+              significant, separate E/M on the same day as a procedure),
+              Modifier 59, and Modifier 51 all affect whether you get
+              credit for both services or only one.
+            </li>
+            <li>
+              <strong>Billers code conservatively by default.</strong>
+              When documentation supports a 99214, some billers drop it
+              to a 99213 unless prompted. That's pure conversion factor
+              leakage.
+            </li>
+            <li>
+              <strong>Incident-to and split/shared rules bury credit.</strong>
+              Work done with an APP under your supervision may or may
+              not appear on your RVU statement depending on how your
+              group codes it.
+            </li>
+            <li>
+              <strong>Bundled codes suppress totals.</strong> Many
+              procedure codes bundle pre- and post-op visits into the
+              procedure wRVU. If you're seeing a post-op in clinic, it
+              usually isn't separately credited.
+            </li>
+          </ul>
+
+          <h2>Three checks to run this quarter</h2>
+          <ol>
+            <li>
+              <strong>Reconcile your top 10 CPT codes</strong> against
+              the CMS Physician Fee Schedule. If any dropped this year,
+              verify whether your contract's conversion factor moved.
+            </li>
+            <li>
+              <strong>Audit one month of documentation against billed
+              codes.</strong> If 10%+ of encounters were down-coded from
+              what your note supports, that's a conversation with your
+              billing team, not with your practice manager.
+            </li>
+            <li>
+              <strong>Confirm your threshold math.</strong> Most
+              contracts pay a base salary up to a wRVU threshold, then a
+              different rate above it. Know both numbers. Track where
+              you are relative to threshold each month, not at year-end
+              reconciliation.
+            </li>
+          </ol>
+
+          <p>
+            None of this is optional math anymore. With compensation
+            reform across CMS and tighter margins at most employer
+            systems, the physicians who actually understand their RVU
+            statement are the ones who renegotiate cleanly.
+          </p>
+        </div>
+
+        <aside class="article-cta" data-reveal>
+          <h2>Track your RVUs in real time.</h2>
+          <p>
+            Rounds RVU Tracker lets you log encounters, track against
+            your threshold, and see your running conversion-factor
+            equivalent. Free on iOS.
+          </p>
+          <a class="button button-primary" href="https://apple.co/4iaAPHO" target="_blank" rel="noopener">
+            Get the RVU Tracker
+          </a>
+        </aside>
+
+        <footer class="article-footer">
+          <a href="./index.html">&larr; All resources</a>
+          <a href="./pslf-playbook-2026.html">Next: PSLF playbook for 2026 &rarr;</a>
+        </footer>
+      </article>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-left">
+          <div class="footer-brand">Rounds</div>
+          <p class="footer-tagline">Financial tools for physicians.</p>
+          <p class="footer-attribution">
+            Made by the creators of
+            <a href="https://the-md.beehiiv.com" target="_blank" rel="noopener">The M.D.</a>
+          </p>
+        </div>
+        <div class="footer-links">
+          <div class="footer-col">
+            <span class="footer-col-title">Products</span>
+            <a href="../debt-payoff.html">Debt Payoff</a>
+            <a href="../side-gigs.html">Side Gigs</a>
+            <a href="https://apple.co/4iaAPHO" target="_blank" rel="noopener">RVU Tracker</a>
+          </div>
+          <div class="footer-col">
+            <span class="footer-col-title">Resources</span>
+            <a href="./index.html">All articles</a>
+            <a href="../partner.html">Partner</a>
+            <a href="https://the-md.beehiiv.com" target="_blank" rel="noopener">The M.D. Newsletter</a>
+            <a href="../privacy.html">Privacy Policy</a>
+            <a href="../terms.html">Terms of Service</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="../script.js"></script>
+  </body>
+</html>
