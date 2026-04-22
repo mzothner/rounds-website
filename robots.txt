@@ -1,24 +1,95 @@
+# Default policy: allow all crawlers, except admin
 User-agent: *
 Disallow: /admin/
 Allow: /
 
+# OpenAI
 User-agent: GPTBot
 Allow: /
+
 User-agent: ChatGPT-User
 Allow: /
-User-agent: Google-Extended
+
+User-agent: OAI-SearchBot
 Allow: /
-User-agent: PerplexityBot
-Allow: /
+
+# Anthropic
 User-agent: ClaudeBot
 Allow: /
+
 User-agent: Claude-Web
 Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+# Google AI / Gemini
+User-agent: Google-Extended
+Allow: /
+
+User-agent: GoogleOther
+Allow: /
+
+# Perplexity
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+# Apple Intelligence
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# Amazon
 User-agent: Amazonbot
 Allow: /
+
+# Common Crawl (training data for many LLMs)
 User-agent: CCBot
 Allow: /
-User-agent: OAI-SearchBot
+
+# Meta
+User-agent: Meta-ExternalAgent
+Allow: /
+
+User-agent: Meta-ExternalFetcher
+Allow: /
+
+# You.com
+User-agent: YouBot
+Allow: /
+
+# Cohere
+User-agent: cohere-ai
+Allow: /
+
+User-agent: cohere-training-data-crawler
+Allow: /
+
+# Mistral
+User-agent: MistralAI-User
+Allow: /
+
+# DuckDuckGo
+User-agent: DuckAssistBot
+Allow: /
+
+# Bytedance / TikTok
+User-agent: Bytespider
+Allow: /
+
+# Diffbot
+User-agent: Diffbot
 Allow: /
 
 Sitemap: https://roundsfi.com/sitemap.xml

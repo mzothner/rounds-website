@@ -165,6 +165,18 @@ document.querySelectorAll('a[href="#book"]').forEach((cta) => {
   });
 });
 
+// Sign-up CTA tracking (any page)
+document.querySelectorAll('[data-cta="signup"]').forEach((cta) => {
+  cta.addEventListener("click", () => {
+    if (window.posthog) {
+      posthog.capture("signup_cta_clicked", {
+        page: window.location.pathname,
+        source: cta.dataset.ctaSource || "unknown",
+      });
+    }
+  });
+});
+
 // ===== JOB BOARD =====
 // Edit this array to add/remove/update roles. Each item becomes a card.
 const JOBS = [
@@ -238,7 +250,7 @@ const JOBS = [
     tags: ["Board-certified", "Remote", "Weekly"],
     rate: "$25-75/survey",
     rateLabel: "Per survey",
-    url: "https://sermo.pxf.io/c/6029017/1834540/17702?utm_source=the-md.beehiiv.com&utm_medium=newsletter&utm_campaign=your-year-end-personal-finance-checklist&_bhlid=3c7c1d596829cbee7ce4616d02976d6a15b26498",
+    url: "https://sermo.pxf.io/c/6029017/1834540/17702?utm_source=rounds-website&utm_campaign=side-gigs",
   }
 ];
 
