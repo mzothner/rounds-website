@@ -63,7 +63,7 @@
     <div class="page-shell-narrow">
       <main class="legal-page">
         <h1>Privacy Policy</h1>
-        <p class="legal-meta">Effective Date: April 15, 2026 &middot; Last Updated: April 15, 2026</p>
+        <p class="legal-meta">Effective Date: April 21, 2026 &middot; Last Updated: April 21, 2026</p>
 
         <p>
           Rounds Financial (&ldquo;Rounds,&rdquo; &ldquo;we,&rdquo; &ldquo;us,&rdquo; or &ldquo;our&rdquo;) operates the Rounds web and mobile applications. This Privacy Policy explains how we collect, use, disclose, and protect your personal information when you use our services.
@@ -77,16 +77,19 @@
         <h3>1.1 Information You Provide</h3>
         <ul>
           <li><strong>Account Information:</strong> Name and email address when you sign in with Google.</li>
-          <li><strong>Financial Account Information:</strong> When you choose to link financial accounts through Plaid, we receive information about your debt accounts, including account names, balances, interest rates, minimum payments, and account types.</li>
+          <li><strong>Financial Account Information:</strong> When you choose to link financial accounts through Plaid, we receive read-only information about your debt and liability accounts, including account names, balances, interest rates, minimum payments, and account types.</li>
         </ul>
 
         <h3>1.2 Information Collected Through Plaid</h3>
-        <p>When you connect your financial accounts, our third-party service provider Plaid collects and transmits the following information to us:</p>
+        <p>When you connect your financial accounts, our third-party service provider Plaid collects and transmits the following information to us on a read-only basis:</p>
         <ul>
           <li>Liability account details (account name, type, balance, interest rate, minimum payment)</li>
           <li>Account identification information (masked account numbers)</li>
           <li>Account status and payment history</li>
         </ul>
+        <p>
+          Rounds uses Plaid solely to read liability account information so we can display your debts and calculate payoff projections. Rounds does not use Plaid to initiate payments, transfers, or any movement of funds.
+        </p>
         <p>
           Plaid&rsquo;s use of your information is governed by the <a href="https://plaid.com/legal/#end-user-privacy-policy" target="_blank" rel="noopener">Plaid End User Privacy Policy</a>. We encourage you to review it.
         </p>
@@ -105,7 +108,7 @@
         <p>We use the information we collect to:</p>
         <ul>
           <li><strong>Provide Our Services:</strong> Display your debt accounts, calculate payoff projections, track PSLF eligibility, and generate financial insights.</li>
-          <li><strong>Process Transactions:</strong> Facilitate round-up calculations and debt payoff operations when you enable these features.</li>
+          <li><strong>Perform Calculations:</strong> Run round-up and payoff projection calculations on your linked account data when you enable these features. Rounds does not move, transfer, or process funds.</li>
           <li><strong>Improve Our Services:</strong> Analyze usage patterns to improve functionality and user experience.</li>
           <li><strong>Communicate With You:</strong> Send service-related notifications, updates, and support responses.</li>
           <li><strong>Ensure Security:</strong> Detect, prevent, and address fraud, abuse, and technical issues.</li>
@@ -135,18 +138,23 @@
             <tbody>
               <tr>
                 <td>Plaid</td>
-                <td>Financial account linking and data retrieval</td>
-                <td>Account credentials (handled by Plaid directly), account identifiers</td>
+                <td>Read-only access to linked liability account data</td>
+                <td>Account credentials (handled by Plaid directly), account identifiers, liability account data</td>
+              </tr>
+              <tr>
+                <td>Supabase</td>
+                <td>Authentication and application database</td>
+                <td>Name, email, authentication tokens, and application data (encrypted at rest and in transit)</td>
               </tr>
               <tr>
                 <td>Google Cloud Platform</td>
-                <td>Infrastructure hosting and data storage</td>
-                <td>All application data (encrypted at rest and in transit)</td>
+                <td>Backend compute and messaging infrastructure</td>
+                <td>Application data processed by backend services (encrypted at rest and in transit)</td>
               </tr>
               <tr>
-                <td>Firebase</td>
-                <td>Authentication</td>
-                <td>Name, email, authentication tokens</td>
+                <td>PostHog</td>
+                <td>Product analytics and usage measurement</td>
+                <td>Usage events, device and browser metadata, pseudonymous identifiers</td>
               </tr>
             </tbody>
           </table>
@@ -160,7 +168,7 @@
 
         <h2>4. Data Storage and Security</h2>
         <ul>
-          <li>All data is stored on Google Cloud Platform infrastructure within the United States.</li>
+          <li>Application data is stored in Supabase&rsquo;s managed PostgreSQL database within the United States. Backend services run on Google Cloud Platform within the United States.</li>
           <li>Data is encrypted in transit using TLS 1.2 or higher.</li>
           <li>Data is encrypted at rest using AES-256 encryption.</li>
           <li>Access to production systems requires multi-factor authentication.</li>
@@ -219,7 +227,7 @@
         <p>If you have questions about this Privacy Policy or wish to exercise your rights regarding your personal information, contact us at:</p>
         <p><strong>Email:</strong> <a href="mailto:matt@roundsfi.com">matt@roundsfi.com</a></p>
 
-        <p class="legal-meta" style="margin-top: 3rem;">This privacy policy was last updated on April 15, 2026.</p>
+        <p class="legal-meta" style="margin-top: 3rem;">This privacy policy was last updated on April 21, 2026.</p>
       </main>
     </div>
 
@@ -253,6 +261,7 @@
           </div>
           <div class="footer-col">
             <span class="footer-col-title">Resources</span>
+            <a href="./resources/index.html">Articles</a>
             <a href="./partner.html">Partner</a>
             <a
               href="https://the-md.beehiiv.com"
@@ -261,6 +270,7 @@
               >The M.D. Newsletter</a
             >
             <a href="./privacy.html">Privacy Policy</a>
+            <a href="./terms.html">Terms of Service</a>
           </div>
         </div>
       </div>
