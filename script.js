@@ -239,18 +239,6 @@ const JOBS = [
     rate: "$250\u2013$600/hr",
     rateLabel: "Per consultation",
     url: "https://guidepoint.com",
-  },
-  {
-    company: "Sermo",
-    logo: "S",
-    category: "Med Surveys",
-    title: "Remote Medical Surveys",
-    description:
-      "Surveys, medical imaging and more.",
-    tags: ["Board-certified", "Remote", "Weekly"],
-    rate: "$25-75/survey",
-    rateLabel: "Per survey",
-    url: "https://sermo.pxf.io/c/6029017/1834540/17702?utm_source=rounds-website&utm_campaign=side-gigs",
   }
 ];
 
