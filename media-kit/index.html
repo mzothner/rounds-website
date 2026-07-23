@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Media Kit &amp; Rate Card | The M.D. &mdash; Reach physicians</title>
+    <meta
+      name="description"
+      content="The M.D. media kit and rate card. Social reach across TikTok, Instagram, Facebook, and newsletter, plus ad rates for newsletter, deep dives, social video, and in-app placements."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/png" href="../Rounds_icon_circle.png" />
+    <meta property="og:title" content="Media Kit & Rate Card | The M.D. — Reach physicians" />
+    <meta property="og:description" content="Social reach and ad rates for The M.D. — a verified physician audience. Newsletter, deep dives, social video, and in-app placements." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://roundsfi.com/Rounds_blue_icon.png" />
+    <meta name="twitter:card" content="summary" />
+    <link rel="stylesheet" href="../styles.css" />
+    <meta name="posthog-key" content="phc_yRimWi8Q8XwRRLWvNxTEkvP4UYXdmTAt4PNAjL3VciVA" />
+    <meta name="posthog-host" content="https://us.i.posthog.com" />
+    <script src="../posthog-init.js"></script>
+    <script>
+      document.documentElement.classList.add("js");
+    </script>
+    <style>
+      /* ===== MEDIA KIT STYLES (mk-) ===== */
+
+      .mk-logo {
+        display: block;
+        height: 56px;
+        width: auto;
+        border-radius: 10px;
+      }
+
+      /* ---- top-line metric strip (mirrors audience page) ---- */
+      .mk-metrics {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1px;
+        background: var(--line-strong);
+        border: 1px solid var(--line-strong);
+        border-radius: var(--radius-md);
+        overflow: hidden;
+      }
+
+      .mk-metric {
+        background: var(--white);
+        padding: 28px 24px;
+      }
+
+      .mk-metric-value {
+        font-family: "Aeonik", "Inter", -apple-system, sans-serif;
+        font-size: 2.1rem;
+        font-weight: 700;
+        letter-spacing: -0.03em;
+        line-height: 1.2;
+        color: var(--text);
+      }
+
+      .mk-metric-label {
+        font-size: 0.9rem;
+        color: var(--text-secondary);
+        margin-top: 4px;
+      }
+
+      /* ---- per-platform social cards ---- */
+      .mk-platforms {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 16px;
+      }
+
+      .mk-platform {
+        padding: 24px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius-md);
+        background: var(--white);
+        box-shadow: var(--shadow-sm);
+      }
+
+      .mk-platform-top {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 18px;
+      }
+
+      .mk-platform-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        border-radius: 9px;
+        background: var(--surface);
+        color: var(--text);
+        flex-shrink: 0;
+      }
+
+      .mk-platform-icon svg {
+        width: 20px;
+        height: 20px;
+        display: block;
+      }
+
+      .mk-platform-name {
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: var(--text);
+      }
+
+      .mk-platform-handle {
+        font-size: 0.8rem;
+        color: var(--text-muted);
+      }
+
+      .mk-platform-value {
+        font-family: "Aeonik", "Inter", -apple-system, sans-serif;
+        font-size: 1.9rem;
+        font-weight: 700;
+        letter-spacing: -0.03em;
+        line-height: 1.15;
+        color: var(--text);
+      }
+
+      .mk-platform-metric {
+        font-size: 0.85rem;
+        color: var(--text-secondary);
+        margin-top: 6px;
+      }
+
+      /* ---- rate card + email gate ---- */
+      .mk-ratecard {
+        position: relative;
+      }
+
+      .mk-rates {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+        transition: filter 0.35s ease;
+      }
+
+      .mk-ratecard:not(.is-unlocked) .mk-rates {
+        filter: blur(9px);
+        pointer-events: none;
+        user-select: none;
+      }
+
+      .mk-rate {
+        display: flex;
+        flex-direction: column;
+        padding: 28px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius-md);
+        background: var(--white);
+        box-shadow: var(--shadow-sm);
+      }
+
+      .mk-rate-head {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 16px;
+        margin-bottom: 12px;
+      }
+
+      .mk-rate-name {
+        font-size: 1.1rem;
+        font-weight: 700;
+        letter-spacing: -0.01em;
+        color: var(--text);
+      }
+
+      .mk-rate-tag {
+        display: inline-block;
+        margin-top: 6px;
+        padding: 3px 10px;
+        border-radius: var(--radius-pill);
+        font-size: 0.72rem;
+        font-weight: 600;
+        letter-spacing: 0.03em;
+        text-transform: uppercase;
+        background: var(--accent-soft);
+        color: var(--accent);
+      }
+
+      .mk-rate-price {
+        text-align: right;
+        flex-shrink: 0;
+      }
+
+      .mk-rate-price .mk-price-value {
+        font-family: "Aeonik", "Inter", -apple-system, sans-serif;
+        font-size: 1.6rem;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        line-height: 1.1;
+        color: var(--text);
+      }
+
+      .mk-rate-price .mk-price-unit {
+        font-size: 0.78rem;
+        color: var(--text-muted);
+        margin-top: 2px;
+      }
+
+      .mk-rate-desc {
+        font-size: 0.92rem;
+        color: var(--text-secondary);
+        line-height: 1.6;
+        margin: 0 0 16px;
+      }
+
+      .mk-rate-includes {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 9px;
+      }
+
+      .mk-rate-includes li {
+        position: relative;
+        padding-left: 24px;
+        font-size: 0.88rem;
+        color: var(--text);
+        line-height: 1.5;
+      }
+
+      .mk-rate-includes li::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 3px;
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        background: var(--green-soft);
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='11' viewBox='0 0 12 12' fill='none' stroke='%230eba74' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M2.5 6.2l2.2 2.3 4.8-5'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: center;
+      }
+
+      /* ---- gate overlay ---- */
+      .mk-gate {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+        z-index: 3;
+      }
+
+      .mk-ratecard.is-unlocked .mk-gate {
+        display: none;
+      }
+
+      .mk-gate-card {
+        width: min(440px, 100%);
+        background: rgba(255, 255, 255, 0.92);
+        backdrop-filter: blur(6px);
+        -webkit-backdrop-filter: blur(6px);
+        border: 1px solid var(--line-strong);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-lg);
+        padding: 32px 28px;
+        text-align: center;
+      }
+
+      .mk-gate-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+        background: var(--accent-soft);
+        color: var(--accent);
+        margin-bottom: 16px;
+      }
+
+      .mk-gate-card h3 {
+        font-size: 1.25rem;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        margin: 0 0 8px;
+      }
+
+      .mk-gate-card p {
+        font-size: 0.92rem;
+        color: var(--text-secondary);
+        line-height: 1.6;
+        margin: 0 0 20px;
+      }
+
+      .mk-gate-form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .mk-gate-form input {
+        width: 100%;
+        min-height: 50px;
+        padding: 0 18px;
+        border: 1px solid var(--line-strong);
+        border-radius: var(--radius-pill);
+        background: var(--white);
+        color: var(--text);
+        font-size: 0.95rem;
+        outline: none;
+        transition: border-color 0.15s, box-shadow 0.15s;
+      }
+
+      .mk-gate-form input:focus {
+        border-color: var(--accent);
+        box-shadow: 0 0 0 3px var(--accent-soft);
+      }
+
+      .mk-gate-note {
+        margin: 12px 0 0;
+        font-size: 0.8rem;
+        color: var(--text-muted);
+        min-height: 1em;
+      }
+
+      .mk-gate-note.is-success {
+        color: var(--green);
+      }
+
+      .mk-gate-fine {
+        margin: 14px 0 0;
+        font-size: 0.75rem;
+        color: var(--text-muted);
+        line-height: 1.5;
+      }
+
+      /* ---- divider / cta reuse ---- */
+      .mk-divider {
+        border: none;
+        border-top: 1px solid var(--line);
+        margin: 0 0 80px;
+      }
+
+      .mk-cta {
+        text-align: center;
+        padding: 48px 0 24px;
+      }
+
+      .mk-cta h2 {
+        font-size: clamp(1.5rem, 2.5vw, 2rem);
+        margin-bottom: 8px;
+      }
+
+      .mk-cta p {
+        font-size: 1.05rem;
+        color: var(--text-secondary);
+        margin: 0 auto 32px;
+        max-width: 480px;
+        line-height: 1.65;
+      }
+
+      .mk-fineprint {
+        margin-top: 20px;
+        font-size: 0.85rem;
+        color: var(--text-muted);
+        line-height: 1.6;
+        max-width: 620px;
+      }
+
+      /* ---- responsive ---- */
+      @media (max-width: 900px) {
+        .mk-metrics {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .mk-platforms {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 720px) {
+        .mk-rates {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .mk-metrics {
+          grid-template-columns: 1fr;
+        }
+        .mk-platforms {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="/" aria-label="Rounds home"><img class="brand-icon" src="../Rounds_icon_circle.png" alt="" />Rounds</a>
+
+        <button
+          class="nav-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="site-nav"
+          aria-label="Toggle navigation"
+        >
+          <span></span>
+          <span></span>
+        </button>
+
+        <nav class="site-nav" id="site-nav">
+          <a href="../partner.html">Partner</a>
+          <a href="../debt-payoff.html">Debt Payoff</a>
+          <a href="../side-gigs.html">Side Gigs</a>
+          <a href="https://apple.co/4iaAPHO" target="_blank" rel="noopener">RVU Tracker</a>
+          <a
+            class="nav-cta"
+            href="https://the-md.beehiiv.com"
+            target="_blank"
+            rel="noopener"
+            >Newsletter</a
+          >
+        </nav>
+      </div>
+    </header>
+
+    <div class="page-shell">
+      <main>
+        <!-- HERO -->
+        <section class="hero">
+          <div class="hero-bg" aria-hidden="true">
+            <div class="gradient-orb gradient-orb-1"></div>
+            <div class="gradient-orb gradient-orb-2"></div>
+            <div class="grid-texture"></div>
+          </div>
+
+          <div class="hero-content" data-reveal>
+            <a href="https://the-md.beehiiv.com" target="_blank" rel="noopener"><img src="../MDicon.png" alt="The M.D." class="mk-logo" /></a>
+            <p class="eyebrow" style="margin-top: 24px;">Media Kit &middot; 2026 Rate Card</p>
+            <h1>Put your brand in front of verified physicians.</h1>
+            <p class="hero-text">
+              <a href="https://the-md.beehiiv.com" target="_blank" rel="noopener" style="color: var(--accent); font-weight: 600;">The M.D.</a>
+              reaches a physician-first audience across newsletter, TikTok, Instagram, and Facebook.
+              See our reach below, then unlock full ad rates for every placement.
+            </p>
+            <div class="hero-actions">
+              <a class="button button-primary button-arrow" href="#rates">Unlock rates</a>
+              <a class="button button-secondary" href="../partner.html#book">Book a call</a>
+            </div>
+          </div>
+        </section>
+
+        <!-- TOP-LINE REACH -->
+        <section class="section" style="padding-top: 0;">
+          <div class="section-heading" data-reveal>
+            <p class="eyebrow">Our reach</p>
+            <h2 style="font-size: clamp(1.5rem, 2.5vw, 1.85rem); font-weight: 700; letter-spacing: -0.03em;">Audience at a glance.</h2>
+          </div>
+          <div class="mk-metrics" data-reveal id="mk-metrics"></div>
+        </section>
+
+        <!-- PER-PLATFORM SOCIAL -->
+        <section class="section" style="padding-top: 0;">
+          <div class="section-heading" data-reveal>
+            <p class="eyebrow">Channels</p>
+            <h2 style="font-size: clamp(1.5rem, 2.5vw, 1.85rem); font-weight: 700; letter-spacing: -0.03em;">Where the audience lives.</h2>
+            <p>
+              A combined 35k+ physician-focused audience across social, plus a
+              newsletter with a ~60% open rate &mdash; 3x the industry standard.
+            </p>
+          </div>
+          <div class="mk-platforms" data-reveal id="mk-platforms"></div>
+        </section>
+
+        <!-- RATE CARD (email-gated) -->
+        <section class="section" id="rates" style="padding-top: 0;">
+          <div class="section-heading" data-reveal>
+            <p class="eyebrow">Rate card</p>
+            <h2 style="font-size: clamp(1.5rem, 2.5vw, 1.85rem); font-weight: 700; letter-spacing: -0.03em;">Ad rates &amp; placements.</h2>
+            <p>
+              Four ways to reach our physicians. Enter your email to unlock live
+              rates for each placement.
+            </p>
+          </div>
+
+          <div class="mk-ratecard" id="mk-ratecard" data-reveal>
+            <div class="mk-rates" id="mk-rates"></div>
+
+            <!-- Email gate overlay -->
+            <div class="mk-gate" id="mk-gate">
+              <div class="mk-gate-card">
+                <span class="mk-gate-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                </span>
+                <h3>Unlock the full rate card</h3>
+                <p>Drop your email and we'll reveal live rates for every placement &mdash; instantly, right here on the page.</p>
+                <form class="mk-gate-form" id="mk-gate-form" novalidate>
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="you@company.com"
+                    autocomplete="email"
+                    required
+                    aria-label="Work email"
+                  />
+                  <button type="submit" class="button button-primary button-wide">Unlock rates</button>
+                </form>
+                <p class="mk-gate-note" id="mk-gate-note" role="status" aria-live="polite"></p>
+                <p class="mk-gate-fine">We'll occasionally share partnership opportunities. No spam, unsubscribe anytime.</p>
+              </div>
+            </div>
+          </div>
+
+          <p class="mk-fineprint" data-reveal>
+            Rates are starting points and vary with volume, bundling, and creative scope.
+            Multi-placement packages and recurring partnerships are discounted.
+            All sponsored content is produced with full creative support.
+          </p>
+        </section>
+
+        <hr class="mk-divider" />
+
+        <!-- CTA -->
+        <section class="section" style="padding-top: 0;">
+          <div class="mk-cta" data-reveal>
+            <h2>Ready to reach physicians?</h2>
+            <p>Book a 15-minute call and we'll build the right mix of placements for your goals &mdash; or email us directly.</p>
+            <a class="button button-primary button-arrow" href="../partner.html#book">Book a 15-minute call</a>
+            <a class="button button-secondary" href="mailto:matt@roundsfi.com?subject=Media%20kit%20%E2%80%94%20partnership%20interest">Email me</a>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-left">
+          <div class="footer-brand">Rounds</div>
+          <p class="footer-tagline">Financial tools for physicians.</p>
+          <p class="footer-attribution">
+            Made by the creators of
+            <a
+              href="https://the-md.beehiiv.com"
+              target="_blank"
+              rel="noopener"
+              >The M.D.</a
+            >
+          </p>
+        </div>
+
+        <div class="footer-links">
+          <div class="footer-col">
+            <span class="footer-col-title">Products</span>
+            <a href="../debt-payoff.html">Debt Payoff</a>
+            <a href="../side-gigs.html">Side Gigs</a>
+            <a
+              href="https://apple.co/4iaAPHO"
+              target="_blank"
+              rel="noopener"
+              >RVU Tracker</a
+            >
+          </div>
+          <div class="footer-col">
+            <span class="footer-col-title">Resources</span>
+            <a href="../resources/index.html">Articles</a>
+            <a href="../partner.html">Partner</a>
+            <a href="../audience/">Audience</a>
+            <a href="../privacy.html">Privacy Policy</a>
+            <a href="../terms.html">Terms of Service</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="../script.js"></script>
+    <script>
+      /* =====================================================================
+         MEDIA KIT DATA  ——  EDIT THESE NUMBERS
+         ---------------------------------------------------------------------
+         Everything the page renders comes from the objects below. Update a
+         value here and it updates everywhere on the page.
+
+         ⚠️  PLACEHOLDERS: the follower counts and dollar rates below are
+             editable placeholders. Replace them with your real figures.
+             Values marked "REAL" are pulled from the audience page.
+         ===================================================================== */
+
+      const MK = {
+        // Top-line metric strip (4 tiles)
+        metrics: [
+          { value: "35k+",   label: "Total social audience" },   // REAL (audience page)
+          { value: "1M+",    label: "Video views / 90 days" },   // REAL (audience page)
+          { value: "59.2%",  label: "Newsletter open rate" },    // REAL (audience page)
+          { value: "3.45%",  label: "Click-through rate" },      // REAL (audience page)
+        ],
+
+        // Per-platform social cards. `icon` maps to an SVG defined below.
+        platforms: [
+          {
+            icon: "newsletter",
+            name: "The M.D. Newsletter",
+            handle: "the-md.beehiiv.com",
+            value: "6,000+",              // PLACEHOLDER — real subscriber count
+            metric: "59.2% open · 3.45% CTR", // REAL open/CTR
+          },
+          {
+            icon: "tiktok",
+            name: "TikTok",
+            handle: "@the.md",            // PLACEHOLDER — real handle
+            value: "20,000+",             // PLACEHOLDER — real follower count
+            metric: "1M+ views / 90 days", // REAL (aggregate)
+          },
+          {
+            icon: "instagram",
+            name: "Instagram",
+            handle: "@the.md",            // PLACEHOLDER — real handle
+            value: "9,000+",              // PLACEHOLDER — real follower count
+            metric: "Reels + carousels",
+          },
+          {
+            icon: "facebook",
+            name: "Facebook",
+            handle: "The M.D.",           // PLACEHOLDER — real page name
+            value: "6,000+",              // PLACEHOLDER — real follower count
+            metric: "Physician community",
+          },
+        ],
+
+        // Rate card placements. `price` / `unit` are PLACEHOLDERS — set real rates.
+        rates: [
+          {
+            name: "Main Newsletter Ad",
+            tag: "Newsletter",
+            price: "$500",                // PLACEHOLDER
+            unit: "per send",
+            desc: "Primary ad placement near the top of The M.D. — the highest-visibility slot in the newsletter.",
+            includes: [
+              "Top-of-newsletter primary placement",
+              "Headline, body copy, image + CTA link",
+              "Sent to the full verified physician list",
+              "Performance recap after send",
+            ],
+          },
+          {
+            name: "Sponsored Deep Dive",
+            tag: "Feature",
+            price: "$1,500",              // PLACEHOLDER
+            unit: "per feature",
+            desc: "A full, native long-form feature on your company, product, or mission — written by us and distributed to the whole audience.",
+            includes: [
+              "Original long-form editorial feature",
+              "Dedicated newsletter distribution",
+              "Evergreen link you can reshare",
+              "One round of revisions included",
+            ],
+          },
+          {
+            name: "Organic Social Video",
+            tag: "Social",
+            price: "$1,000",              // PLACEHOLDER
+            unit: "per video",
+            desc: "Authentic talking-head content across TikTok, Instagram, and Facebook that resonates with the medical community.",
+            includes: [
+              "Scripted + produced short-form video",
+              "Cross-posted to TikTok, IG & Facebook",
+              "Usage rights for your own channels",
+              "1M+ views generated in the past 90 days",
+            ],
+          },
+          {
+            name: "In-App Placement",
+            tag: "In-app",
+            price: "$750",                // PLACEHOLDER
+            unit: "per month",
+            desc: "Ads and affiliate offers inside RVU Tracker and Rounds physician tools — hundreds of weekly active users with attention at a premium.",
+            includes: [
+              "Placement inside RVU Tracker & Rounds tools",
+              "Hundreds of weekly active physicians",
+              "Affiliate or fixed-fee options",
+              "Monthly performance reporting",
+            ],
+          },
+        ],
+      };
+
+      /* ---- brand icons (inline SVG) ---- */
+      const MK_ICONS = {
+        newsletter:
+          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>',
+        tiktok:
+          '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.5 3c.3 2.2 1.5 3.6 3.6 3.8v2.5c-1.3.1-2.5-.2-3.6-.9v6.1c0 3.4-2.4 5.9-5.6 5.9-3 0-5.4-2.3-5.4-5.3 0-3.2 2.6-5.4 6-5v2.7c-.4-.1-.8-.2-1.2-.2-1.3 0-2.3 1-2.3 2.4 0 1.4 1 2.5 2.4 2.5 1.4 0 2.4-1.1 2.4-2.7V3h3.7Z"/></svg>',
+        instagram:
+          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>',
+        facebook:
+          '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.2c-1.2 0-1.6.8-1.6 1.5V12h2.7l-.4 2.9h-2.3v7A10 10 0 0 0 22 12Z"/></svg>',
+      };
+
+      /* ---- render top-line metrics ---- */
+      (function renderMetrics() {
+        const el = document.getElementById("mk-metrics");
+        if (!el) return;
+        el.innerHTML = MK.metrics
+          .map(
+            (m) => `
+            <div class="mk-metric">
+              <div class="mk-metric-value">${m.value}</div>
+              <div class="mk-metric-label">${m.label}</div>
+            </div>`
+          )
+          .join("");
+      })();
+
+      /* ---- render platform cards ---- */
+      (function renderPlatforms() {
+        const el = document.getElementById("mk-platforms");
+        if (!el) return;
+        el.innerHTML = MK.platforms
+          .map(
+            (p) => `
+            <div class="mk-platform">
+              <div class="mk-platform-top">
+                <span class="mk-platform-icon" aria-hidden="true">${MK_ICONS[p.icon] || ""}</span>
+                <span>
+                  <span class="mk-platform-name">${p.name}</span><br />
+                  <span class="mk-platform-handle">${p.handle}</span>
+                </span>
+              </div>
+              <div class="mk-platform-value">${p.value}</div>
+              <div class="mk-platform-metric">${p.metric}</div>
+            </div>`
+          )
+          .join("");
+      })();
+
+      /* ---- render rate cards ---- */
+      (function renderRates() {
+        const el = document.getElementById("mk-rates");
+        if (!el) return;
+        el.innerHTML = MK.rates
+          .map(
+            (r) => `
+            <article class="mk-rate">
+              <div class="mk-rate-head">
+                <div>
+                  <div class="mk-rate-name">${r.name}</div>
+                  <span class="mk-rate-tag">${r.tag}</span>
+                </div>
+                <div class="mk-rate-price">
+                  <div class="mk-price-value">${r.price}</div>
+                  <div class="mk-price-unit">${r.unit}</div>
+                </div>
+              </div>
+              <p class="mk-rate-desc">${r.desc}</p>
+              <ul class="mk-rate-includes">
+                ${r.includes.map((i) => `<li>${i}</li>`).join("")}
+              </ul>
+            </article>`
+          )
+          .join("");
+      })();
+
+      /* ---- email gate ---- */
+      (function emailGate() {
+        const STORAGE_KEY = "mk_rates_unlocked";
+        const SHEETS_URL =
+          "https://script.google.com/macros/s/AKfycbzF8Wfg987svrI5XcPbVfdxulDdHC8jpbIG084cQklbESLEFYsyR50dzo9vX7EeGEjm/exec";
+
+        const card = document.getElementById("mk-ratecard");
+        const form = document.getElementById("mk-gate-form");
+        const note = document.getElementById("mk-gate-note");
+        if (!card || !form) return;
+
+        const unlock = () => card.classList.add("is-unlocked");
+
+        // Returning visitors who already unlocked
+        try {
+          if (localStorage.getItem(STORAGE_KEY) === "1") unlock();
+        } catch (e) {}
+
+        form.addEventListener("submit", (event) => {
+          event.preventDefault();
+          const input = form.querySelector('input[name="email"]');
+          const email = (input?.value || "").trim();
+          const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+          if (!valid) {
+            note.textContent = "Please enter a valid email.";
+            note.classList.remove("is-success");
+            input?.focus();
+            return;
+          }
+
+          const btn = form.querySelector('button[type="submit"]');
+          const originalText = btn.textContent;
+          btn.textContent = "Unlocking...";
+          btn.disabled = true;
+
+          if (window.posthog) {
+            posthog.identify(email, { email });
+            posthog.capture("media_kit_unlock", { source: "media-kit", email });
+          }
+
+          const formData = new FormData();
+          formData.append("email", email);
+          formData.append("source", "media-kit");
+
+          fetch(SHEETS_URL, { method: "POST", mode: "no-cors", body: formData })
+            .then(() => {
+              note.textContent = "Unlocked — here are the rates.";
+              note.classList.add("is-success");
+              try {
+                localStorage.setItem(STORAGE_KEY, "1");
+              } catch (e) {}
+            })
+            .catch((err) => {
+              // Still unlock so the visitor isn't blocked by a network hiccup.
+              note.textContent = "Unlocked.";
+              if (window.posthog && typeof posthog.captureException === "function") {
+                posthog.captureException(err);
+              }
+            })
+            .finally(() => {
+              btn.textContent = originalText;
+              btn.disabled = false;
+              unlock();
+            });
+        });
+      })();
+    </script>
+  </body>
+</html>
