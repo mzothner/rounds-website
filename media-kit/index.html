@@ -76,11 +76,23 @@
       }
 
       .mk-platform {
+        display: block;
         padding: 24px;
         border: 1px solid var(--line);
         border-radius: var(--radius-md);
         background: var(--white);
         box-shadow: var(--shadow-sm);
+        color: inherit;
+      }
+
+      a.mk-platform {
+        transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+      }
+
+      a.mk-platform:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-md);
+        border-color: var(--line-strong);
       }
 
       .mk-platform-top {
@@ -208,6 +220,13 @@
         font-size: 0.78rem;
         color: var(--text-muted);
         margin-top: 2px;
+      }
+
+      .mk-price-onrequest {
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: var(--text-secondary);
+        white-space: nowrap;
       }
 
       .mk-rate-desc {
@@ -376,6 +395,80 @@
         max-width: 620px;
       }
 
+      /* ---- how it works ---- */
+      .mk-steps {
+        list-style: none;
+        margin: 0 0 32px;
+        padding: 0;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px 48px;
+      }
+
+      .mk-step {
+        display: flex;
+        gap: 16px;
+        align-items: flex-start;
+      }
+
+      .mk-step-num {
+        flex-shrink: 0;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--accent-soft);
+        color: var(--accent);
+        font-family: "Aeonik", "Inter", -apple-system, sans-serif;
+        font-weight: 700;
+        font-size: 1rem;
+      }
+
+      .mk-step-body {
+        padding-top: 5px;
+      }
+
+      .mk-step-body h3 {
+        font-size: 1rem;
+        font-weight: 700;
+        letter-spacing: -0.01em;
+        margin: 0 0 4px;
+      }
+
+      .mk-step-body p {
+        font-size: 0.9rem;
+        color: var(--text-secondary);
+        line-height: 1.55;
+        margin: 0;
+      }
+
+      .mk-email-link {
+        color: var(--accent);
+        font-weight: 700;
+      }
+
+      .mk-email-callout {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        padding: 26px 32px;
+        border-radius: var(--radius-lg);
+        background: var(--accent-soft);
+        border: 1px solid rgba(67, 116, 249, 0.2);
+      }
+
+      .mk-email-callout p {
+        margin: 0;
+        font-size: 1rem;
+        color: var(--text);
+        line-height: 1.6;
+        max-width: 44ch;
+      }
+
       /* ---- responsive ---- */
       @media (max-width: 900px) {
         .mk-metrics {
@@ -389,6 +482,14 @@
       @media (max-width: 720px) {
         .mk-rates {
           grid-template-columns: 1fr;
+        }
+        .mk-steps {
+          grid-template-columns: 1fr;
+          gap: 20px;
+        }
+        .mk-email-callout {
+          flex-direction: column;
+          align-items: flex-start;
         }
       }
 
@@ -480,6 +581,64 @@
             </p>
           </div>
           <div class="mk-platforms" data-reveal id="mk-platforms"></div>
+        </section>
+
+        <!-- HOW IT WORKS -->
+        <section class="section" style="padding-top: 0;">
+          <div class="section-heading" data-reveal>
+            <p class="eyebrow">How it works</p>
+            <h2 style="font-size: clamp(1.5rem, 2.5vw, 1.85rem); font-weight: 700; letter-spacing: -0.03em;">From browse to live in six steps.</h2>
+          </div>
+
+          <ol class="mk-steps" data-reveal>
+            <li class="mk-step">
+              <span class="mk-step-num">1</span>
+              <div class="mk-step-body">
+                <h3>Browse partnership opportunities</h3>
+                <p>Explore the placements and rates below to find the right fit.</p>
+              </div>
+            </li>
+            <li class="mk-step">
+              <span class="mk-step-num">2</span>
+              <div class="mk-step-body">
+                <h3>Email us your request</h3>
+                <p>Send your selected placement and preferred date(s) to <a class="mk-email-link" href="mailto:matt@roundsfi.com?subject=Partnership%20request">matt@roundsfi.com</a>.</p>
+              </div>
+            </li>
+            <li class="mk-step">
+              <span class="mk-step-num">3</span>
+              <div class="mk-step-body">
+                <h3>Booking confirmation</h3>
+                <p>We confirm availability and lock in your dates.</p>
+              </div>
+            </li>
+            <li class="mk-step">
+              <span class="mk-step-num">4</span>
+              <div class="mk-step-body">
+                <h3>Invoice &amp; payment</h3>
+                <p>We send an invoice; payment secures your slot.</p>
+              </div>
+            </li>
+            <li class="mk-step">
+              <span class="mk-step-num">5</span>
+              <div class="mk-step-body">
+                <h3>Share your creative &amp; copy</h3>
+                <p>Send over your assets and copy &mdash; we'll help refine if needed.</p>
+              </div>
+            </li>
+            <li class="mk-step">
+              <span class="mk-step-num">6</span>
+              <div class="mk-step-body">
+                <h3>Your ad goes live</h3>
+                <p>We publish across the agreed placements on schedule.</p>
+              </div>
+            </li>
+          </ol>
+
+          <div class="mk-email-callout" data-reveal>
+            <p>Email us at <a class="mk-email-link" href="mailto:matt@roundsfi.com?subject=Bulk%20partnership%20inquiry">matt@roundsfi.com</a> for bulk-purchase discounts or any questions.</p>
+            <a class="button button-primary button-arrow" href="mailto:matt@roundsfi.com?subject=Partnership%20request">Email us</a>
+          </div>
         </section>
 
         <!-- RATE CARD (email-gated) -->
@@ -610,29 +769,33 @@
             icon: "newsletter",
             name: "The M.D. Newsletter",
             handle: "the-md.beehiiv.com",
+            link: "https://the-md.beehiiv.com",
             value: "2,000+",              // REAL — subscriber count
             metric: "61% open · 3.45% CTR", // REAL open/CTR
           },
           {
             icon: "tiktok",
             name: "TikTok",
-            handle: "@the.md",            // PLACEHOLDER — real handle
+            handle: "@themdnewsletter",   // REAL
+            link: "https://www.tiktok.com/@themdnewsletter",
             value: "25,000+",             // REAL — follower count
             metric: "1M+ views / 90 days", // REAL (aggregate)
           },
           {
             icon: "instagram",
             name: "Instagram",
-            handle: "@the.md",            // PLACEHOLDER — real handle
+            handle: "@the.md.for.mds",    // REAL
+            link: "https://www.instagram.com/the.md.for.mds",
             value: "16,000+",             // REAL — follower count
-            metric: "Reels + carousels",
+            metric: "Followed by pages with 1M+ fans",
           },
           {
             icon: "facebook",
             name: "Facebook",
-            handle: "The M.D.",           // PLACEHOLDER — real page name
+            handle: "The M.D.",           // REAL — page name
+            link: "https://www.facebook.com/profile.php?id=61571216390608",
             value: "6,000+",              // PLACEHOLDER — real follower count
-            metric: "Physician community",
+            metric: "Engaged older audience",
           },
         ],
 
@@ -654,8 +817,9 @@
           {
             name: "Sponsored Deep Dive",
             tag: "Feature",
-            price: "$750",                // REAL
+            price: "$750",                // REAL (hidden on page via hidePrice)
             unit: "per feature",
+            hidePrice: true,              // show "Contact for pricing" instead of the rate
             desc: "A full, native long-form feature on your company, product, or mission — written by us and distributed to the whole audience.",
             includes: [
               "Original long-form editorial feature",
@@ -725,9 +889,13 @@
         const el = document.getElementById("mk-platforms");
         if (!el) return;
         el.innerHTML = MK.platforms
-          .map(
-            (p) => `
-            <div class="mk-platform">
+          .map((p) => {
+            const tag = p.link ? "a" : "div";
+            const attrs = p.link
+              ? ` href="${p.link}" target="_blank" rel="noopener"`
+              : "";
+            return `
+            <${tag} class="mk-platform"${attrs}>
               <div class="mk-platform-top">
                 <span class="mk-platform-icon" aria-hidden="true">${MK_ICONS[p.icon] || ""}</span>
                 <span>
@@ -737,8 +905,8 @@
               </div>
               <div class="mk-platform-value">${p.value}</div>
               <div class="mk-platform-metric">${p.metric}</div>
-            </div>`
-          )
+            </${tag}>`;
+          })
           .join("");
       })();
 
@@ -756,8 +924,12 @@
                   <span class="mk-rate-tag">${r.tag}</span>
                 </div>
                 <div class="mk-rate-price">
-                  <div class="mk-price-value">${r.price}</div>
-                  <div class="mk-price-unit">${r.unit}</div>
+                  ${
+                    r.hidePrice
+                      ? `<div class="mk-price-onrequest">Contact for pricing</div>`
+                      : `<div class="mk-price-value">${r.price}</div>
+                  <div class="mk-price-unit">${r.unit}</div>`
+                  }
                 </div>
               </div>
               <p class="mk-rate-desc">${r.desc}</p>
