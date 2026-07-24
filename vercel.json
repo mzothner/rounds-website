@@ -1,3 +1,7 @@
 {
-  "cleanUrls": true
+  "cleanUrls": true,
+  "redirects": [
+    { "source": "/audience", "destination": "/media-kit#audience", "permanent": true },
+    { "source": "/audience/", "destination": "/media-kit#audience", "permanent": true }
+  ]
 }
