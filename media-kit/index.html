@@ -1248,8 +1248,10 @@
       /* ---- email gate ---- */
       (function emailGate() {
         const STORAGE_KEY = "mk_rates_unlocked";
+        // Dedicated media-kit endpoint — writes to the media-kit rate-card sheet
+        // (separate from the side-gigs / waitlist sheet used in script.js).
         const SHEETS_URL =
-          "https://script.google.com/macros/s/AKfycbzF8Wfg987svrI5XcPbVfdxulDdHC8jpbIG084cQklbESLEFYsyR50dzo9vX7EeGEjm/exec";
+          "https://script.google.com/macros/s/AKfycbyit_YQB1JzWgTs3TCAnp5SoWaOwCE28JLbGgpifrA-wkuJQASJgzOg8crNNJsh_stK/exec";
 
         const card = document.getElementById("mk-ratecard");
         const form = document.getElementById("mk-gate-form");
