@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rounds Pay | Patients pay less. You collect every dollar.</title>
+<meta name="description" content="2026 IRS rules let patients put pre-tax HSA money toward DPC and concierge memberships. Rounds Pay splits the charge automatically and keeps it compliant.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="./Rounds_icon_circle.png">
+<meta property="og:title" content="Rounds Pay | Patients pay less. You collect every dollar.">
+<meta property="og:description" content="2026 IRS rules let patients put pre-tax HSA money toward DPC and concierge memberships. Rounds Pay splits the charge automatically and keeps it compliant.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://roundsfi.com/Rounds_blue_icon.png">
+<meta name="twitter:card" content="summary">
+<meta name="posthog-key" content="phc_yRimWi8Q8XwRRLWvNxTEkvP4UYXdmTAt4PNAjL3VciVA">
+<meta name="posthog-host" content="https://us.i.posthog.com">
+<script src="./posthog-init.js"></script>
+<style>
+  :root{
+    --ink:#0B1B33;
+    --ink-soft:#4A5A72;
+    --blue:#1E56E8;          /* Rounds blue — swap to exact brand hex */
+    --blue-deep:#123CA6;
+    --hsa:#0E9F6E;           /* used only inside the calculator split */
+    --paper:#FAFBFD;
+    --card:#FFFFFF;
+    --soft:#F3F6FA;
+    --line:#E4E9F2;
+    --radius:14px;
+    --display:'Sora',sans-serif;
+    --body:'Inter',system-ui,sans-serif;
+    --mono:'IBM Plex Mono',monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto} *{transition:none!important}}
+  body{font-family:var(--body);color:var(--ink);background:var(--paper);line-height:1.6;font-size:16px}
+  a{color:var(--blue);text-decoration:none}
+  a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+
+  nav{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .logo{display:flex;align-items:center;gap:10px;font-family:var(--display);font-weight:700;font-size:19px;color:var(--ink)}
+  .logo-mark{width:30px;height:30px;border-radius:50%;background:var(--blue);display:inline-flex;align-items:center;justify-content:center;color:#fff;font-size:15px;font-weight:700}
+  .pay-badge{font-family:var(--display);font-weight:600;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--blue);border:1px solid var(--line);border-radius:999px;padding:3px 10px}
+  .nav-links{display:flex;gap:26px;align-items:center;font-size:14.5px;font-weight:500}
+  .nav-links a{color:var(--ink-soft)}
+  .nav-links a:hover{color:var(--blue)}
+  .nav-links a.btn{color:#fff}
+  .nav-links a.btn:hover{color:#fff}
+  .btn{display:inline-block;background:var(--blue);color:#fff;font-weight:600;font-size:15px;padding:13px 26px;border-radius:10px;border:none;cursor:pointer}
+  .btn:hover{background:var(--blue-deep)}
+  .btn.small{padding:9px 16px;font-size:14px}
+  .btn-note{font-size:13.5px;color:var(--ink-soft);margin-top:12px}
+
+  .hero{padding:76px 0 60px}
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+  h1{font-family:var(--display);font-weight:700;font-size:clamp(34px,4.6vw,52px);line-height:1.12;letter-spacing:-.015em;margin-bottom:18px}
+  .sub{font-size:18px;color:var(--ink-soft);max-width:30em;margin-bottom:28px}
+  .sub strong{color:var(--ink)}
+
+  /* Calculator */
+  .calc{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 12px 40px rgba(11,27,51,.07);padding:26px}
+  .calc-title{font-family:var(--display);font-weight:600;font-size:15px;margin-bottom:18px}
+  .calc label{font-size:13px;font-weight:600;color:var(--ink-soft);display:block;margin-bottom:6px}
+  .calc-row{display:flex;gap:12px;margin-bottom:18px}
+  .calc-field{flex:1}
+  .money-input{display:flex;align-items:center;border:1px solid var(--line);border-radius:10px;padding:0 12px;background:#fff}
+  .money-input span{font-family:var(--mono);color:var(--ink-soft)}
+  .money-input input{border:none;width:100%;padding:11px 6px;font-family:var(--mono);font-size:17px;font-weight:600;color:var(--ink);background:transparent}
+  .money-input input:focus{outline:none}
+  .toggle{display:flex;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+  .toggle button{flex:1;padding:11px 6px;font-size:13.5px;font-weight:600;background:#fff;border:none;cursor:pointer;color:var(--ink-soft)}
+  .toggle button.active{background:var(--blue);color:#fff}
+  .split-bar{display:flex;height:12px;border-radius:999px;overflow:hidden;margin:4px 0 16px;background:var(--line)}
+  .split-hsa{background:var(--hsa);transition:width .35s ease}
+  .split-rest{background:var(--blue);transition:width .35s ease}
+  .split-lines{display:grid;gap:9px}
+  .split-line{display:flex;justify-content:space-between;align-items:baseline;font-size:14.5px}
+  .split-line .amt{font-family:var(--mono);font-weight:600;font-size:16px}
+  .dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:8px}
+  .dot.g{background:var(--hsa)} .dot.b{background:var(--blue)}
+  .calc-divider{border-top:1px dashed var(--line);margin:14px 0}
+  .twoside{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .side-box{background:var(--soft);border-radius:10px;padding:12px 14px;font-size:13px}
+  .side-box .who{font-weight:600;font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-soft);display:block;margin-bottom:4px}
+  .side-box .amt{font-family:var(--mono);font-weight:600;font-size:18px;display:block}
+  .side-box .cap{color:var(--ink-soft);font-size:12px}
+  .calc-foot{font-size:12px;color:var(--ink-soft);margin-top:12px}
+
+  section{padding:60px 0}
+  section.alt{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .eyebrow{font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--blue);margin-bottom:12px}
+  h2{font-family:var(--display);font-weight:700;font-size:clamp(25px,3vw,34px);letter-spacing:-.01em;line-height:1.2;margin-bottom:28px}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .tile{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px}
+  section.alt .tile{background:var(--paper)}
+  .tile h3{font-family:var(--display);font-weight:600;font-size:16.5px;margin-bottom:6px}
+  .tile p{font-size:14.5px;color:var(--ink-soft)}
+  .step-num{font-family:var(--mono);font-weight:600;font-size:13px;color:var(--blue);display:block;margin-bottom:8px}
+
+  .side-panel{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:26px}
+  section.alt .side-panel{background:var(--paper)}
+  .side-panel .tag{font-size:12px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--blue);display:block;margin-bottom:12px}
+  .side-panel ul{list-style:none}
+  .side-panel li{font-size:14.5px;padding:6px 0 6px 24px;position:relative;color:var(--ink-soft)}
+  .side-panel li strong{color:var(--ink)}
+  .side-panel li::before{content:"✓";position:absolute;left:0;color:var(--blue);font-weight:700}
+
+  .stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:18px}
+  .stat{border-top:2px solid var(--blue);padding:14px 2px 0}
+  .stat .n{font-family:var(--mono);font-weight:600;font-size:22px;display:block}
+  .stat .l{font-size:13px;color:var(--ink-soft)}
+
+  .fit li::before{content:"✓";color:var(--blue)}
+  .fit.no li::before{content:"—";color:var(--ink-soft)}
+  .fit ul{list-style:none}
+  .fit li{font-size:14.5px;padding:6px 0 6px 24px;position:relative;color:var(--ink-soft)}
+  .fit h3{font-family:var(--display);font-size:16.5px;margin-bottom:10px}
+  .fit{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:24px}
+
+  .cta-band{background:var(--ink);color:#fff;border-radius:var(--radius);padding:52px 40px;text-align:center}
+  .cta-band h2{color:#fff;margin-bottom:10px}
+  .cta-band p{color:#AEBBD1;max-width:34em;margin:0 auto 26px;font-size:16px}
+
+  footer{padding:40px 0;color:var(--ink-soft);font-size:14px}
+  .foot-grid{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap}
+  .foot-links{display:flex;gap:22px}
+  .disclaimer{margin-top:20px;font-size:12.5px;max-width:60em}
+
+  @media (max-width:880px){
+    .hero-grid{grid-template-columns:1fr;gap:36px}
+    .grid3,.grid2,.stat-row{grid-template-columns:1fr}
+    .nav-links{display:none}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap nav-inner">
+    <a class="logo" href="/" aria-label="Rounds home">
+      <span class="logo-mark">R</span> Rounds <span class="pay-badge">Pay</span>
+    </a>
+    <div class="nav-links">
+      <a href="#patients">For patients</a>
+      <a href="#how">For practices</a>
+      <a href="#fit">Who it's for</a>
+      <a class="btn small" href="#chat">Chat with us</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <h1>Patients pay less.<br>You collect every dollar.</h1>
+      <p class="sub">As of 2026, patients can put <strong>pre-tax HSA money</strong> toward DPC and concierge memberships — up to $150/month each. Rounds Pay splits the charge automatically and keeps it compliant.</p>
+      <a class="btn" data-chat href="#chat">Chat with us</a>
+      <p class="btn-note">Building with a small group of practices. 15 minutes, no pitch.</p>
+    </div>
+
+    <div class="calc" aria-label="Membership split calculator">
+      <div class="calc-title">See the split</div>
+      <div class="calc-row">
+        <div class="calc-field">
+          <label for="fee">Monthly membership</label>
+          <div class="money-input"><span>$</span><input id="fee" type="number" inputmode="decimal" min="0" step="5" value="325"></div>
+        </div>
+        <div class="calc-field">
+          <label id="covlabel">Coverage</label>
+          <div class="toggle" role="group" aria-labelledby="covlabel">
+            <button type="button" data-cap="150" class="active">Individual</button>
+            <button type="button" data-cap="300">Family</button>
+          </div>
+        </div>
+      </div>
+      <div class="split-bar" aria-hidden="true">
+        <div class="split-hsa" data-bar-hsa style="width:46%"></div>
+        <div class="split-rest" data-bar-rest style="width:54%"></div>
+      </div>
+      <div class="split-lines">
+        <div class="split-line"><span><span class="dot g"></span>HSA card — pre-tax</span><span class="amt" data-hsa>$150.00</span></div>
+        <div class="split-line"><span><span class="dot b"></span>Card or bank</span><span class="amt" data-rest>$175.00</span></div>
+      </div>
+      <div class="calc-divider"></div>
+      <div class="twoside">
+        <div class="side-box">
+          <span class="who">Patient</span>
+          <span class="amt" data-effective>~$272/mo</span>
+          <span class="cap">effective cost after tax savings</span>
+        </div>
+        <div class="side-box">
+          <span class="who">Practice</span>
+          <span class="amt" data-collect>$325.00/mo</span>
+          <span class="cap">collected in full</span>
+        </div>
+      </div>
+      <p class="calc-foot">One membership, billed automatically. Savings est. at a 35% marginal rate.</p>
+    </div>
+  </div>
+</header>
+
+<section class="alt" id="patients">
+  <div class="wrap">
+    <p class="eyebrow">For patients</p>
+    <h2>Enroll once. Everything else is automatic.</h2>
+    <div class="grid3">
+      <div class="tile"><span class="step-num">1</span><h3>Sign up with two cards</h3><p>Your enrollment page shows their pre-tax savings, then saves an HSA card plus a regular card or bank account.</p></div>
+      <div class="tile"><span class="step-num">2</span><h3>One membership, split billing</h3><p>Each month the eligible portion runs on the HSA card and the rest on the backup — no reimbursement paperwork, ever.</p></div>
+      <div class="tile"><span class="step-num">3</span><h3>Tax documents arrive on their own</h3><p>Itemized receipts monthly and a qualification letter each January — the document their accountant asks for.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="wrap">
+    <p class="eyebrow">For practices</p>
+    <h2>A cheaper membership you didn't discount.</h2>
+    <div class="grid2">
+      <div class="side-panel">
+        <span class="tag">What you get</span>
+        <ul>
+          <li><strong>A new answer to the price objection</strong> — "part of this is pre-tax" — at full fee</li>
+          <li><strong>Fewer cancellations.</strong> When an HSA card declines, the backup card covers it automatically</li>
+          <li><strong>Compliance handled.</strong> Caps, primary-care-only rules, and the sole-fee test are checked before anything bills</li>
+        </ul>
+      </div>
+      <div class="side-panel">
+        <span class="tag">What you don't deal with</span>
+        <ul>
+          <li><strong>No new merchant account.</strong> You stay the merchant of record on your own Stripe account, set up as a medical practice</li>
+          <li><strong>No patient tax questions.</strong> Receipts and annual letters go out automatically</li>
+          <li><strong>No rule-watching.</strong> When the IRS adjusts the caps, your billing adjusts with them</li>
+        </ul>
+      </div>
+    </div>
+    <div class="stat-row">
+      <div class="stat"><span class="n">40M+</span><span class="l">HSA accounts in the U.S.</span></div>
+      <div class="stat"><span class="n">~$147B</span><span class="l">sitting in them, mostly unspent</span></div>
+      <div class="stat"><span class="n">$150 / $300</span><span class="l">monthly pre-tax caps, individual / family</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="fit">
+  <div class="wrap">
+    <p class="eyebrow">Who it's for</p>
+    <h2>Built for practices that left insurance behind.</h2>
+    <div class="grid2">
+      <div class="fit">
+        <h3>A fit if</h3>
+        <ul>
+          <li>Cash-only concierge or DPC with memberships above $150/month</li>
+          <li>Membership covers primary care; add-ons billed separately</li>
+          <li>Patients are asking about paying with their HSA</li>
+        </ul>
+      </div>
+      <div class="fit no">
+        <h3>Not a fit if</h3>
+        <ul>
+          <li>You bill insurance inside your membership — that likely doesn't qualify, and we'll say so</li>
+          <li>Your fee is under $150/month on a medical merchant account — HSA cards already work for you</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="chat">
+  <div class="wrap">
+    <div class="cta-band">
+      <h2>Tell us how you bill today.</h2>
+      <p>We're building Rounds Pay with a handful of DPC and concierge practices. 15 minutes with a physician founder — you'll leave with the HSA rules explained, whatever you decide.</p>
+      <a class="btn" data-chat href="mailto:hello@roundsfi.com?subject=Rounds%20Pay%20—%20chat">Chat with us</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div><strong style="font-family:var(--display);color:var(--ink)">Rounds Pay</strong><br>Membership billing for physicians.<br>By the creators of <a href="https://the-md.beehiiv.com">The M.D.</a></div>
+      <div class="foot-links">
+        <a href="/">Rounds</a>
+        <a href="/partner">Partner</a>
+        <a href="/privacy">Privacy</a>
+        <a href="/terms">Terms</a>
+      </div>
+    </div>
+    <p class="disclaimer">Rounds Pay provides billing software, not tax or legal advice. DPCSA qualification under IRS Notice 2026-05 depends on your practice's structure — confirm with your tax advisor. FSA treatment of membership fees varies by plan administrator. Savings estimates assume a 35% marginal rate. HSA statistics: Devenir Research.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var cap = 150;
+  var fee = document.getElementById('fee');
+  var hsaEl = document.querySelector('[data-hsa]');
+  var restEl = document.querySelector('[data-rest]');
+  var effEl = document.querySelector('[data-effective]');
+  var colEl = document.querySelector('[data-collect]');
+  var barH = document.querySelector('[data-bar-hsa]');
+  var barR = document.querySelector('[data-bar-rest]');
+  var fmt = function(n){return '$' + n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});};
+
+  function update(){
+    var f = Math.max(0, parseFloat(fee.value) || 0);
+    var hsa = Math.min(f, cap);
+    var rest = Math.max(0, f - cap);
+    hsaEl.textContent = fmt(hsa);
+    restEl.textContent = fmt(rest);
+    effEl.textContent = '~$' + Math.round(f - hsa * 0.35).toLocaleString('en-US') + '/mo';
+    colEl.textContent = fmt(f) + '/mo';
+    var pct = f > 0 ? (hsa / f) * 100 : 0;
+    barH.style.width = pct + '%';
+    barR.style.width = (100 - pct) + '%';
+  }
+  fee.addEventListener('input', update);
+  document.querySelectorAll('.toggle button').forEach(function(b){
+    b.addEventListener('click', function(){
+      document.querySelectorAll('.toggle button').forEach(function(x){x.classList.remove('active');});
+      b.classList.add('active');
+      cap = parseInt(b.getAttribute('data-cap'),10);
+      update();
+    });
+  });
+  update();
+
+  /* CTA: swap CHAT_LINK for your Calendly/Cal.com URL when ready.
+     Until then, buttons open a pre-addressed email. */
+  var CHAT_LINK = ''; // e.g. 'https://calendly.com/matt-rounds/15min'
+  if (CHAT_LINK){
+    document.querySelectorAll('[data-chat]').forEach(function(a){ a.href = CHAT_LINK; });
+  } else {
+    document.querySelectorAll('[data-chat]').forEach(function(a){
+      if (a.getAttribute('href') === '#chat') return; /* hero button scrolls to CTA */
+      a.href = 'mailto:hello@roundsfi.com?subject=Rounds%20Pay%20—%20chat';
+    });
+  }
+})();
+</script>
+</body>
+</html>
