@@ -102,6 +102,16 @@
   .tile h3{font-family:var(--display);font-weight:600;font-size:16.5px;margin-bottom:6px}
   .tile p{font-size:14.5px;color:var(--ink-soft)}
   .step-num{font-family:var(--mono);font-weight:600;font-size:13px;color:var(--blue);display:block;margin-bottom:8px}
+  .tile .role{font-family:var(--mono);font-weight:600;font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--blue);display:block;margin-bottom:8px}
+  .tile ul{list-style:none;margin-top:4px}
+  .tile li{font-size:14.5px;color:var(--ink-soft);padding:3px 0 3px 22px;position:relative}
+  .tile li::before{content:"✓";position:absolute;left:0;color:var(--blue);font-weight:700}
+
+  .equation{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;margin:26px 0 14px;font-family:var(--mono);font-weight:600;font-size:15px}
+  .eq-box{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 16px}
+  section.alt .eq-box{background:var(--paper)}
+  .eq-op{color:var(--ink-soft);font-size:18px}
+  .eq-note{text-align:center;font-size:13.5px;color:var(--ink-soft);max-width:44em;margin:0 auto}
 
   .side-panel{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:26px}
   section.alt .side-panel{background:var(--paper)}
@@ -122,6 +132,22 @@
   .fit li{font-size:14.5px;padding:6px 0 6px 24px;position:relative;color:var(--ink-soft)}
   .fit h3{font-family:var(--display);font-size:16.5px;margin-bottom:10px}
   .fit{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:24px}
+  section.alt .fit{background:var(--paper)}
+
+  /* FAQ */
+  .faq{max-width:760px}
+  .faq details{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);margin-bottom:10px}
+  section.alt .faq details{background:var(--paper)}
+  .faq summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:18px 22px;font-family:var(--display);font-weight:600;font-size:15.5px}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary::after{content:"+";font-family:var(--mono);font-size:18px;color:var(--blue);flex-shrink:0}
+  .faq details[open] summary::after{content:"–"}
+  .faq .a{padding:0 22px 18px;font-size:14.5px;color:var(--ink-soft)}
+  .faq .a strong{color:var(--ink)}
+  .faq .a ul{list-style:none;margin-top:8px}
+  .faq .a li{padding:3px 0 3px 22px;position:relative}
+  .faq .a li::before{content:"✓";position:absolute;left:0;color:var(--blue);font-weight:700}
+  .faq .a ul.excluded li::before{content:"—";color:var(--ink-soft)}
 
   .cta-band{background:var(--ink);color:#fff;border-radius:var(--radius);padding:52px 40px;text-align:center}
   .cta-band h2{color:#fff;margin-bottom:10px}
@@ -149,7 +175,7 @@
     <div class="nav-links">
       <a href="#patients">For patients</a>
       <a href="#how">For practices</a>
-      <a href="#fit">Who it's for</a>
+      <a href="#faq">FAQ</a>
       <a class="btn small" href="#chat">Chat with us</a>
     </div>
   </div>
@@ -217,7 +243,40 @@
   </div>
 </section>
 
-<section id="how">
+<section id="stack">
+  <div class="wrap">
+    <p class="eyebrow">The objection you hear every week</p>
+    <h2>Membership medicine isn't paying twice.</h2>
+    <div class="grid2">
+      <div class="tile">
+        <span class="role">HDHP — for the catastrophe</span>
+        <ul>
+          <li>Hospitalizations, surgery, specialists</li>
+          <li>The year everything goes wrong</li>
+          <li>Low premium, high deductible — and it unlocks the HSA</li>
+        </ul>
+      </div>
+      <div class="tile">
+        <span class="role">Membership — for everyday care</span>
+        <ul>
+          <li>Same-day appointments, longer visits</li>
+          <li>A doctor who knows them, direct messaging</li>
+          <li>Fixed fee — now partly pre-tax</li>
+        </ul>
+      </div>
+    </div>
+    <div class="equation" aria-label="Cost comparison">
+      <span class="eq-box">Low-deductible plan</span>
+      <span class="eq-op">≈</span>
+      <span class="eq-box">HDHP</span>
+      <span class="eq-op">+</span>
+      <span class="eq-box">Membership</span>
+    </div>
+    <p class="eq-note">The premium saved by moving from a rich low-deductible plan to an HDHP can cover much — sometimes all — of the membership. The patient isn't buying care twice; they're restructuring the same dollars for faster access and higher-touch care, with catastrophes still covered.</p>
+  </div>
+</section>
+
+<section class="alt" id="how">
   <div class="wrap">
     <p class="eyebrow">For practices</p>
     <h2>A cheaper membership you didn't discount.</h2>
@@ -247,7 +306,7 @@
   </div>
 </section>
 
-<section class="alt" id="fit">
+<section id="fit">
   <div class="wrap">
     <p class="eyebrow">Who it's for</p>
     <h2>Built for practices that left insurance behind.</h2>
@@ -271,11 +330,69 @@
   </div>
 </section>
 
+<section class="alt" id="faq">
+  <div class="wrap">
+    <p class="eyebrow">FAQ</p>
+    <h2>The rules, in plain English.</h2>
+    <div class="faq">
+      <details>
+        <summary>Does an HSA pay for a DPC membership?</summary>
+        <div class="a">Yes — as of January 1, 2026. Qualifying membership fees are HSA-eligible up to <strong>$150/month per individual or $300/month per family</strong>. To qualify, the membership must cover primary care only, be delivered by primary care practitioners (family medicine, internal medicine, geriatrics, pediatrics, or NP/PA/CNS), and the fixed fee must be the only charge inside the arrangement.</div>
+      </details>
+      <details>
+        <summary>Can patients use an HSA for per-visit payments?</summary>
+        <div class="a">Yes — and they always could. A fixed per-visit charge for medical care is an ordinary qualified medical expense with <strong>no cap</strong>. The 2026 rules and their $150/$300 limits govern recurring membership fees, not pay-as-you-go visits.</div>
+      </details>
+      <details>
+        <summary>Are FSAs eligible?</summary>
+        <div class="a">For per-visit medical charges, yes. For membership fees, it's <strong>unsettled</strong> — the 2026 law changed HSA rules only, and FSA plan administrators disagree on membership fees. That's why we say HSA, not HSA/FSA. Patients should check with their FSA administrator.</div>
+      </details>
+      <details>
+        <summary>What's HSA-eligible with a DPC membership?</summary>
+        <div class="a">Two things. The <strong>membership fee</strong>, up to the cap. And <strong>separately billed medical services</strong> — visits, labs, procedures performed outside the membership — in full, with no cap. The $150/$300 limit applies to the periodic fee, not to a patient's total pre-tax spending at your practice.</div>
+      </details>
+      <details>
+        <summary>What are qualifying services for the HSA?</summary>
+        <div class="a">Qualified services:
+          <ul>
+            <li>All primary care practitioner services</li>
+            <li>Preventive care</li>
+            <li>Routine labs</li>
+            <li>In-office procedures</li>
+          </ul>
+        </div>
+      </details>
+      <details>
+        <summary>What's excluded from HSA payments?</summary>
+        <div class="a">Excluded:
+          <ul class="excluded">
+            <li>General anesthesia procedures</li>
+            <li>Non-routine labs processed off-site</li>
+            <li>Prescription drugs, apart from vaccines</li>
+          </ul>
+        </div>
+      </details>
+      <details>
+        <summary>Does a patient need an HDHP to use HSA money here?</summary>
+        <div class="a">Only to <strong>contribute</strong>. Spending existing HSA money on qualified expenses works regardless of current insurance — a patient who left an HDHP years ago can still spend their balance at your practice. And since 2026, bronze and catastrophic exchange plans count as HSA-qualified, so more of your patients can fund an HSA than before.</div>
+      </details>
+      <details>
+        <summary>Why does split billing matter, and how does it work?</summary>
+        <div class="a">If a patient pays a membership fee above the cap the wrong way, they <strong>lose the ability to make new HSA contributions</strong> — and usually find out at tax time. Split billing keeps the compliant portion on the HSA card and the remainder on a second card or bank account, automatically, as one membership. And the line has to be real: separately billed charges stay clean only when they're genuine per-service charges for care actually delivered outside the membership — not a membership fee wearing a different name. Rounds Pay enforces that line for you.</div>
+      </details>
+      <details>
+        <summary>What does an HSA-compliant membership look like?</summary>
+        <div class="a">Take a <strong>$325/month concierge primary care membership</strong>. Rounds Pay splits it into two charges that run together: $150 on the patient's HSA card, $175 on their regular card or bank account — one membership, fully compliant, cap never breached. When the practice performs additional services — a lab draw, a procedure, an extra visit — those are billed separately and go on the HSA card <strong>in full</strong>. The patient maximizes pre-tax spending; the practice collects its full fee.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
 <section id="chat">
   <div class="wrap">
     <div class="cta-band">
       <h2>Tell us how you bill today.</h2>
-      <p>We're building Rounds Pay with a handful of DPC and concierge practices. 15 minutes with a physician founder — you'll leave with the HSA rules explained, whatever you decide.</p>
+      <p>We're building Rounds Pay with a handful of DPC and concierge practices. 15 minutes with the founder — you'll leave with the HSA rules explained, whatever you decide.</p>
       <a class="btn" data-chat href="mailto:hello@roundsfi.com?subject=Rounds%20Pay%20—%20chat">Chat with us</a>
     </div>
   </div>
@@ -292,7 +409,7 @@
         <a href="/terms">Terms</a>
       </div>
     </div>
-    <p class="disclaimer">Rounds Pay provides billing software, not tax or legal advice. DPCSA qualification under IRS Notice 2026-05 depends on your practice's structure — confirm with your tax advisor. FSA treatment of membership fees varies by plan administrator. Savings estimates assume a 35% marginal rate. HSA statistics: Devenir Research.</p>
+    <p class="disclaimer">Rounds Pay provides billing software, not tax or legal advice. DPCSA qualification under IRS Notice 2026-05 depends on your practice's structure — confirm with your tax advisor. FSA treatment of membership fees varies by plan administrator. Savings estimates assume a 35% marginal rate. Plan cost comparisons vary by market and plan design. HSA statistics: Devenir Research.</p>
   </div>
 </footer>
 
