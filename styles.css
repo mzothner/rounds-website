@@ -2271,3 +2271,285 @@ h3 {
     padding: 28px;
   }
 }
+
+/* ===== PAY PAGE ===== */
+.brand-badge {
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+/* Patient eligibility check */
+.pay-check {
+  padding: 32px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--white);
+  box-shadow: var(--shadow-lg);
+}
+
+.pay-check-title {
+  font-family: "Aeonik", "Inter", -apple-system, sans-serif;
+  font-weight: 700;
+  font-size: 1.05rem;
+  letter-spacing: -0.01em;
+}
+
+.pay-check-sub {
+  margin: 6px 0 22px;
+  font-size: 0.88rem;
+  color: var(--text-muted);
+}
+
+.pay-step {
+  display: none;
+}
+
+.pay-step.is-on {
+  display: block;
+}
+
+.pay-progress {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 20px;
+}
+
+.pay-progress span {
+  flex: 1;
+  height: 4px;
+  border-radius: var(--radius-pill);
+  background: var(--line-strong);
+}
+
+.pay-progress span.is-done {
+  background: var(--accent);
+}
+
+.pay-question {
+  margin: 0 0 16px;
+  font-weight: 600;
+  font-size: 1.05rem;
+  line-height: 1.4;
+}
+
+.pay-option {
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 14px 20px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-pill);
+  background: var(--white);
+  color: var(--text);
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.pay-option:hover {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.pay-verdict {
+  padding: 22px;
+  border-radius: var(--radius-md);
+  background: var(--surface);
+}
+
+.pay-verdict h3 {
+  margin-bottom: 8px;
+  font-size: 1.05rem;
+}
+
+.pay-verdict p {
+  margin: 0;
+  font-size: 0.92rem;
+  line-height: 1.65;
+  color: var(--text-secondary);
+}
+
+.pay-verdict-yes h3 {
+  color: var(--green);
+}
+
+.pay-restart {
+  display: inline-block;
+  margin-top: 14px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.pay-restart:hover {
+  color: var(--accent);
+}
+
+/* Cap tag on eligibility cards */
+.cap-tag {
+  display: inline-block;
+  margin-bottom: 16px;
+  padding: 5px 12px;
+  border-radius: var(--radius-pill);
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* Coverage stack cards */
+.stack-role {
+  display: block;
+  margin-bottom: 16px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.pay-equation {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin: 40px 0 24px;
+}
+
+.pay-eq-box {
+  padding: 14px 24px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+  background: var(--white);
+  box-shadow: var(--shadow-sm);
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.pay-eq-op {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.pay-eq-note {
+  max-width: 640px;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+
+/* Fit / not a fit */
+.fit-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.fit-card {
+  padding: 32px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--white);
+}
+
+.fit-card h3 {
+  margin-bottom: 8px;
+}
+
+.fit-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.fit-list li {
+  position: relative;
+  padding: 12px 0 12px 26px;
+  border-top: 1px solid var(--line);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+.fit-list li::before {
+  content: "\2713";
+  position: absolute;
+  left: 0;
+  top: 12px;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.fit-list.is-no li::before {
+  content: "\2014";
+  color: var(--text-muted);
+}
+
+.faq-list ul {
+  margin: 14px 0 0;
+  padding-left: 20px;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+/* Legal fine print */
+.footer-fine {
+  width: min(1200px, calc(100% - 48px));
+  margin: 0 auto;
+  padding: 0 0 48px;
+  font-size: 0.8rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
+@media (max-width: 860px) {
+  .fit-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-fine {
+    width: min(100% - 32px, 1200px);
+  }
+
+  .pay-check {
+    padding: 24px;
+    text-align: left;
+  }
+}
+
+@media (max-width: 640px) {
+  .footer-fine {
+    width: min(100% - 24px, 1200px);
+  }
+
+  .pay-equation {
+    gap: 10px;
+  }
+
+  .pay-eq-box {
+    padding: 12px 18px;
+    font-size: 0.9rem;
+  }
+}
+
+.practice-stats {
+  margin-top: 48px;
+}

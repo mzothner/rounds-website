@@ -1,465 +1,566 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Rounds Pay | Patients pay less. You collect every dollar.</title>
-<meta name="description" content="2026 IRS rules let patients put pre-tax HSA money toward DPC and concierge memberships. Rounds Pay splits the charge automatically and keeps it compliant.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
-<link rel="icon" type="image/png" href="./Rounds_icon_circle.png">
-<meta property="og:title" content="Rounds Pay | Patients pay less. You collect every dollar.">
-<meta property="og:description" content="2026 IRS rules let patients put pre-tax HSA money toward DPC and concierge memberships. Rounds Pay splits the charge automatically and keeps it compliant.">
-<meta property="og:type" content="website">
-<meta property="og:image" content="https://roundsfi.com/Rounds_blue_icon.png">
-<meta name="twitter:card" content="summary">
-<meta name="posthog-key" content="phc_yRimWi8Q8XwRRLWvNxTEkvP4UYXdmTAt4PNAjL3VciVA">
-<meta name="posthog-host" content="https://us.i.posthog.com">
-<script src="./posthog-init.js"></script>
-<style>
-  :root{
-    --ink:#0B1B33;
-    --ink-soft:#4A5A72;
-    --blue:#1E56E8;          /* Rounds blue — swap to exact brand hex */
-    --blue-deep:#123CA6;
-    --hsa:#0E9F6E;           /* used only inside the calculator split */
-    --paper:#FAFBFD;
-    --card:#FFFFFF;
-    --soft:#F3F6FA;
-    --line:#E4E9F2;
-    --radius:14px;
-    --display:'Sora',sans-serif;
-    --body:'Inter',system-ui,sans-serif;
-    --mono:'IBM Plex Mono',monospace;
-  }
-  *{margin:0;padding:0;box-sizing:border-box}
-  html{scroll-behavior:smooth}
-  @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto} *{transition:none!important}}
-  body{font-family:var(--body);color:var(--ink);background:var(--paper);line-height:1.6;font-size:16px}
-  a{color:var(--blue);text-decoration:none}
-  a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
-  .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rounds Pay | HSA payments for DPC and concierge practices</title>
+    <meta
+      name="description"
+      content="Your patients have HSA money they never spend on primary care. Rounds Pay checks each patient's eligibility, explains what qualifies, and bills it the right way."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/png" href="./Rounds_icon_circle.png" />
+    <meta property="og:title" content="Rounds Pay | HSA payments for DPC and concierge practices" />
+    <meta property="og:description" content="Your patients have HSA money they never spend on primary care. Rounds Pay checks eligibility, explains what qualifies, and bills it the right way." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://roundsfi.com/Rounds_blue_icon.png" />
+    <meta name="twitter:card" content="summary" />
+    <link rel="stylesheet" href="./styles.css" />
+    <meta name="posthog-key" content="phc_yRimWi8Q8XwRRLWvNxTEkvP4UYXdmTAt4PNAjL3VciVA" />
+    <meta name="posthog-host" content="https://us.i.posthog.com" />
+    <script src="./posthog-init.js"></script>
+    <script>
+      document.documentElement.classList.add("js");
+    </script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="/" aria-label="Rounds Pay home"
+          ><img class="brand-icon" src="./Rounds_icon_circle.png" alt="" />Rounds
+          <span class="brand-badge">Pay</span></a
+        >
 
-  nav{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50}
-  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px}
-  .logo{display:flex;align-items:center;gap:10px;font-family:var(--display);font-weight:700;font-size:19px;color:var(--ink)}
-  .logo-mark{width:30px;height:30px;border-radius:50%;background:var(--blue);display:inline-flex;align-items:center;justify-content:center;color:#fff;font-size:15px;font-weight:700}
-  .pay-badge{font-family:var(--display);font-weight:600;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--blue);border:1px solid var(--line);border-radius:999px;padding:3px 10px}
-  .nav-links{display:flex;gap:26px;align-items:center;font-size:14.5px;font-weight:500}
-  .nav-links a{color:var(--ink-soft)}
-  .nav-links a:hover{color:var(--blue)}
-  .nav-links a.btn{color:#fff}
-  .nav-links a.btn:hover{color:#fff}
-  .btn{display:inline-block;background:var(--blue);color:#fff;font-weight:600;font-size:15px;padding:13px 26px;border-radius:10px;border:none;cursor:pointer}
-  .btn:hover{background:var(--blue-deep)}
-  .btn.small{padding:9px 16px;font-size:14px}
-  .btn-note{font-size:13.5px;color:var(--ink-soft);margin-top:12px}
+        <button
+          class="nav-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="site-nav"
+          aria-label="Toggle navigation"
+        >
+          <span></span>
+          <span></span>
+        </button>
 
-  .hero{padding:76px 0 60px}
-  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
-  h1{font-family:var(--display);font-weight:700;font-size:clamp(34px,4.6vw,52px);line-height:1.12;letter-spacing:-.015em;margin-bottom:18px}
-  .sub{font-size:18px;color:var(--ink-soft);max-width:30em;margin-bottom:28px}
-  .sub strong{color:var(--ink)}
+        <nav class="site-nav" id="site-nav">
+          <a href="#pre-tax">What's pre-tax</a>
+          <a href="#how-it-works">How it works</a>
+          <a href="#faq">FAQ</a>
+          <a class="nav-cta" href="#chat">Chat with us</a>
+        </nav>
+      </div>
+    </header>
 
-  /* Calculator */
-  .calc{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 12px 40px rgba(11,27,51,.07);padding:26px}
-  .calc-title{font-family:var(--display);font-weight:600;font-size:15px;margin-bottom:18px}
-  .calc label{font-size:13px;font-weight:600;color:var(--ink-soft);display:block;margin-bottom:6px}
-  .calc-row{display:flex;gap:12px;margin-bottom:18px}
-  .calc-field{flex:1}
-  .money-input{display:flex;align-items:center;border:1px solid var(--line);border-radius:10px;padding:0 12px;background:#fff}
-  .money-input span{font-family:var(--mono);color:var(--ink-soft)}
-  .money-input input{border:none;width:100%;padding:11px 6px;font-family:var(--mono);font-size:17px;font-weight:600;color:var(--ink);background:transparent}
-  .money-input input:focus{outline:none}
-  .toggle{display:flex;border:1px solid var(--line);border-radius:10px;overflow:hidden}
-  .toggle button{flex:1;padding:11px 6px;font-size:13.5px;font-weight:600;background:#fff;border:none;cursor:pointer;color:var(--ink-soft)}
-  .toggle button.active{background:var(--blue);color:#fff}
-  .split-bar{display:flex;height:12px;border-radius:999px;overflow:hidden;margin:4px 0 16px;background:var(--line)}
-  .split-hsa{background:var(--hsa);transition:width .35s ease}
-  .split-rest{background:var(--blue);transition:width .35s ease}
-  .split-lines{display:grid;gap:9px}
-  .split-line{display:flex;justify-content:space-between;align-items:baseline;font-size:14.5px}
-  .split-line .amt{font-family:var(--mono);font-weight:600;font-size:16px}
-  .dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:8px}
-  .dot.g{background:var(--hsa)} .dot.b{background:var(--blue)}
-  .calc-divider{border-top:1px dashed var(--line);margin:14px 0}
-  .twoside{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-  .side-box{background:var(--soft);border-radius:10px;padding:12px 14px;font-size:13px}
-  .side-box .who{font-weight:600;font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-soft);display:block;margin-bottom:4px}
-  .side-box .amt{font-family:var(--mono);font-weight:600;font-size:18px;display:block}
-  .side-box .cap{color:var(--ink-soft);font-size:12px}
-  .calc-foot{font-size:12px;color:var(--ink-soft);margin-top:12px}
+    <div class="page-shell">
+      <main>
+        <!-- HERO -->
+        <section class="hero">
+          <div class="hero-bg" aria-hidden="true">
+            <div class="gradient-orb gradient-orb-1" style="background: radial-gradient(circle, rgba(14, 186, 116, 0.22) 0%, transparent 70%)"></div>
+            <div class="gradient-orb gradient-orb-2" style="background: radial-gradient(circle, rgba(67, 116, 249, 0.25) 0%, transparent 70%)"></div>
+            <div class="gradient-orb gradient-orb-3"></div>
+            <div class="grid-texture"></div>
+          </div>
 
-  section{padding:60px 0}
-  section.alt{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-  .eyebrow{font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--blue);margin-bottom:12px}
-  h2{font-family:var(--display);font-weight:700;font-size:clamp(25px,3vw,34px);letter-spacing:-.01em;line-height:1.2;margin-bottom:28px}
-  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-  .tile{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px}
-  section.alt .tile{background:var(--paper)}
-  .tile h3{font-family:var(--display);font-weight:600;font-size:16.5px;margin-bottom:6px}
-  .tile p{font-size:14.5px;color:var(--ink-soft)}
-  .step-num{font-family:var(--mono);font-weight:600;font-size:13px;color:var(--blue);display:block;margin-bottom:8px}
-  .tile .role{font-family:var(--mono);font-weight:600;font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--blue);display:block;margin-bottom:8px}
-  .tile ul{list-style:none;margin-top:4px}
-  .tile li{font-size:14.5px;color:var(--ink-soft);padding:3px 0 3px 22px;position:relative}
-  .tile li::before{content:"✓";position:absolute;left:0;color:var(--blue);font-weight:700}
+          <div class="hero-split" data-reveal>
+            <div class="hero-content">
+              <p class="eyebrow">Rounds Pay</p>
+              <h1>Your patients are sitting on HSA money.</h1>
+              <p class="hero-text">
+                Most have no idea it can pay for care at your practice. Rounds
+                Pay checks each patient's eligibility, tells them what qualifies,
+                and bills it the right way. Patients spend less. You collect
+                more.
+              </p>
 
-  .equation{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;margin:26px 0 14px;font-family:var(--mono);font-weight:600;font-size:15px}
-  .eq-box{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 16px}
-  section.alt .eq-box{background:var(--paper)}
-  .eq-op{color:var(--ink-soft);font-size:18px}
-  .eq-note{text-align:center;font-size:13.5px;color:var(--ink-soft);max-width:44em;margin:0 auto}
+              <div class="hero-actions">
+                <a class="button button-primary button-arrow" data-chat href="#chat"
+                  >Chat with us</a
+                >
+                <a class="button button-secondary" href="#pre-tax"
+                  >See what qualifies</a
+                >
+              </div>
+              <p class="hero-note">
+                Building with a small group of DPC and concierge practices.
+              </p>
+            </div>
 
-  .side-panel{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:26px}
-  section.alt .side-panel{background:var(--paper)}
-  .side-panel .tag{font-size:12px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--blue);display:block;margin-bottom:12px}
-  .side-panel ul{list-style:none}
-  .side-panel li{font-size:14.5px;padding:6px 0 6px 24px;position:relative;color:var(--ink-soft)}
-  .side-panel li strong{color:var(--ink)}
-  .side-panel li::before{content:"✓";position:absolute;left:0;color:var(--blue);font-weight:700}
+            <!-- The patient eligibility check, in miniature -->
+            <div class="pay-check" aria-label="Patient eligibility check demo">
+              <div class="pay-check-title">The 30-second patient check</div>
+              <p class="pay-check-sub">
+                What patients see after scanning the code at your front desk. Try it.
+              </p>
 
-  .stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:18px}
-  .stat{border-top:2px solid var(--blue);padding:14px 2px 0}
-  .stat .n{font-family:var(--mono);font-weight:600;font-size:22px;display:block}
-  .stat .l{font-size:13px;color:var(--ink-soft)}
+              <div class="pay-step is-on" id="pay-q1">
+                <div class="pay-progress"><span class="is-done"></span><span></span><span></span></div>
+                <p class="pay-question">Do you have a Health Savings Account?</p>
+                <button class="pay-option" type="button" data-goto="pay-q2">Yes</button>
+                <button class="pay-option" type="button" data-goto="pay-none">No, or not sure</button>
+              </div>
 
-  .fit li::before{content:"✓";color:var(--blue)}
-  .fit.no li::before{content:"—";color:var(--ink-soft)}
-  .fit ul{list-style:none}
-  .fit li{font-size:14.5px;padding:6px 0 6px 24px;position:relative;color:var(--ink-soft)}
-  .fit h3{font-family:var(--display);font-size:16.5px;margin-bottom:10px}
-  .fit{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:24px}
-  section.alt .fit{background:var(--paper)}
+              <div class="pay-step" id="pay-q2">
+                <div class="pay-progress"><span class="is-done"></span><span class="is-done"></span><span></span></div>
+                <p class="pay-question">Are you still putting money into it?</p>
+                <button class="pay-option" type="button" data-contrib="1" data-goto="pay-q3">Yes, I contribute</button>
+                <button class="pay-option" type="button" data-contrib="0" data-goto="pay-q3">No, just an old balance</button>
+              </div>
 
-  /* FAQ */
-  .faq{max-width:760px}
-  .faq details{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);margin-bottom:10px}
-  section.alt .faq details{background:var(--paper)}
-  .faq summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:18px 22px;font-family:var(--display);font-weight:600;font-size:15.5px}
-  .faq summary::-webkit-details-marker{display:none}
-  .faq summary::after{content:"+";font-family:var(--mono);font-size:18px;color:var(--blue);flex-shrink:0}
-  .faq details[open] summary::after{content:"–"}
-  .faq .a{padding:0 22px 18px;font-size:14.5px;color:var(--ink-soft)}
-  .faq .a strong{color:var(--ink)}
-  .faq .a ul{list-style:none;margin-top:8px}
-  .faq .a li{padding:3px 0 3px 22px;position:relative}
-  .faq .a li::before{content:"✓";position:absolute;left:0;color:var(--blue);font-weight:700}
-  .faq .a ul.excluded li::before{content:"—";color:var(--ink-soft)}
+              <div class="pay-step" id="pay-q3">
+                <div class="pay-progress"><span class="is-done"></span><span class="is-done"></span><span class="is-done"></span></div>
+                <p class="pay-question">Individual or family coverage?</p>
+                <button class="pay-option" type="button" data-cap="150">Individual</button>
+                <button class="pay-option" type="button" data-cap="300">Family</button>
+              </div>
 
-  .cta-band{background:var(--ink);color:#fff;border-radius:var(--radius);padding:52px 40px;text-align:center}
-  .cta-band h2{color:#fff;margin-bottom:10px}
-  .cta-band p{color:#AEBBD1;max-width:34em;margin:0 auto 26px;font-size:16px}
+              <div class="pay-step" id="pay-full">
+                <div class="pay-verdict pay-verdict-yes">
+                  <h3>Pre-tax, and you keep contributing</h3>
+                  <p>
+                    A qualifying membership up to <strong data-cap-label>$150</strong>/month
+                    goes on your HSA card. So does any care billed per service,
+                    with no cap. Your contributions keep running.
+                  </p>
+                </div>
+                <button class="pay-restart" type="button" data-restart>Start over</button>
+              </div>
 
-  footer{padding:40px 0;color:var(--ink-soft);font-size:14px}
-  .foot-grid{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap}
-  .foot-links{display:flex;gap:22px}
-  .disclaimer{margin-top:20px;font-size:12.5px;max-width:60em}
+              <div class="pay-step" id="pay-spend">
+                <div class="pay-verdict pay-verdict-yes">
+                  <h3>Your balance works here</h3>
+                  <p>
+                    Spend what's already in the account on your membership and on
+                    care billed per service. You're not contributing, so the fee
+                    rules don't bind you. We keep the receipts either way.
+                  </p>
+                </div>
+                <button class="pay-restart" type="button" data-restart>Start over</button>
+              </div>
 
-  @media (max-width:880px){
-    .hero-grid{grid-template-columns:1fr;gap:36px}
-    .grid3,.grid2,.stat-row{grid-template-columns:1fr}
-    .nav-links{display:none}
-  }
-</style>
-</head>
-<body>
+              <div class="pay-step" id="pay-none">
+                <div class="pay-verdict">
+                  <h3>You'd pay the usual way</h3>
+                  <p>
+                    No HSA today. If you're on a high-deductible plan, opening one
+                    would make part of your care pre-tax, and your practice can
+                    point you to the paperwork.
+                  </p>
+                </div>
+                <button class="pay-restart" type="button" data-restart>Start over</button>
+              </div>
+            </div>
+          </div>
+        </section>
 
-<nav>
-  <div class="wrap nav-inner">
-    <a class="logo" href="/" aria-label="Rounds home">
-      <span class="logo-mark">R</span> Rounds <span class="pay-badge">Pay</span>
-    </a>
-    <div class="nav-links">
-      <a href="#patients">For patients</a>
-      <a href="#how">For practices</a>
-      <a href="#faq">FAQ</a>
-      <a class="btn small" href="#chat">Chat with us</a>
+        <!-- WHAT'S PRE-TAX -->
+        <section class="section" id="pre-tax">
+          <div class="section-heading" data-reveal>
+            <p class="eyebrow">What's pre-tax</p>
+            <h2>Patients can spend HSA money three ways here.</h2>
+            <p>
+              Almost none of them know it, which is why the money sits in the
+              account instead of paying for their care.
+            </p>
+          </div>
+
+          <div class="steps-grid">
+            <article class="step-card" data-reveal>
+              <span class="cap-tag">Up to $150 / $300 a month</span>
+              <h3>A qualifying membership</h3>
+              <p>
+                Primary care at or under the cap goes on the HSA card in full,
+                and patients keep contributing to the account.
+              </p>
+            </article>
+            <article class="step-card" data-reveal>
+              <span class="cap-tag">No cap</span>
+              <h3>Care billed per service</h3>
+              <p>
+                Visits, labs, and in-office procedures billed one at a time have
+                always been HSA-payable. Nothing in 2026 changed that.
+              </p>
+            </article>
+            <article class="step-card" data-reveal>
+              <span class="cap-tag">Existing balances</span>
+              <h3>Fees above the cap</h3>
+              <p>
+                An old balance can still cover a higher fee. Active contributors
+                give up new contributions when they enroll, so we tell them
+                before they pay, not in April.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <!-- HOW IT WORKS -->
+        <section class="section" id="how-it-works">
+          <div class="section-heading" data-reveal>
+            <p class="eyebrow">How it works</p>
+            <h2>A code at the front desk is the whole install.</h2>
+          </div>
+
+          <div class="steps-grid">
+            <article class="step-card" data-reveal>
+              <span class="step-number">01</span>
+              <h3>Three questions</h3>
+              <p>
+                HSA, contributions, coverage type. Every answer comes with the
+                explanation nobody has given them yet, plus optional
+                verification against their insurer.
+              </p>
+            </article>
+            <article class="step-card" data-reveal>
+              <span class="step-number">02</span>
+              <h3>An answer, then a payment</h3>
+              <p>
+                Fully pre-tax, spend-down, or a plain disclosure. Whichever
+                applies, the right card gets charged every month without anyone
+                thinking about it.
+              </p>
+            </article>
+            <article class="step-card" data-reveal>
+              <span class="step-number">03</span>
+              <h3>Paperwork that writes itself</h3>
+              <p>
+                An itemized receipt on every charge and a qualification letter
+                each January. Your front desk never touches it.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <!-- THE STACK -->
+        <section class="section" id="stack">
+          <div class="section-heading" data-reveal>
+            <p class="eyebrow">The pitch your patients need</p>
+            <h2>Membership medicine isn't paying twice.</h2>
+          </div>
+
+          <div class="features-split">
+            <article class="step-card" data-reveal>
+              <span class="stack-role">HDHP, for the catastrophe</span>
+              <ul class="fit-list">
+                <li>Hospitalizations, surgery, specialists</li>
+                <li>The year everything goes wrong</li>
+                <li>Low premium, high deductible, and it unlocks the HSA</li>
+              </ul>
+            </article>
+            <article class="step-card" data-reveal>
+              <span class="stack-role">Membership, for everything else</span>
+              <ul class="fit-list">
+                <li>Same-day appointments and longer visits</li>
+                <li>A doctor who knows them, reachable directly</li>
+                <li>A fixed fee, payable pre-tax when it qualifies</li>
+              </ul>
+            </article>
+          </div>
+
+          <div class="pay-equation" data-reveal aria-label="Cost comparison">
+            <span class="pay-eq-box">Low-deductible plan</span>
+            <span class="pay-eq-op">&asymp;</span>
+            <span class="pay-eq-box">HDHP</span>
+            <span class="pay-eq-op">+</span>
+            <span class="pay-eq-box">Membership</span>
+          </div>
+          <p class="pay-eq-note" data-reveal>
+            Dropping a rich low-deductible plan for an HDHP frees up premium,
+            often enough to cover the membership outright. Same dollars, faster
+            access, catastrophes still covered.
+          </p>
+        </section>
+
+        <!-- FOR YOUR PRACTICE -->
+        <section class="section" id="practice">
+          <div class="section-heading" data-reveal>
+            <p class="eyebrow">For your practice</p>
+            <h2>More patients say yes. Your staff stays out of it.</h2>
+          </div>
+
+          <div class="features-split">
+            <article class="step-card" data-reveal>
+              <h3>A price cut you don't fund</h3>
+              <p>
+                "Part of this is pre-tax" answers the price objection at full
+                fee. Per-service care billed through Rounds Pay picks up the
+                revenue patients were sitting on.
+              </p>
+            </article>
+            <article class="step-card" data-reveal>
+              <h3>Nobody plays tax advisor</h3>
+              <p>
+                Eligibility, disclosures, receipts, January letters: handled. If
+                your fee runs above the cap, we'll model the structure that
+                keeps contributing patients whole.
+              </p>
+            </article>
+          </div>
+
+          <div class="stats-strip practice-stats" aria-label="Key metrics">
+            <article data-reveal>
+              <strong>40M+</strong>
+              <span>HSA accounts in the U.S.</span>
+            </article>
+            <article data-reveal>
+              <strong>~$147B</strong>
+              <span>Sitting in them, mostly unspent</span>
+            </article>
+            <article data-reveal>
+              <strong>$150 / $300</strong>
+              <span>Monthly cap for a qualifying membership</span>
+            </article>
+          </div>
+        </section>
+
+        <!-- WHO IT'S FOR -->
+        <section class="section" id="fit">
+          <div class="section-heading" data-reveal>
+            <p class="eyebrow">Who it's for</p>
+            <h2>Built for practices that left insurance behind.</h2>
+          </div>
+
+          <div class="fit-grid">
+            <article class="fit-card" data-reveal>
+              <h3>A fit if</h3>
+              <ul class="fit-list">
+                <li>You run cash-only DPC or concierge primary care, at any fee</li>
+                <li>Patients ask about their HSA, or you suspect they would</li>
+                <li>You want the pre-tax pitch working at enrollment without training your staff on tax law</li>
+              </ul>
+            </article>
+            <article class="fit-card" data-reveal>
+              <h3>Not a fit if</h3>
+              <ul class="fit-list is-no">
+                <li>You bill insurance inside the membership, which likely doesn't qualify. We'll tell you straight.</li>
+                <li>You want a full EMR or practice-management suite. We sit next to the one you have.</li>
+              </ul>
+            </article>
+          </div>
+        </section>
+
+        <!-- FAQ -->
+        <section class="section" id="faq">
+          <div class="section-heading" data-reveal>
+            <p class="eyebrow">FAQ</p>
+            <h2>The rules, in plain English.</h2>
+          </div>
+
+          <div class="faq-list">
+            <details data-reveal>
+              <summary>Does an HSA pay for a DPC membership?</summary>
+              <p>
+                Yes, as of January 1, 2026. Qualifying membership fees are
+                HSA-payable up to <strong>$150/month per individual or
+                $300/month per family</strong>. To qualify, the membership has to
+                cover primary care only, be delivered by primary care
+                practitioners (family medicine, internal medicine, geriatrics,
+                pediatrics, or NP/PA/CNS), and the fixed fee has to be the only
+                charge inside the arrangement.
+              </p>
+            </details>
+            <details data-reveal>
+              <summary>Can a membership cost more than $150/month?</summary>
+              <p>
+                Nothing stops you from charging more. But an above-cap
+                arrangement doesn't qualify under the new rules, and
+                <strong>patients who actively contribute to an HSA lose the
+                ability to make new contributions while enrolled</strong>, however
+                they pay. They can still spend an existing balance on the fee.
+                Practices that want contributing patients to keep everything run
+                a qualifying membership at or under the cap and bill additional
+                care per service, a structure we help set up.
+              </p>
+            </details>
+            <details data-reveal>
+              <summary>Can patients use an HSA for per-visit payments?</summary>
+              <p>
+                Yes, and they always could. A per-visit charge for medical care
+                is an ordinary qualified medical expense with <strong>no
+                cap</strong>. The 2026 rules and their $150/$300 limits govern
+                recurring membership fees, not pay-as-you-go care.
+              </p>
+            </details>
+            <details data-reveal>
+              <summary>Are FSAs eligible?</summary>
+              <p>
+                For per-visit medical charges, yes. For membership fees it's
+                <strong>unsettled</strong>. The 2026 law changed HSA rules only,
+                and FSA plan administrators disagree on membership fees. That's
+                why we say HSA and not HSA/FSA. Patients should ask their FSA
+                administrator.
+              </p>
+            </details>
+            <details data-reveal>
+              <summary>What's HSA-eligible with a DPC membership?</summary>
+              <p>
+                Two things. The <strong>membership fee</strong>, when the
+                arrangement qualifies. And <strong>separately billed medical
+                services</strong>, meaning visits, labs, and procedures performed
+                outside the membership, in full and with no cap. The $150/$300
+                limit applies to the periodic fee, not to what a patient spends
+                pre-tax at your practice overall.
+              </p>
+            </details>
+            <details data-reveal>
+              <summary>What are qualifying services for the HSA?</summary>
+              <p>Qualified services:</p>
+              <ul>
+                <li>All primary care practitioner services</li>
+                <li>Preventive care</li>
+                <li>Routine labs</li>
+                <li>In-office procedures</li>
+              </ul>
+            </details>
+            <details data-reveal>
+              <summary>What's excluded from HSA payments?</summary>
+              <p>Excluded:</p>
+              <ul>
+                <li>General anesthesia procedures</li>
+                <li>Non-routine labs processed off-site</li>
+                <li>Prescription drugs, apart from vaccines</li>
+              </ul>
+            </details>
+            <details data-reveal>
+              <summary>Does a patient need an HDHP to use HSA money here?</summary>
+              <p>
+                Only to <strong>contribute</strong>. Spending existing HSA money
+                on qualified expenses works regardless of current insurance, so a
+                patient who left an HDHP years ago can still spend the balance at
+                your practice. And since 2026, bronze and catastrophic exchange
+                plans count as HSA-qualified, so more of your patients can fund an
+                account than before.
+              </p>
+            </details>
+            <details data-reveal>
+              <summary>What does an HSA-friendly practice look like?</summary>
+              <p>
+                Take a practice charging <strong>$325/month all-in</strong> today.
+                The HSA-friendly version: a <strong>qualifying $150/month
+                membership</strong> covering primary care as the only fixed fee,
+                with extended visits, labs, and procedures billed per service as
+                they happen. Contributing patients pay the $150 pre-tax and keep
+                contributing. Every patient covers per-service care from the HSA
+                with no cap. The practice collects on two clean rails we bill
+                automatically. Patients who'd rather stay on a flat above-cap fee
+                can still spend an existing balance on it, after a disclosure they
+                actually read.
+              </p>
+            </details>
+          </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="section waitlist-section" id="chat">
+          <div class="waitlist-inner" data-reveal>
+            <h2>Tell us how you bill today.</h2>
+            <p>
+              We're building Rounds Pay with a handful of DPC and concierge
+              practices. Fifteen minutes with the founder, and you'll leave
+              knowing the HSA rules cold whether or not you use us.
+            </p>
+            <a
+              class="button button-primary button-arrow"
+              data-chat
+              href="mailto:hello@roundsfi.com?subject=Rounds%20Pay"
+              >Chat with us</a
+            >
+          </div>
+        </section>
+      </main>
     </div>
-  </div>
-</nav>
 
-<header class="hero">
-  <div class="wrap hero-grid">
-    <div>
-      <h1>Patients pay less.<br>You collect every dollar.</h1>
-      <p class="sub">As of 2026, patients can put <strong>pre-tax HSA money</strong> toward DPC and concierge memberships — up to $150/month each. Rounds Pay splits the charge automatically and keeps it compliant.</p>
-      <a class="btn" data-chat href="#chat">Chat with us</a>
-      <p class="btn-note">Building with a small group of practices. 15 minutes, no pitch.</p>
-    </div>
-
-    <div class="calc" aria-label="Membership split calculator">
-      <div class="calc-title">See the split</div>
-      <div class="calc-row">
-        <div class="calc-field">
-          <label for="fee">Monthly membership</label>
-          <div class="money-input"><span>$</span><input id="fee" type="number" inputmode="decimal" min="0" step="5" value="325"></div>
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-left">
+          <div class="footer-brand">Rounds Pay</div>
+          <p class="footer-tagline">HSA payments for membership medicine.</p>
+          <p class="footer-attribution">
+            Made by the creators of
+            <a href="https://the-md.beehiiv.com" target="_blank" rel="noopener"
+              >The M.D.</a
+            >
+          </p>
         </div>
-        <div class="calc-field">
-          <label id="covlabel">Coverage</label>
-          <div class="toggle" role="group" aria-labelledby="covlabel">
-            <button type="button" data-cap="150" class="active">Individual</button>
-            <button type="button" data-cap="300">Family</button>
+
+        <div class="footer-links">
+          <div class="footer-col">
+            <span class="footer-col-title">Products</span>
+            <a href="./debt-payoff.html">Debt Payoff</a>
+            <a href="./side-gigs.html">Side Gigs</a>
+            <a href="https://apple.co/4iaAPHO" target="_blank" rel="noopener"
+              >RVU Tracker</a
+            >
+          </div>
+          <div class="footer-col">
+            <span class="footer-col-title">Resources</span>
+            <a href="./resources/index.html">Articles</a>
+            <a href="./partner.html">Partner</a>
+            <a href="./privacy.html">Privacy Policy</a>
+            <a href="./terms.html">Terms of Service</a>
           </div>
         </div>
       </div>
-      <div class="split-bar" aria-hidden="true">
-        <div class="split-hsa" data-bar-hsa style="width:46%"></div>
-        <div class="split-rest" data-bar-rest style="width:54%"></div>
-      </div>
-      <div class="split-lines">
-        <div class="split-line"><span><span class="dot g"></span>HSA card — pre-tax</span><span class="amt" data-hsa>$150.00</span></div>
-        <div class="split-line"><span><span class="dot b"></span>Card or bank</span><span class="amt" data-rest>$175.00</span></div>
-      </div>
-      <div class="calc-divider"></div>
-      <div class="twoside">
-        <div class="side-box">
-          <span class="who">Patient</span>
-          <span class="amt" data-effective>~$272/mo</span>
-          <span class="cap">effective cost after tax savings</span>
-        </div>
-        <div class="side-box">
-          <span class="who">Practice</span>
-          <span class="amt" data-collect>$325.00/mo</span>
-          <span class="cap">collected in full</span>
-        </div>
-      </div>
-      <p class="calc-foot">One membership, billed automatically. Savings est. at a 35% marginal rate.</p>
-    </div>
-  </div>
-</header>
+      <p class="footer-fine">
+        Rounds Pay provides billing software and patient education, not tax or
+        legal advice. DPCSA qualification under IRS Notice 2026-05 depends on
+        your practice's structure, so confirm with your tax advisor. FSA
+        treatment of membership fees varies by plan administrator. Plan cost
+        comparisons vary by market and plan design. HSA statistics: Devenir
+        Research.
+      </p>
+    </footer>
 
-<section class="alt" id="patients">
-  <div class="wrap">
-    <p class="eyebrow">For patients</p>
-    <h2>Enroll once. Everything else is automatic.</h2>
-    <div class="grid3">
-      <div class="tile"><span class="step-num">1</span><h3>Sign up with two cards</h3><p>Your enrollment page shows their pre-tax savings, then saves an HSA card plus a regular card or bank account.</p></div>
-      <div class="tile"><span class="step-num">2</span><h3>One membership, split billing</h3><p>Each month the eligible portion runs on the HSA card and the rest on the backup — no reimbursement paperwork, ever.</p></div>
-      <div class="tile"><span class="step-num">3</span><h3>Tax documents arrive on their own</h3><p>Itemized receipts monthly and a qualification letter each January — the document their accountant asks for.</p></div>
-    </div>
-  </div>
-</section>
+    <script src="./script.js"></script>
+    <script>
+      (function () {
+        var check = document.querySelector(".pay-check");
+        if (!check) return;
 
-<section id="stack">
-  <div class="wrap">
-    <p class="eyebrow">The objection you hear every week</p>
-    <h2>Membership medicine isn't paying twice.</h2>
-    <div class="grid2">
-      <div class="tile">
-        <span class="role">HDHP — for the catastrophe</span>
-        <ul>
-          <li>Hospitalizations, surgery, specialists</li>
-          <li>The year everything goes wrong</li>
-          <li>Low premium, high deductible — and it unlocks the HSA</li>
-        </ul>
-      </div>
-      <div class="tile">
-        <span class="role">Membership — for everyday care</span>
-        <ul>
-          <li>Same-day appointments, longer visits</li>
-          <li>A doctor who knows them, direct messaging</li>
-          <li>Fixed fee — now partly pre-tax</li>
-        </ul>
-      </div>
-    </div>
-    <div class="equation" aria-label="Cost comparison">
-      <span class="eq-box">Low-deductible plan</span>
-      <span class="eq-op">≈</span>
-      <span class="eq-box">HDHP</span>
-      <span class="eq-op">+</span>
-      <span class="eq-box">Membership</span>
-    </div>
-    <p class="eq-note">The premium saved by moving from a rich low-deductible plan to an HDHP can cover much — sometimes all — of the membership. The patient isn't buying care twice; they're restructuring the same dollars for faster access and higher-touch care, with catastrophes still covered.</p>
-  </div>
-</section>
+        var contributing = false;
 
-<section class="alt" id="how">
-  <div class="wrap">
-    <p class="eyebrow">For practices</p>
-    <h2>A cheaper membership you didn't discount.</h2>
-    <div class="grid2">
-      <div class="side-panel">
-        <span class="tag">What you get</span>
-        <ul>
-          <li><strong>A new answer to the price objection</strong> — "part of this is pre-tax" — at full fee</li>
-          <li><strong>Fewer cancellations.</strong> When an HSA card declines, the backup card covers it automatically</li>
-          <li><strong>Compliance handled.</strong> Caps, primary-care-only rules, and the sole-fee test are checked before anything bills</li>
-        </ul>
-      </div>
-      <div class="side-panel">
-        <span class="tag">What you don't deal with</span>
-        <ul>
-          <li><strong>No new merchant account.</strong> You stay the merchant of record on your own Stripe account, set up as a medical practice</li>
-          <li><strong>No patient tax questions.</strong> Receipts and annual letters go out automatically</li>
-          <li><strong>No rule-watching.</strong> When the IRS adjusts the caps, your billing adjusts with them</li>
-        </ul>
-      </div>
-    </div>
-    <div class="stat-row">
-      <div class="stat"><span class="n">40M+</span><span class="l">HSA accounts in the U.S.</span></div>
-      <div class="stat"><span class="n">~$147B</span><span class="l">sitting in them, mostly unspent</span></div>
-      <div class="stat"><span class="n">$150 / $300</span><span class="l">monthly pre-tax caps, individual / family</span></div>
-    </div>
-  </div>
-</section>
+        function show(id) {
+          check.querySelectorAll(".pay-step").forEach(function (step) {
+            step.classList.toggle("is-on", step.id === id);
+          });
+        }
 
-<section id="fit">
-  <div class="wrap">
-    <p class="eyebrow">Who it's for</p>
-    <h2>Built for practices that left insurance behind.</h2>
-    <div class="grid2">
-      <div class="fit">
-        <h3>A fit if</h3>
-        <ul>
-          <li>Cash-only concierge or DPC with memberships above $150/month</li>
-          <li>Membership covers primary care; add-ons billed separately</li>
-          <li>Patients are asking about paying with their HSA</li>
-        </ul>
-      </div>
-      <div class="fit no">
-        <h3>Not a fit if</h3>
-        <ul>
-          <li>You bill insurance inside your membership — that likely doesn't qualify, and we'll say so</li>
-          <li>Your fee is under $150/month on a medical merchant account — HSA cards already work for you</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
+        check.querySelectorAll(".pay-option").forEach(function (option) {
+          option.addEventListener("click", function () {
+            if (option.dataset.contrib) {
+              contributing = option.dataset.contrib === "1";
+            }
+            if (option.dataset.cap) {
+              check.querySelector("[data-cap-label]").textContent =
+                "$" + option.dataset.cap;
+              show(contributing ? "pay-full" : "pay-spend");
+              return;
+            }
+            show(option.dataset.goto);
+          });
+        });
 
-<section class="alt" id="faq">
-  <div class="wrap">
-    <p class="eyebrow">FAQ</p>
-    <h2>The rules, in plain English.</h2>
-    <div class="faq">
-      <details>
-        <summary>Does an HSA pay for a DPC membership?</summary>
-        <div class="a">Yes — as of January 1, 2026. Qualifying membership fees are HSA-eligible up to <strong>$150/month per individual or $300/month per family</strong>. To qualify, the membership must cover primary care only, be delivered by primary care practitioners (family medicine, internal medicine, geriatrics, pediatrics, or NP/PA/CNS), and the fixed fee must be the only charge inside the arrangement.</div>
-      </details>
-      <details>
-        <summary>Can patients use an HSA for per-visit payments?</summary>
-        <div class="a">Yes — and they always could. A fixed per-visit charge for medical care is an ordinary qualified medical expense with <strong>no cap</strong>. The 2026 rules and their $150/$300 limits govern recurring membership fees, not pay-as-you-go visits.</div>
-      </details>
-      <details>
-        <summary>Are FSAs eligible?</summary>
-        <div class="a">For per-visit medical charges, yes. For membership fees, it's <strong>unsettled</strong> — the 2026 law changed HSA rules only, and FSA plan administrators disagree on membership fees. That's why we say HSA, not HSA/FSA. Patients should check with their FSA administrator.</div>
-      </details>
-      <details>
-        <summary>What's HSA-eligible with a DPC membership?</summary>
-        <div class="a">Two things. The <strong>membership fee</strong>, up to the cap. And <strong>separately billed medical services</strong> — visits, labs, procedures performed outside the membership — in full, with no cap. The $150/$300 limit applies to the periodic fee, not to a patient's total pre-tax spending at your practice.</div>
-      </details>
-      <details>
-        <summary>What are qualifying services for the HSA?</summary>
-        <div class="a">Qualified services:
-          <ul>
-            <li>All primary care practitioner services</li>
-            <li>Preventive care</li>
-            <li>Routine labs</li>
-            <li>In-office procedures</li>
-          </ul>
-        </div>
-      </details>
-      <details>
-        <summary>What's excluded from HSA payments?</summary>
-        <div class="a">Excluded:
-          <ul class="excluded">
-            <li>General anesthesia procedures</li>
-            <li>Non-routine labs processed off-site</li>
-            <li>Prescription drugs, apart from vaccines</li>
-          </ul>
-        </div>
-      </details>
-      <details>
-        <summary>Does a patient need an HDHP to use HSA money here?</summary>
-        <div class="a">Only to <strong>contribute</strong>. Spending existing HSA money on qualified expenses works regardless of current insurance — a patient who left an HDHP years ago can still spend their balance at your practice. And since 2026, bronze and catastrophic exchange plans count as HSA-qualified, so more of your patients can fund an HSA than before.</div>
-      </details>
-      <details>
-        <summary>Why does split billing matter, and how does it work?</summary>
-        <div class="a">If a patient pays a membership fee above the cap the wrong way, they <strong>lose the ability to make new HSA contributions</strong> — and usually find out at tax time. Split billing keeps the compliant portion on the HSA card and the remainder on a second card or bank account, automatically, as one membership. And the line has to be real: separately billed charges stay clean only when they're genuine per-service charges for care actually delivered outside the membership — not a membership fee wearing a different name. Rounds Pay enforces that line for you.</div>
-      </details>
-      <details>
-        <summary>What does an HSA-compliant membership look like?</summary>
-        <div class="a">Take a <strong>$325/month concierge primary care membership</strong>. Rounds Pay splits it into two charges that run together: $150 on the patient's HSA card, $175 on their regular card or bank account — one membership, fully compliant, cap never breached. When the practice performs additional services — a lab draw, a procedure, an extra visit — those are billed separately and go on the HSA card <strong>in full</strong>. The patient maximizes pre-tax spending; the practice collects its full fee.</div>
-      </details>
-    </div>
-  </div>
-</section>
+        check.querySelectorAll("[data-restart]").forEach(function (button) {
+          button.addEventListener("click", function () {
+            contributing = false;
+            show("pay-q1");
+          });
+        });
+      })();
 
-<section id="chat">
-  <div class="wrap">
-    <div class="cta-band">
-      <h2>Tell us how you bill today.</h2>
-      <p>We're building Rounds Pay with a handful of DPC and concierge practices. 15 minutes with the founder — you'll leave with the HSA rules explained, whatever you decide.</p>
-      <a class="btn" data-chat href="mailto:hello@roundsfi.com?subject=Rounds%20Pay%20—%20chat">Chat with us</a>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <div class="wrap">
-    <div class="foot-grid">
-      <div><strong style="font-family:var(--display);color:var(--ink)">Rounds Pay</strong><br>Membership billing for physicians.<br>By the creators of <a href="https://the-md.beehiiv.com">The M.D.</a></div>
-      <div class="foot-links">
-        <a href="/">Rounds</a>
-        <a href="/partner">Partner</a>
-        <a href="/privacy">Privacy</a>
-        <a href="/terms">Terms</a>
-      </div>
-    </div>
-    <p class="disclaimer">Rounds Pay provides billing software, not tax or legal advice. DPCSA qualification under IRS Notice 2026-05 depends on your practice's structure — confirm with your tax advisor. FSA treatment of membership fees varies by plan administrator. Savings estimates assume a 35% marginal rate. Plan cost comparisons vary by market and plan design. HSA statistics: Devenir Research.</p>
-  </div>
-</footer>
-
-<script>
-(function(){
-  var cap = 150;
-  var fee = document.getElementById('fee');
-  var hsaEl = document.querySelector('[data-hsa]');
-  var restEl = document.querySelector('[data-rest]');
-  var effEl = document.querySelector('[data-effective]');
-  var colEl = document.querySelector('[data-collect]');
-  var barH = document.querySelector('[data-bar-hsa]');
-  var barR = document.querySelector('[data-bar-rest]');
-  var fmt = function(n){return '$' + n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});};
-
-  function update(){
-    var f = Math.max(0, parseFloat(fee.value) || 0);
-    var hsa = Math.min(f, cap);
-    var rest = Math.max(0, f - cap);
-    hsaEl.textContent = fmt(hsa);
-    restEl.textContent = fmt(rest);
-    effEl.textContent = '~$' + Math.round(f - hsa * 0.35).toLocaleString('en-US') + '/mo';
-    colEl.textContent = fmt(f) + '/mo';
-    var pct = f > 0 ? (hsa / f) * 100 : 0;
-    barH.style.width = pct + '%';
-    barR.style.width = (100 - pct) + '%';
-  }
-  fee.addEventListener('input', update);
-  document.querySelectorAll('.toggle button').forEach(function(b){
-    b.addEventListener('click', function(){
-      document.querySelectorAll('.toggle button').forEach(function(x){x.classList.remove('active');});
-      b.classList.add('active');
-      cap = parseInt(b.getAttribute('data-cap'),10);
-      update();
-    });
-  });
-  update();
-
-  /* CTA: swap CHAT_LINK for your Calendly/Cal.com URL when ready.
-     Until then, buttons open a pre-addressed email. */
-  var CHAT_LINK = ''; // e.g. 'https://calendly.com/matt-rounds/15min'
-  if (CHAT_LINK){
-    document.querySelectorAll('[data-chat]').forEach(function(a){ a.href = CHAT_LINK; });
-  } else {
-    document.querySelectorAll('[data-chat]').forEach(function(a){
-      if (a.getAttribute('href') === '#chat') return; /* hero button scrolls to CTA */
-      a.href = 'mailto:hello@roundsfi.com?subject=Rounds%20Pay%20—%20chat';
-    });
-  }
-})();
-</script>
-</body>
+      /* Point CHAT_LINK at a Calendly/Cal.com URL when booking is live.
+         Until then the CTA opens a pre-addressed email. */
+      (function () {
+        var CHAT_LINK = "";
+        if (!CHAT_LINK) return;
+        document.querySelectorAll("[data-chat]").forEach(function (cta) {
+          cta.href = CHAT_LINK;
+        });
+      })();
+    </script>
+  </body>
 </html>
