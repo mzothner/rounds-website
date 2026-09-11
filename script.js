@@ -119,7 +119,7 @@ function installRoundsPayLeadForm() {
   payChatSection.id = "lead";
   payChatSection.classList.add("pay-lead-section");
   payChatSection.innerHTML = `
-    <div class="pay-lead-grid" data-reveal>
+    <div class="pay-lead-grid is-visible" data-reveal>
       <div class="pay-lead-copy">
         <p class="eyebrow">Practice review</p>
         <h2>See if your membership is HSA-ready.</h2>
