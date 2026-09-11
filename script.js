@@ -43,7 +43,7 @@ if ("IntersectionObserver" in window) {
 // Google Sheets waitlist endpoint. Replace this with the deployed Apps Script
 // Web App URL for the Rounds Pay lead sheet when it is ready.
 const SHEETS_URL =
-  "https://script.google.com/macros/s/AKfycbzF8Wfg987svrI5XcPbVfdxulDdHC8jpbIG084cQklbESLEFYsyR50dzo9vX7EeGEjm/exec";
+  "https://script.google.com/macros/s/AKfycbzZJ-_0tIoMh-w6Hmyp3dHCOA56HpNQGFuAN9OPLMf0HNrg0w695oX9fp2lNwAY0YGU/exec";
 
 function submitToSheet(data, noteEl, successMsg, form) {
   const btn = form.querySelector('button[type="submit"]');
