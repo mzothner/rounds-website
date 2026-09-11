@@ -40,7 +40,8 @@ if ("IntersectionObserver" in window) {
   revealItems.forEach((item) => item.classList.add("is-visible"));
 }
 
-// Google Sheets waitlist endpoint
+// Google Sheets waitlist endpoint. Replace this with the deployed Apps Script
+// Web App URL for the Rounds Pay lead sheet when it is ready.
 const SHEETS_URL =
   "https://script.google.com/macros/s/AKfycbzF8Wfg987svrI5XcPbVfdxulDdHC8jpbIG084cQklbESLEFYsyR50dzo9vX7EeGEjm/exec";
 
@@ -103,6 +104,201 @@ heroForm?.addEventListener("submit", (event) => {
   );
 });
 
+function installRoundsPayLeadForm() {
+  const payChatSection = document.getElementById("chat");
+  const isRoundsPayPage = Boolean(document.querySelector(".pay-check"));
+  if (!payChatSection || !isRoundsPayPage) return;
+
+  document.querySelectorAll('a[href="#chat"]').forEach((cta) => {
+    cta.setAttribute("href", "#lead");
+    if (cta.textContent?.trim() === "Chat with us") {
+      cta.textContent = "Get a practice review";
+    }
+  });
+
+  payChatSection.id = "lead";
+  payChatSection.classList.add("pay-lead-section");
+  payChatSection.innerHTML = `
+    <div class="pay-lead-grid" data-reveal>
+      <div class="pay-lead-copy">
+        <p class="eyebrow">Practice review</p>
+        <h2>See if your membership is HSA-ready.</h2>
+        <p>
+          Send your current pricing and billing setup. We'll review the obvious
+          HSA issues before we reach out, so the first call can be about your
+          practice instead of a generic demo.
+        </p>
+        <div class="pay-lead-points" aria-label="What Rounds reviews before the call">
+          <span>Fee cap fit</span>
+          <span>DPC vs concierge model</span>
+          <span>Billing system migration</span>
+          <span>HSA/FSA patient demand</span>
+        </div>
+
+        <div class="pay-lead-calc" aria-label="Monthly membership HSA split estimate">
+          <label>
+            <span>Your monthly membership fee</span>
+            <input id="pay-calc-fee" type="number" min="0" inputmode="decimal" value="249" />
+          </label>
+          <div class="pay-lead-calc-results">
+            <div>
+              <span>HSA eligible</span>
+              <strong data-pay-calc="eligible">$150/mo</strong>
+            </div>
+            <div>
+              <span>Backup tender</span>
+              <strong data-pay-calc="backup">$99/mo</strong>
+            </div>
+            <div>
+              <span>Patient tax savings</span>
+              <strong data-pay-calc="savings">~$576/yr</strong>
+            </div>
+          </div>
+          <p>
+            Estimate assumes individual coverage and a 32% marginal tax rate.
+            Family coverage doubles the membership cap.
+          </p>
+        </div>
+      </div>
+
+      <form class="waitlist-form pay-lead-form" id="waitlist-form" data-source="rounds-pay-practice-review">
+        <div class="waitlist-fields pay-lead-fields">
+          <label>
+            <span>Your name</span>
+            <input name="name" type="text" autocomplete="name" required placeholder="Dr. Alex Morgan" />
+          </label>
+          <label>
+            <span>Work email</span>
+            <input name="email" type="email" autocomplete="email" required placeholder="alex@practice.com" />
+          </label>
+          <label>
+            <span>Practice name</span>
+            <input name="practice_name" type="text" required placeholder="Founders Family Care" />
+          </label>
+          <label>
+            <span>Practice website</span>
+            <input name="practice_website" type="url" placeholder="https://practice.com" />
+          </label>
+          <label>
+            <span>Practice type</span>
+            <select name="practice_type" required>
+              <option value="">Select one</option>
+              <option>DPC</option>
+              <option>Concierge</option>
+              <option>Hybrid DPC/concierge</option>
+              <option>Membership primary care</option>
+              <option>Other</option>
+            </select>
+          </label>
+          <label>
+            <span>State</span>
+            <input name="state" type="text" autocomplete="address-level1" placeholder="TX" />
+          </label>
+          <label>
+            <span>Active members</span>
+            <input name="active_members" type="number" min="0" inputmode="numeric" placeholder="420" />
+          </label>
+          <label>
+            <span>Monthly membership fee</span>
+            <input name="membership_fee" type="number" min="0" inputmode="decimal" placeholder="249" />
+          </label>
+          <label>
+            <span>Billing frequency</span>
+            <select name="billing_frequency">
+              <option value="">Select one</option>
+              <option>Monthly</option>
+              <option>Quarterly</option>
+              <option>Annual</option>
+              <option>Other</option>
+            </select>
+          </label>
+          <label>
+            <span>Current billing system</span>
+            <select name="billing_system">
+              <option value="">Select one</option>
+              <option>Hint</option>
+              <option>Stripe</option>
+              <option>Square</option>
+              <option>Elation</option>
+              <option>Cerbo</option>
+              <option>Akute</option>
+              <option>Other</option>
+            </select>
+          </label>
+          <label>
+            <span>Do you accept HSA/FSA cards today?</span>
+            <select name="accepts_hsa_fsa">
+              <option value="">Select one</option>
+              <option>Yes, HSA cards</option>
+              <option>Yes, HSA and FSA cards</option>
+              <option>No</option>
+              <option>Not sure</option>
+            </select>
+          </label>
+          <label>
+            <span>Biggest question</span>
+            <select name="biggest_question">
+              <option value="">Select one</option>
+              <option>Can patients use HSA money for my fee?</option>
+              <option>What happens above the $150/$300 cap?</option>
+              <option>Can Rounds split the charge automatically?</option>
+              <option>How hard is it to switch from my current system?</option>
+              <option>What documentation do patients need?</option>
+            </select>
+          </label>
+          <label class="pay-lead-full">
+            <span>What should we know before reaching out?</span>
+            <textarea
+              name="notes"
+              placeholder="Example: We charge $249/mo, use Hint, and patients keep asking if their HSA can cover the membership."
+            ></textarea>
+          </label>
+        </div>
+
+        <button class="button button-primary button-arrow button-wide" type="submit">
+          Send me a review
+        </button>
+        <p class="form-note" id="form-note">
+          We'll email you after reviewing your membership structure. No tax or
+          legal advice, just a practical read on fit and next steps.
+        </p>
+      </form>
+    </div>
+  `;
+
+  if (!document.getElementById("pay-lead-styles")) {
+    const style = document.createElement("style");
+    style.id = "pay-lead-styles";
+    style.textContent = `
+      .pay-lead-section { text-align: left; }
+      .pay-lead-grid { display: grid; grid-template-columns: 0.82fr 1.18fr; gap: 36px; align-items: start; padding: 40px; border: 1px solid var(--line); border-radius: var(--radius-lg); background: linear-gradient(135deg, rgba(67, 116, 249, 0.06), rgba(14, 186, 116, 0.05)), var(--white); box-shadow: var(--shadow-lg); }
+      .pay-lead-copy h2 { margin-bottom: 14px; }
+      .pay-lead-copy > p { margin: 0; color: var(--text-secondary); font-size: 1.02rem; line-height: 1.7; }
+      .pay-lead-points { display: grid; gap: 10px; margin-top: 28px; }
+      .pay-lead-points span { position: relative; padding: 12px 14px 12px 34px; border: 1px solid var(--line); border-radius: var(--radius); background: rgba(255, 255, 255, 0.72); color: var(--text-secondary); font-size: 0.92rem; font-weight: 600; }
+      .pay-lead-points span::before { content: "\\2713"; position: absolute; left: 14px; top: 12px; color: var(--green); font-weight: 800; }
+      .pay-lead-calc { margin-top: 22px; padding: 18px; border: 1px solid var(--line); border-radius: var(--radius-md); background: rgba(255, 255, 255, 0.78); box-shadow: var(--shadow-sm); }
+      .pay-lead-calc label span, .pay-lead-calc-results span { display: block; color: var(--text-muted); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; }
+      .pay-lead-calc input { width: 100%; min-height: 48px; margin-top: 8px; padding: 0 16px; border: 1px solid var(--line-strong); border-radius: var(--radius-pill); background: var(--white); color: var(--text); font-size: 1.05rem; font-weight: 700; outline: none; }
+      .pay-lead-calc input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+      .pay-lead-calc-results { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-top: 14px; }
+      .pay-lead-calc-results div { min-width: 0; padding: 12px; border-radius: var(--radius); background: var(--surface); }
+      .pay-lead-calc-results strong { display: block; margin-top: 4px; color: var(--text); font-family: "Aeonik", "Inter", -apple-system, sans-serif; font-size: 1rem; line-height: 1.2; }
+      .pay-lead-calc p { margin: 12px 0 0; color: var(--text-muted); font-size: 0.82rem; line-height: 1.5; }
+      .pay-lead-form { padding: 26px; border: 1px solid var(--line); border-radius: var(--radius-md); background: var(--white); box-shadow: var(--shadow-md); }
+      .pay-lead-fields { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .pay-lead-full { grid-column: 1 / -1; }
+      .pay-lead-form .form-note { text-align: left; }
+      .pay-lead-form button:disabled { cursor: wait; opacity: 0.72; }
+      @media (max-width: 900px) { .pay-lead-grid { grid-template-columns: 1fr; padding: 28px; } }
+      @media (max-width: 640px) { .pay-lead-grid, .pay-lead-form { padding: 22px; } .pay-lead-fields, .pay-lead-calc-results { grid-template-columns: 1fr; } }
+    `;
+    document.head.appendChild(style);
+  }
+}
+
+installRoundsPayLeadForm();
+
 // Bottom waitlist form (any page with #waitlist-form)
 const waitlistForm = document.getElementById("waitlist-form");
 const formNote = document.getElementById("form-note");
@@ -111,14 +307,21 @@ waitlistForm?.addEventListener("submit", (event) => {
   event.preventDefault();
   const emailInput = waitlistForm.querySelector('input[name="email"]');
   if (!emailInput || !formNote) return;
+  const calcFeeInput = document.getElementById("pay-calc-fee");
+  const membershipFeeInput = waitlistForm.querySelector('input[name="membership_fee"]');
+  if (membershipFeeInput && !membershipFeeInput.value && calcFeeInput?.value) {
+    membershipFeeInput.value = calcFeeInput.value;
+  }
 
   // Collect all form fields dynamically
   const data = { email: emailInput.value };
   const source = waitlistForm.dataset.source || "waitlist";
   data.source = source;
+  data.page_url = window.location.href;
+  data.user_agent = navigator.userAgent;
 
-  // Gather all select and input fields
-  waitlistForm.querySelectorAll("select, input:not([type=email])").forEach((field) => {
+  // Gather all select, textarea, and non-email input fields
+  waitlistForm.querySelectorAll("select, textarea, input:not([type=email])").forEach((field) => {
     if (field.name && field.value) {
       data[field.name] = field.value;
     }
@@ -133,16 +336,51 @@ waitlistForm?.addEventListener("submit", (event) => {
       ...(data.stage && { career_stage: data.stage }),
       ...(data.loan_balance && { loan_balance: data.loan_balance }),
       ...(data.pslf && { pslf_pursuing: data.pslf }),
+      ...(data.practice_type && { practice_type: data.practice_type }),
+      ...(data.membership_fee && { membership_fee: data.membership_fee }),
+      ...(data.billing_system && { billing_system: data.billing_system }),
     });
   }
 
   submitToSheet(
     data,
     formNote,
-    `You're in. We'll send early access details to ${data.email}.`,
+    source === "rounds-pay-practice-review"
+      ? `Thanks. We'll review your membership setup and email ${data.email}.`
+      : `You're in. We'll send early access details to ${data.email}.`,
     waitlistForm
   );
 });
+
+// Rounds Pay fee split calculator
+const payCalcFee = document.getElementById("pay-calc-fee");
+const payCalcEligible = document.querySelector('[data-pay-calc="eligible"]');
+const payCalcBackup = document.querySelector('[data-pay-calc="backup"]');
+const payCalcSavings = document.querySelector('[data-pay-calc="savings"]');
+const payLeadFeeInput = document.querySelector('#waitlist-form input[name="membership_fee"]');
+
+function formatDollars(value) {
+  return `$${Math.round(value).toLocaleString()}`;
+}
+
+function updatePayCalc() {
+  if (!payCalcFee || !payCalcEligible || !payCalcBackup || !payCalcSavings) return;
+  const fee = Math.max(Number(payCalcFee.value) || 0, 0);
+  const eligible = Math.min(fee, 150);
+  const backup = Math.max(fee - 150, 0);
+  const savings = eligible * 12 * 0.32;
+  payCalcEligible.textContent = `${formatDollars(eligible)}/mo`;
+  payCalcBackup.textContent = `${formatDollars(backup)}/mo`;
+  payCalcSavings.textContent = `~${formatDollars(savings)}/yr`;
+}
+
+payCalcFee?.addEventListener("input", () => {
+  updatePayCalc();
+  if (payLeadFeeInput && !payLeadFeeInput.value) {
+    payLeadFeeInput.placeholder = payCalcFee.value || "249";
+  }
+});
+updatePayCalc();
 
 // FAQ item tracking
 document.querySelectorAll(".faq-list details").forEach((details) => {
