@@ -2996,6 +2996,28 @@ h3 {
   color: var(--green);
 }
 
+.flow-problem .rail-amt,
+.flow-problem .rail-tag,
+.flow-problem .rail-bar i,
+.flow-problem .app-total b,
+.flow-problem .app-delta,
+.flow-problem .app-row-new {
+  animation: none;
+}
+
+.flow-problem .rail-bar i {
+  transform: scaleX(1);
+}
+
+.flow-problem .app-total b {
+  transform: translateY(-2.1rem);
+}
+
+.flow-problem .app-delta,
+.flow-problem .app-row-new {
+  opacity: 1;
+}
+
 /* Practice dashboard window */
 .flow-app {
   border: 1px solid var(--line);
