@@ -175,82 +175,11 @@ function installRoundsPayLeadForm() {
             <span>Practice name</span>
             <input name="practice_name" type="text" required placeholder="Founders Family Care" />
           </label>
-          <label>
-            <span>Practice website</span>
-            <input name="practice_website" type="url" placeholder="https://practice.com" />
-          </label>
-          <label>
-            <span>Practice type</span>
-            <select name="practice_type" required>
-              <option value="">Select one</option>
-              <option>DPC</option>
-              <option>Concierge</option>
-              <option>Hybrid DPC/concierge</option>
-              <option>Membership primary care</option>
-              <option>Other</option>
-            </select>
-          </label>
-          <label>
-            <span>State</span>
-            <input name="state" type="text" autocomplete="address-level1" placeholder="TX" />
-          </label>
-          <label>
-            <span>Active members</span>
-            <input name="active_members" type="number" min="0" inputmode="numeric" placeholder="420" />
-          </label>
-          <label>
-            <span>Monthly membership fee</span>
-            <input name="membership_fee" type="number" min="0" inputmode="decimal" placeholder="249" />
-          </label>
-          <label>
-            <span>Billing frequency</span>
-            <select name="billing_frequency">
-              <option value="">Select one</option>
-              <option>Monthly</option>
-              <option>Quarterly</option>
-              <option>Annual</option>
-              <option>Other</option>
-            </select>
-          </label>
-          <label>
-            <span>Current billing system</span>
-            <select name="billing_system">
-              <option value="">Select one</option>
-              <option>Hint</option>
-              <option>Stripe</option>
-              <option>Square</option>
-              <option>Elation</option>
-              <option>Cerbo</option>
-              <option>Akute</option>
-              <option>Other</option>
-            </select>
-          </label>
-          <label>
-            <span>Do you accept HSA/FSA cards today?</span>
-            <select name="accepts_hsa_fsa">
-              <option value="">Select one</option>
-              <option>Yes, HSA cards</option>
-              <option>Yes, HSA and FSA cards</option>
-              <option>No</option>
-              <option>Not sure</option>
-            </select>
-          </label>
-          <label>
-            <span>Biggest question</span>
-            <select name="biggest_question">
-              <option value="">Select one</option>
-              <option>Can patients use HSA money for my fee?</option>
-              <option>What happens above the $150/$300 cap?</option>
-              <option>Can Rounds split the charge automatically?</option>
-              <option>How hard is it to switch from my current system?</option>
-              <option>What documentation do patients need?</option>
-            </select>
-          </label>
           <label class="pay-lead-full">
             <span>What should we know before reaching out?</span>
             <textarea
               name="notes"
-              placeholder="Example: We charge $249/mo, use Hint, and patients keep asking if their HSA can cover the membership."
+              placeholder="Example: We charge $249/mo and patients keep asking if their HSA can cover the membership."
             ></textarea>
           </label>
         </div>
@@ -286,7 +215,7 @@ function installRoundsPayLeadForm() {
       .pay-lead-calc-results strong { display: block; margin-top: 4px; color: var(--text); font-family: "Aeonik", "Inter", -apple-system, sans-serif; font-size: 1rem; line-height: 1.2; }
       .pay-lead-calc p { margin: 12px 0 0; color: var(--text-muted); font-size: 0.82rem; line-height: 1.5; }
       .pay-lead-form { padding: 26px; border: 1px solid var(--line); border-radius: var(--radius-md); background: var(--white); box-shadow: var(--shadow-md); }
-      .pay-lead-fields { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .pay-lead-fields { grid-template-columns: 1fr; }
       .pay-lead-full { grid-column: 1 / -1; }
       .pay-lead-form .form-note { text-align: left; }
       .pay-lead-form button:disabled { cursor: wait; opacity: 0.72; }
