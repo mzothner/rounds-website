@@ -2410,6 +2410,109 @@ h3 {
   text-transform: uppercase;
 }
 
+/* Decision flow */
+.decision-flow {
+  position: relative;
+  display: grid;
+  gap: 0;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background:
+    linear-gradient(135deg, rgba(10, 37, 64, 0.04), rgba(67, 116, 249, 0.06)),
+    var(--white);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+}
+
+.decision-flow-rail {
+  position: absolute;
+  top: 40px;
+  bottom: 40px;
+  left: 72px;
+  width: 2px;
+  background: linear-gradient(180deg, var(--accent), var(--green));
+}
+
+.decision-item {
+  position: relative;
+  display: grid;
+  grid-template-columns: 80px minmax(0, 1fr) auto;
+  gap: 28px;
+  align-items: center;
+  padding: 34px 38px;
+}
+
+.decision-item + .decision-item {
+  border-top: 1px solid var(--line);
+}
+
+.decision-marker {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 68px;
+  height: 68px;
+  border: 1px solid rgba(67, 116, 249, 0.2);
+  border-radius: 50%;
+  background: var(--white);
+  color: var(--accent);
+  font-family: "Aeonik", "Inter", -apple-system, sans-serif;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.decision-copy h3 {
+  margin-bottom: 8px;
+}
+
+.decision-copy p {
+  max-width: 660px;
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 0.98rem;
+  line-height: 1.65;
+}
+
+.decision-output {
+  justify-self: end;
+  padding: 8px 13px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.72);
+  color: var(--text-secondary);
+  font-size: 0.78rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+@media (max-width: 760px) {
+  .decision-flow-rail {
+    top: 34px;
+    bottom: 34px;
+    left: 50px;
+  }
+
+  .decision-item {
+    grid-template-columns: 54px 1fr;
+    gap: 20px;
+    align-items: start;
+    padding: 28px 24px;
+  }
+
+  .decision-marker {
+    width: 52px;
+    height: 52px;
+  }
+
+  .decision-output {
+    grid-column: 2;
+    justify-self: start;
+    margin-top: 14px;
+  }
+}
+
 /* Coverage stack cards */
 .stack-role {
   display: block;
