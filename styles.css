@@ -2513,6 +2513,60 @@ h3 {
   }
 }
 
+/* Capability strip */
+.capability-strip {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--text);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+}
+
+.capability-item {
+  min-width: 0;
+  padding: 30px;
+  color: var(--white);
+}
+
+.capability-item + .capability-item {
+  border-left: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.capability-index {
+  display: inline-block;
+  margin-bottom: 28px;
+  color: rgba(255, 255, 255, 0.52);
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.capability-item h3 {
+  max-width: 260px;
+  margin-bottom: 10px;
+  color: var(--white);
+}
+
+.capability-item p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.94rem;
+  line-height: 1.62;
+}
+
+@media (max-width: 860px) {
+  .capability-strip {
+    grid-template-columns: 1fr;
+  }
+
+  .capability-item + .capability-item {
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    border-left: 0;
+  }
+}
+
 /* Coverage stack cards */
 .stack-role {
   display: block;
