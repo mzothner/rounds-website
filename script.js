@@ -112,7 +112,7 @@ function installRoundsPayLeadForm() {
   document.querySelectorAll('a[href="#chat"]').forEach((cta) => {
     cta.setAttribute("href", "#lead");
     if (cta.textContent?.trim() === "Chat with us") {
-      cta.textContent = "Get a practice review";
+      cta.textContent = "Chat with us";
     }
   });
 
@@ -121,12 +121,11 @@ function installRoundsPayLeadForm() {
   payChatSection.innerHTML = `
     <div class="pay-lead-grid is-visible" data-reveal>
       <div class="pay-lead-copy">
-        <p class="eyebrow">Practice review</p>
+        <p class="eyebrow">Chat with us</p>
         <h2>See if your membership is HSA-ready.</h2>
         <p>
-          Send your current pricing and billing setup. We'll review the obvious
-          HSA issues before we reach out, so the first call can be about your
-          practice instead of a generic demo.
+          Send a few details about your practice and what you are trying to
+          figure out. We'll reach out by email to continue the conversation.
         </p>
         <div class="pay-lead-points" aria-label="What Rounds reviews before the call">
           <span>Fee cap fit</span>
@@ -161,7 +160,7 @@ function installRoundsPayLeadForm() {
         </div>
       </div>
 
-      <form class="waitlist-form pay-lead-form" id="waitlist-form" data-source="rounds-pay-practice-review">
+      <form class="waitlist-form pay-lead-form" id="waitlist-form" data-source="rounds-pay-chat">
         <div class="waitlist-fields pay-lead-fields">
           <label>
             <span>Your name</span>
@@ -185,11 +184,10 @@ function installRoundsPayLeadForm() {
         </div>
 
         <button class="button button-primary button-arrow button-wide" type="submit">
-          Send me a review
+          Send message
         </button>
         <p class="form-note" id="form-note">
-          We'll email you after reviewing your membership structure. No tax or
-          legal advice, just a practical read on fit and next steps.
+          We'll email you back after reading your note.
         </p>
       </form>
     </div>
@@ -274,8 +272,8 @@ waitlistForm?.addEventListener("submit", (event) => {
   submitToSheet(
     data,
     formNote,
-    source === "rounds-pay-practice-review"
-      ? `Thanks. We'll review your membership setup and email ${data.email}.`
+    source === "rounds-pay-chat"
+      ? `Thanks. We'll email ${data.email} soon.`
       : `You're in. We'll send early access details to ${data.email}.`,
     waitlistForm
   );
