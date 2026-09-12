@@ -268,6 +268,14 @@ waitlistForm?.addEventListener("submit", (event) => {
     });
   }
 
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({
+    event: "Lead",
+    lead_source: source,
+    content_name: source === "rounds-pay-chat" ? "Rounds Pay lead form" : "Rounds waitlist form",
+    content_category: source === "rounds-pay-chat" ? "dpc_hsa_payments" : "waitlist",
+  });
+
   submitToSheet(
     data,
     formNote,
