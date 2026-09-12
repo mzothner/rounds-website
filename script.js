@@ -42,7 +42,7 @@ if ("IntersectionObserver" in window) {
 
 // Google Sheets endpoint for Rounds Pay lead submissions.
 const SHEETS_URL =
-  "https://script.google.com/macros/s/AKfycbzZJ-_0tIoMh-w6Hmyp3dHCOA56HpNQGFuAN9OPLMf0HNrg0w695oX9fp2lNwAY0YGU/exec";
+  "https://script.google.com/macros/s/AKfycbyV9Sx_m8mZME8psCahF15DpVzlC_8wHV9m3nJCZ_ZkrjbZ3Xy2cGtPwwaO_gX1PpVy/exec";
 
 function submitToSheet(data, noteEl, successMsg, form) {
   const btn = form.querySelector('button[type="submit"]');
